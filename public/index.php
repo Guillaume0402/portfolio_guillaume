@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+require_once __DIR__ . '/../vendor/autoload.php';
 
 ini_set('display_errors', '1');
 error_reporting(E_ALL);
@@ -19,7 +20,7 @@ spl_autoload_register(function (string $class) {
     if (is_file($file)) require $file;
 });
 
-use App\Core\Router;
+use App\Http\Router;
 
 $router = new Router();
 
