@@ -114,11 +114,11 @@
                 </header>
 
                 <div class="chips-grid" aria-label="Compétences">
-                    <?php foreach ($skills as $skill): ?>
+                   
                         <span class="chip reveal" data-cat="">
                            
                         </span>
-                    <?php endforeach; ?>
+                   
                 </div>
             </div>
         </section>
