@@ -50,9 +50,9 @@
 
     </div>
 
-    <div class="container footer-bottom">
-        <span class="footer-copy">© <span id="year"></span> Guillaume. Tous droits réservés.</span>
-        <span class="footer-mini">Fait avec HTML/CSS/JS.</span>
+    <div class="footer-bottom">
+        <span class="footer-copy">© <span id="year"></span> Guillaume Maignaut. Tous droits réservés.</span>
+        <span class="footer-mini">Fait avec HTML/CSS/JS/PHP/DOCKER.</span>
     </div>
 
     <script>
