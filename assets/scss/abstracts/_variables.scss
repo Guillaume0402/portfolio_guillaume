@@ -1,18 +1,51 @@
 // SCSS tokens
-$radius: 8px;
-$shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+$radius: 16px;
+$radius-lg: 24px;
 
 $bp-sm: 576px;
 $bp-md: 768px;
 $bp-lg: 1024px;
+$bp-xl: 1100px;
 
-// CSS tokens (facile à override)
 :root {
-  --bg: #0b0b0f;
-  --surface: #12121a;
-  --text: #eaeaf2;
-  --muted: #a5a5b5;
-  --primary: #00e676;
+    color-scheme: dark;
 
-  --radius: #{$radius};
+    /* Base + tokens */
+    --bg: #080c12;
+    --surface: #12121a;
+    --panel: rgba(255, 255, 255, 0.06);
+    --text: #e9eefc;
+    --muted: rgba(233, 238, 252, 0.65);
+    --stroke: rgba(255, 255, 255, 0.1);
+
+    /* Accents */
+    --primary: #00e676;
+    --accent: #3dffa0;
+    --accent2: #00c8f5;
+    --accent3: #a78bfa;
+
+    /* Metrics & Effects */
+    --radius: #{$radius};
+    --radius-lg: #{$radius-lg};
+    --shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+    --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.3);
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition: 180ms var(--ease-out);
+
+    /* Glass primitives */
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-hover: rgba(255, 255, 255, 0.065);
+
+    /* Terminal colors */
+    --t-bg: #0d1117;
+    --t-bar: #161b22;
+    --t-kw: #ff7b72;
+    --t-cls: #79c0ff;
+    --t-fn: #d2a8ff;
+    --t-str: #a5d6ff;
+    --t-var: #ffa657;
+    --t-dim: rgba(233, 238, 252, 0.28);
+    --t-success: #3dffa0;
 }
