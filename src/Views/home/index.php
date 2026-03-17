@@ -133,22 +133,28 @@
        </section>
 
        <section id="skills" class="section">
-           <div class="container">
-               <header class="section-header reveal">
-                   <span class="section-num">02 &mdash; Stack technique</span>
-                   <h2 class="section-title">Compétences</h2>
-                   <p class="section-lead">Stack orientée front-end, avec bases solides côté back.</p>
-               </header>
+            <div class="container">
+                <header class="section-header reveal">
+                    <span class="section-num">02 &mdash; Stack technique</span>
+                    <h2 class="section-title">Compétences</h2>
+                    <p class="section-lead">Stack orientée front-end, avec bases solides côté back.</p>
+                </header>
 
-               <div class="chips-grid" aria-label="Compétences">
-
-                   <span class="chip reveal" data-cat="">
-
-                   </span>
-
-               </div>
-           </div>
-       </section>
+                <div class="chips-grid" aria-label="Compétences">
+                    <?php foreach ($skills as $skill): ?>
+                        <span class="chip reveal">
+                            <?php if (!empty($skill['logo'])): ?>
+                                <img
+                                    class="chip-logo"
+                                    loading="lazy"
+                                    src="/images/<?= htmlspecialchars($skill['logo']) ?>"
+                                    alt="Logo de <?= htmlspecialchars($skill['name']) ?>">
+                            <?php endif; ?>                            
+                        </span>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
 
        <section id="about" class="section">
            <div class="container about-grid">
