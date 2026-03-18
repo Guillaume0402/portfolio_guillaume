@@ -7,6 +7,7 @@ namespace App\Controllers;
 use App\Http\AbstractController;
 use App\Repositories\ProjectRepository;
 use App\Services\Database;
+use App\Repositories\SkillsRepository;
 
 final class HomeController extends AbstractController
 {
@@ -14,12 +15,15 @@ final class HomeController extends AbstractController
     {
         $projectRepository = new ProjectRepository(Database::getConnection());
         $projects = $projectRepository->findAll();
+        $skillsRepository = new SkillsRepository(Database::getConnection());
+        $skills = $skillsRepository->findAll();
 
         return $this->render('home/index', [
             'pageTitle' => 'Accueil',
             'title' => 'Accueil',
             'subtitle' => 'Routeur + layout OK',
             'projects' => $projects,
+            'skills' => $skills,
         ]);
     }
 
