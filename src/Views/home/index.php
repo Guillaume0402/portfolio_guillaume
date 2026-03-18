@@ -1,8 +1,8 @@
    <main>
-       <section class="hero-section">
+       <section class="container-app hero-section">
            <div class="container hero-inner">
                <div class="hero-media reveal">
-                   <div class="hero-copy">
+                   <div class="container hero-copy">
                        <p class="hero-kicker">Guillaume Maignaut · Développeur Web</p>
                        <h1 class="hero-title">Je conçois des sites web modernes, rapides et maintenables.</h1>
                        <p class="hero-subtitle">
@@ -49,21 +49,20 @@
                    </div>
                </div>
            </div>
-           <div class="hero-scroll-hint" aria-hidden="true">
+           <!-- <div class="hero-scroll-hint" aria-hidden="true">
                <span class="scroll-line"></span>
-           </div>
+           </div> -->
        </section>
 
        <section id="projects" class="section">
            <div class="container">
-               <header class="section-header reveal">
-                   <span class="section-num">01 &mdash; Réalisations</span>
-                   <h2 class="section-title">Projets</h2>
-                   <p class="section-lead">Une sélection de réalisations issues de la base de données.</p>
+               <header class="section-header reveal">                   
+                   <h2>Projets</h2>
+                   <p>Une sélection de réalisations issues de la base de données.</p>
                </header>
 
                <?php if (empty($projects)): ?>
-                   <p class="empty-state">Aucun projet pour le moment.</p>
+                   <p>Aucun projet pour le moment.</p>
                <?php else: ?>
                    <div class="cards-grid">
                        <?php foreach ($projects as $project): ?>
@@ -78,7 +77,6 @@
 
                                        <div class="card-media">
                                            <img
-                                               class="card-img"
                                                loading="lazy"
                                                src="/images/<?= htmlspecialchars($img) ?>"
                                                alt="Aperçu du projet <?= htmlspecialchars($project['title']) ?>">
@@ -133,35 +131,32 @@
        </section>
 
        <section id="skills" class="section">
-            <div class="container">
-                <header class="section-header reveal">
-                    <span class="section-num">02 &mdash; Stack technique</span>
-                    <h2 class="section-title">Compétences</h2>
-                    <p class="section-lead">Stack orientée front-end, avec bases solides côté back.</p>
-                </header>
+           <div class="container">
+               <header class="section-header reveal">                   
+                   <h2>Compétences</h2>
+                   <p>Stack orientée front-end, avec bases solides côté back.</p>
+               </header>
 
-                <div class="chips-grid" aria-label="Compétences">
-                    <?php foreach ($skills as $skill): ?>
-                        <span class="chip reveal">
-                            <?php if (!empty($skill['logo'])): ?>
-                                <img
-                                    class="chip-logo"
-                                    loading="lazy"
-                                    src="/images/<?= htmlspecialchars($skill['logo']) ?>"
-                                    alt="Logo de <?= htmlspecialchars($skill['name']) ?>">
-                            <?php endif; ?>                            
-                        </span>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </section>
+               <div class="chips-grid" aria-label="Compétences">
+                   <?php foreach ($skills as $skill): ?>
+                       <span class="chip reveal">
+                           <?php if (!empty($skill['logo'])): ?>
+                               <img
+                                   loading="lazy"
+                                   src="/images/<?= htmlspecialchars($skill['logo']) ?>"
+                                   alt="Logo de <?= htmlspecialchars($skill['name']) ?>">
+                           <?php endif; ?>
+                       </span>
+                   <?php endforeach; ?>
+               </div>
+           </div>
+       </section>
 
        <section id="about" class="section">
            <div class="container about-grid">
-               <header class="section-header reveal">
-                   <span class="section-num">03 &mdash; À propos</span>
-                   <h2 class="section-title">À propos</h2>
-                   <p class="section-lead">Je privilégie des interfaces lisibles, rapides, et faciles à maintenir.</p>
+               <header class="section-header reveal">                   
+                   <h2>À propos</h2>
+                   <p>Je privilégie des interfaces lisibles, rapides, et faciles à maintenir.</p>
                </header>
 
                <div class="about-card reveal">
