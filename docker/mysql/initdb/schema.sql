@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS projects (
-  idproject INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL UNIQUE,
-  description VARCHAR(500) NULL,
-  github_link VARCHAR(200) NULL,
-  project_link VARCHAR(200) NULL
-) ENGINE=InnoDB;
