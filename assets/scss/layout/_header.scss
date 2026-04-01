@@ -15,7 +15,8 @@
     justify-content: space-between;
     gap: 20px;
     min-height: 74px;
-    padding: 12px 0;
+    padding: 10px 0;
+    margin-right: 10px;
 }
 
 .brand {
@@ -25,6 +26,9 @@
     min-width: 220px;
     color: var(--text);
     text-decoration: none;
+    @media (max-width: 375px){
+        margin-left: 5px;
+    }
 }
 
 .brand-photo {
@@ -54,6 +58,9 @@
     border: 1px solid rgba(255, 255, 255, 0.14);
     background: rgba(255, 255, 255, 0.035);
     letter-spacing: 0.02em;
+    @media (max-width: 375px){
+        display: none;
+    }
 }
 
 .site-nav {
@@ -143,7 +150,7 @@
 
 @media (max-width: 820px) {
     .header-inner {
-        min-height: 68px;
+        min-height: 68px;        
         gap: 14px;
     }
 

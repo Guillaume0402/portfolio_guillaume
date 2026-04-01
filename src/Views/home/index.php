@@ -3,11 +3,15 @@
            <div class="container hero-inner">
                <div class="hero-media reveal">
                    <div class="container hero-copy">
-                       <p class="hero-kicker">Guillaume Maignaut · Développeur Web</p>
-                       <h1 class="hero-title">Je conçois des sites web modernes, rapides et maintenables.</h1>
+                       <p class="hero-kicker">
+                           <span class="hero-kicker-text">
+                               <span class="hero-kicker-name">Guillaume Maignaut</span>
+                               <span class="hero-kicker-role">Développeur Web</span>
+                           </span>
+                       </p>
+                       <h1 class="hero-title">Je crée des sites internet actuels, performants et faciles à maintenir.</h1>
                        <p class="hero-subtitle">
-                           Intégration soignée, accessibilité, performance et SEO. Je transforme des idées en expériences web
-                           claires et efficaces.
+                           Intégration minutieuse, accessibilité, performance et optimisation pour les moteurs de recherche. Je convertis des concepts en expériences web précises et performantes.
                        </p>
 
                        <div class="hero-actions">
@@ -56,7 +60,7 @@
 
        <section id="projects" class="section">
            <div class="container">
-               <header class="section-header reveal">                   
+               <header class="section-header reveal">
                    <h2>Projets</h2>
                    <p>Une sélection de réalisations issues de la base de données.</p>
                </header>
@@ -83,9 +87,15 @@
                                        </div>
 
                                        <?php if (!empty($project['description'])): ?>
-                                           <p class="card-text">
-                                               <?= htmlspecialchars($project['description']) ?>
-                                           </p>
+                                           <div class="card-description">
+                                               <p class="card-text">
+                                                   <?= htmlspecialchars($project['description']) ?>
+                                               </p>
+
+                                               <button type="button" class="card-text-toggle">
+                                                   Lire plus
+                                               </button>
+                                           </div>
                                        <?php endif; ?>
                                    </div>
                                </div>
@@ -132,7 +142,7 @@
 
        <section id="skills" class="section">
            <div class="container">
-               <header class="section-header reveal">                   
+               <header class="section-header reveal">
                    <h2>Compétences</h2>
                    <p>Stack orientée front-end, avec bases solides côté back.</p>
                </header>
@@ -154,19 +164,17 @@
 
        <section id="about" class="section">
            <div class="container about-grid">
-               <header class="section-header reveal">                   
+               <header class="section-header reveal">
                    <h2>À propos</h2>
                    <p>Je privilégie des interfaces lisibles, rapides, et faciles à maintenir.</p>
                </header>
 
                <div class="about-card reveal">
                    <p class="about-text">
-                       J’aime construire des pages qui vont droit au but&nbsp;: une hiérarchie claire, une typographie soignée,
-                       et des composants réutilisables. Mon objectif&nbsp;: un rendu «&nbsp;pro&nbsp;» sans complexité inutile.
+                       J'apprécie de créer des pages qui vont à l'essentiel : une hiérarchie bien définie, une typographie raffinée et des éléments réutilisables. Mon but, une présentation professionnelle sans complications superflues.
                    </p>
                    <p class="about-text">
-                       Si tu veux me parler d’un projet, le plus simple est de passer par le bouton «&nbsp;Me contacter&nbsp;» ou
-                       directement via le mail en pied de page.
+                       Si tu souhaites discuter d'un projet, le moyen le plus facile est d'utiliser le bouton Me contacter ou de passer par l'adresse email indiquée en bas de page.
                    </p>
                    <div class="about-stats">
                        <div class="stat">
@@ -193,7 +201,7 @@
                        <div>
                            <p class="contact-kicker">Travaillons ensemble</p>
                            <h2 class="contact-title">Un projet en tête&nbsp;?</h2>
-                           <p class="contact-lead">Disponible pour des missions freelance, des collaborations ou simplement pour discuter de vos idées.</p>
+                           <p class="contact-lead">Disponible pour des projets en freelance, des partenariats ou juste pour échanger vos idées.</p>
                        </div>
                        <div class="contact-actions">
                            <a class="btn btn-primary btn-lg" href="mailto:guillaume.maignaut@outlook.fr">M’envoyer un email</a>

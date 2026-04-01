@@ -12,7 +12,7 @@
 require __DIR__ . '/../partials/header.php';
 ?>
 
-<main class="app-container py-4">
+<main class="app-container">
   <?= $content ?? '' ?>
 </main>
 

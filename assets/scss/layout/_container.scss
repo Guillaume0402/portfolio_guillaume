@@ -1,4 +1,7 @@
 .app-container {
   width: min(1400px, calc(100% - 32px));
   margin-inline: auto;
+  @media (max-width:375px) {
+    width: 100%;
+  }
 }
