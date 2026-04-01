@@ -19,7 +19,8 @@ class ProjectRepository
                 description,
                 github_link,
                 project_link,
-                image
+                image,
+                tech_stack
             FROM projects
             ORDER BY idproject DESC
         ";

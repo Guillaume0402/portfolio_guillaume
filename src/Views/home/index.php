@@ -100,10 +100,12 @@
                                    </div>
                                </div>
 
+                               <?php $stacks = array_filter(array_map('trim', explode(',', $project['tech_stack'] ?? ''))); ?>
+
                                <div class="tag-row" aria-label="Technologies">
-                                   <span class="tag">HTML</span>
-                                   <span class="tag">CSS</span>
-                                   <span class="tag">PHP</span>
+                                   <?php foreach ($stacks as $stack): ?>
+                                       <span class="tag"><?= htmlspecialchars($stack) ?></span>
+                                   <?php endforeach; ?>
                                </div>
 
                                <div class="btn-projects">
