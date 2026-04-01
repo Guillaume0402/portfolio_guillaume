@@ -1,8 +1,12 @@
 /* Footer (clean, balanced, portfolio style) */
 .site-footer {
     margin-top: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
-    background: linear-gradient(to top, rgba(7, 11, 17, 0.98), rgba(7, 11, 17, 0.84));
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(
+        to top,
+        rgba(7, 11, 17, 0.98),
+        rgba(7, 11, 17, 0.84)
+    );
 }
 
 .footer-inner {
@@ -51,13 +55,16 @@
     color: #061015;
     background: linear-gradient(120deg, var(--accent), var(--accent2));
     box-shadow: 0 8px 22px rgba(0, 200, 245, 0.22);
-    transition: transform var(--transition), filter var(--transition), box-shadow var(--transition);
+    transition:
+        transform var(--transition),
+        filter var(--transition),
+        box-shadow var(--transition);
 }
 
 .footer-cta:hover {
     transform: translateY(-1px);
     filter: brightness(1.04);
-    box-shadow: 0 12px 26px rgba(0, 200, 245, 0.30);
+    box-shadow: 0 12px 26px rgba(0, 200, 245, 0.3);
 }
 
 .footer-link {
@@ -65,7 +72,9 @@
     color: rgba(233, 238, 252, 0.74);
     padding: 8px 10px;
     border-radius: 10px;
-    transition: color var(--transition), background var(--transition);
+    transition:
+        color var(--transition),
+        background var(--transition);
 }
 
 .footer-link:hover {
@@ -76,6 +85,8 @@
 .footer-col {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: 14px;
     padding: 22px;
     border-radius: 16px;
@@ -83,6 +94,8 @@
     background: rgba(255, 255, 255, 0.035);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+    width: 300px;    
+    margin: 0 auto;
 }
 
 .footer-title {
@@ -102,7 +115,9 @@
     border-radius: 10px;
     text-decoration: none;
     color: rgba(233, 238, 252, 0.76);
-    transition: color var(--transition), background var(--transition);
+    transition:
+        color var(--transition),
+        background var(--transition);
 }
 
 .footer-social .icon {
@@ -120,8 +135,8 @@
 .footer-bottom {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;    
-    gap: 12px;    
+    justify-content: space-evenly;
+    gap: 12px;
     padding: 14px 0 26px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     color: rgba(233, 238, 252, 0.62);
@@ -129,12 +144,10 @@
 }
 
 .footer-mini {
-    
     color: rgba(233, 238, 252, 0.52);
 }
 
 @media (max-width: 920px) {
-    
     .footer-brand {
         text-align: center;
     }
@@ -168,15 +181,6 @@
         padding-top: 34px;
     }
 
-    .footer-col {
-        width: 300px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin: 0 auto;
-    }
-
     .footer-title {
         text-align: center;
     }
@@ -195,7 +199,7 @@
         flex-direction: column;
         align-items: center;
     }
-    
+
     .footer-sep {
         display: none;
     }

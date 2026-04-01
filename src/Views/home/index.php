@@ -9,9 +9,9 @@
                                <span class="hero-kicker-role">Développeur Web</span>
                            </span>
                        </p>
-                       <h1 class="hero-title">Je crée des sites internet actuels, performants et faciles à maintenir.</h1>
+                       <h1 class="hero-title">Je crée des sites internet modernes, fiables et pensés pour durer.</h1>
                        <p class="hero-subtitle">
-                           Intégration minutieuse, accessibilité, performance et optimisation pour les moteurs de recherche. Je convertis des concepts en expériences web précises et performantes.
+                           Intégration minutieuse, accessibilité, validation des données, protection des accès et optimisation SEO pour des expériences web fiables et durables.
                        </p>
 
                        <div class="hero-actions">
@@ -20,6 +20,7 @@
                        </div>
 
                        <div class="hero-badges" aria-label="Points forts">
+                           <span class="badge">Sécurité</span>
                            <span class="badge">Responsive</span>
                            <span class="badge">Performance</span>
                            <span class="badge">UX &amp; UI</span>
@@ -38,8 +39,8 @@
                            <p class="tl"><span class="t-dim">02</span> <span class="t-kw">public</span> <span class="t-var">$name</span> = <span class="t-str">'Guillaume'</span>;</p>
                            <p class="tl"><span class="t-dim">03</span> <span class="t-kw">public</span> <span class="t-var">$skills</span> = [</p>
                            <p class="tl"><span class="t-dim">04</span> <span class="t-str">'HTML'</span>, <span class="t-str">'CSS'</span>, <span class="t-str">'JS'</span>,</p>
-                           <p class="tl"><span class="t-dim">05</span> <span class="t-str">'PHP'</span>, <span class="t-str">'Git'</span>, <span class="t-str">'Docker'</span></p>
-                           <p class="tl"><span class="t-dim">06</span> ];</p>
+                           <p class="tl"><span class="t-dim">05</span> <span class="t-str">'PHP'</span>, <span class="t-str">'Git'</span>, <span class="t-str">'Docker'</span>,</p>
+                           <p class="tl"><span class="t-dim">04</span> <span class="t-str">'Linux'</span> ];</p>
                            <p class="tl t-blank"></p>
                            <p class="tl"><span class="t-dim">07</span> <span class="t-kw">public function</span> <span class="t-fn">build</span>(<span class="t-var">$idea</span>) {</p>
                            <p class="tl"><span class="t-dim">08</span> <span class="t-kw">return</span> <span class="t-str">"quelque chose de beau"</span>;</p>
@@ -52,12 +53,42 @@
                        </div>
                    </div>
                </div>
-           </div>
-           <!-- <div class="hero-scroll-hint" aria-hidden="true">
-               <span class="scroll-line"></span>
-           </div> -->
+           </div>           
        </section>
+<section id="priorities" class="section section-priorities">
+    <div class="container">
+        <header class="section-header reveal">
+            <h2>Ce que je soigne dans chaque projet</h2>
+            <p>Des bases solides pour créer des sites agréables à utiliser, fiables et pensés pour durer.</p>
+        </header>
 
+        <div class="priorities-grid">
+            <article class="priority-card reveal">
+                <h3>Sécurité</h3>
+                <p>
+                    Validation des données, protection des accès, gestion des sessions et mots de passe hashés :
+                    je veille à construire des bases propres et rassurantes.
+                </p>
+            </article>
+
+            <article class="priority-card reveal">
+                <h3>Performance</h3>
+                <p>
+                    Une structure claire, un chargement fluide et une interface réactive pour offrir une expérience
+                    rapide, agréable et sans lourdeur inutile.
+                </p>
+            </article>
+
+            <article class="priority-card reveal">
+                <h3>Maintenabilité</h3>
+                <p>
+                    Un code lisible, organisé et cohérent pour faciliter les évolutions, les corrections
+                    et la vie du projet dans le temps.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
        <section id="projects" class="section">
            <div class="container">
                <header class="section-header reveal">
@@ -173,7 +204,7 @@
 
                <div class="about-card reveal">
                    <p class="about-text">
-                       J'apprécie de créer des pages qui vont à l'essentiel : une hiérarchie bien définie, une typographie raffinée et des éléments réutilisables. Mon but, une présentation professionnelle sans complications superflues.
+                       J’aime concevoir des pages qui vont droit au but, tout en restant agréables à regarder et simples à utiliser. Je soigne la hiérarchie, la typographie et la cohérence des éléments pour créer des interfaces professionnelles, lisibles et efficaces, avec une attention particulière portée à la fiabilité et à la sécurité.
                    </p>
                    <p class="about-text">
                        Si tu souhaites discuter d'un projet, le moyen le plus facile est d'utiliser le bouton Me contacter ou de passer par l'adresse email indiquée en bas de page.
