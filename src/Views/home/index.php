@@ -237,7 +237,7 @@
                            <p class="contact-lead">Disponible pour des projets en freelance, des partenariats ou juste pour échanger vos idées.</p>
                        </div>
                        <div class="contact-actions">
-                           <a class="btn btn-primary btn-lg" href="mailto:guillaume.maignaut@outlook.fr">M’envoyer un email</a>
+                           <a class="btn btn-primary btn-lg" href="mailto:g.maignaut@gmail.com">M’envoyer un email</a>
                            <a class="btn btn-ghost btn-lg" href="https://www.linkedin.com/in/guillaume-maignaut-9b3464340/" target="_blank" rel="noreferrer">LinkedIn</a>
                        </div>
                    </div>
