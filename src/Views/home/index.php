@@ -16,7 +16,7 @@
 
                        <div class="hero-actions">
                            <a class="btn btn-primary" href="#projects">Voir mes projets</a>
-                           <a class="btn btn-ghost" href="/pages/contact.php">Me contacter</a>
+                           <a class="btn btn-ghost" href="/contact">Me contacter</a>
                        </div>
 
                        <div class="hero-badges" aria-label="Points forts">
@@ -53,42 +53,42 @@
                        </div>
                    </div>
                </div>
-           </div>           
+           </div>
        </section>
-<section id="priorities" class="section section-priorities">
-    <div class="container">
-        <header class="section-header reveal">
-            <h2>Ce que je soigne dans chaque projet</h2>
-            <p>Des bases solides pour créer des sites agréables à utiliser, fiables et pensés pour durer.</p>
-        </header>
+       <section id="priorities" class="section section-priorities">
+           <div class="container">
+               <header class="section-header reveal">
+                   <h2>Ce que je soigne dans chaque projet</h2>
+                   <p>Des bases solides pour créer des sites agréables à utiliser, fiables et pensés pour durer.</p>
+               </header>
 
-        <div class="priorities-grid">
-            <article class="priority-card reveal">
-                <h3>Sécurité</h3>
-                <p>
-                    Validation des données, protection des accès, gestion des sessions et mots de passe hashés :
-                    je veille à construire des bases propres et rassurantes.
-                </p>
-            </article>
+               <div class="priorities-grid">
+                   <article class="priority-card reveal">
+                       <h3>Sécurité</h3>
+                       <p>
+                           Validation des données, protection des accès, gestion des sessions et mots de passe hashés :
+                           je veille à construire des bases propres et rassurantes.
+                       </p>
+                   </article>
 
-            <article class="priority-card reveal">
-                <h3>Performance</h3>
-                <p>
-                    Une structure claire, un chargement fluide et une interface réactive pour offrir une expérience
-                    rapide, agréable et sans lourdeur inutile.
-                </p>
-            </article>
+                   <article class="priority-card reveal">
+                       <h3>Performance</h3>
+                       <p>
+                           Une structure claire, un chargement fluide et une interface réactive pour offrir une expérience
+                           rapide, agréable et sans lourdeur inutile.
+                       </p>
+                   </article>
 
-            <article class="priority-card reveal">
-                <h3>Maintenabilité</h3>
-                <p>
-                    Un code lisible, organisé et cohérent pour faciliter les évolutions, les corrections
-                    et la vie du projet dans le temps.
-                </p>
-            </article>
-        </div>
-    </div>
-</section>
+                   <article class="priority-card reveal">
+                       <h3>Maintenabilité</h3>
+                       <p>
+                           Un code lisible, organisé et cohérent pour faciliter les évolutions, les corrections
+                           et la vie du projet dans le temps.
+                       </p>
+                   </article>
+               </div>
+           </div>
+       </section>
        <section id="projects" class="section">
            <div class="container">
                <header class="section-header reveal">

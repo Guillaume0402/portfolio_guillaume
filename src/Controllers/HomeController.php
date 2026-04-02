@@ -35,4 +35,12 @@ final class HomeController extends AbstractController
             'subtitle' => 'Page about OK',
         ]);
     }
+
+    public function contact(): string
+    {
+        return $this->render('contact/index', [
+            'pageTitle' => 'Contact',
+            'title' => 'Contact',
+        ]);
+    }
 }
