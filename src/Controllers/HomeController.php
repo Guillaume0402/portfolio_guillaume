@@ -36,11 +36,5 @@ final class HomeController extends AbstractController
         ]);
     }
 
-    public function contact(): string
-    {
-        return $this->render('contact/index', [
-            'pageTitle' => 'Contact',
-            'title' => 'Contact',
-        ]);
-    }
+  
 }

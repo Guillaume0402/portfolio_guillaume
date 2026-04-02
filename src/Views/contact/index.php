@@ -1,3 +1,7 @@
+<?php
+use App\Security\Csrf;
+?>
+
 <section class="contact-page section">
     <div class="container contact-page-grid">
         <header class="contact-page-hero reveal">
@@ -39,28 +43,70 @@
                 Ce formulaire prepare votre message avant l'envoi par email.
                 Je vous recontacte avec une proposition adaptee.
             </p>
+            <?php if (!empty($errors['global'])): ?>
+                <p class="form-error">
+                    <?= htmlspecialchars($errors['global']) ?>
+                </p>
+            <?php endif; ?>
+            <?php if (!empty($success)): ?>
+                <p class="form-success">
+                    <?= htmlspecialchars($success) ?>
+                </p>
+            <?php endif; ?>
 
-            <form class="contact-form" action="mailto:g.maignaut@gmail.com" method="post" enctype="text/plain">
+            <form class="contact-form" action="/contact/submit" method="post">
+                <input type="hidden" name="csrf_token" value="<?= Csrf::token() ?>">
                 <div class="field-row">
-                    <label class="field" for="contact-name">
+                    <label class="field" for="nom">
                         <span>Nom</span>
-                        <input id="contact-name" name="Nom" type="text" required>
+                        <input
+                            id="nom"
+                            name="nom"
+                            type="text"
+                            value="<?= htmlspecialchars($old['nom'] ?? '') ?>"
+                            required>
+                        <?php if (!empty($errors['nom'])): ?>
+                            <small class="field-error"><?= htmlspecialchars($errors['nom']) ?></small>
+                        <?php endif; ?>
                     </label>
 
-                    <label class="field" for="contact-email">
+                    <label class="field" for="email">
                         <span>Email</span>
-                        <input id="contact-email" name="Email" type="email" required>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value="<?= htmlspecialchars($old['email'] ?? '') ?>"
+                            required>
+                        <?php if (!empty($errors['email'])): ?>
+                            <small class="field-error"><?= htmlspecialchars($errors['email']) ?></small>
+                        <?php endif; ?>
                     </label>
                 </div>
 
-                <label class="field" for="contact-subject">
+                <label class="field" for="sujet">
                     <span>Sujet</span>
-                    <input id="contact-subject" name="Sujet" type="text" required>
+                    <input
+                        id="sujet"
+                        name="sujet"
+                        type="text"
+                        value="<?= htmlspecialchars($old['sujet'] ?? '') ?>"
+                        required>
+                    <?php if (!empty($errors['sujet'])): ?>
+                        <small class="field-error"><?= htmlspecialchars($errors['sujet']) ?></small>
+                    <?php endif; ?>
                 </label>
 
-                <label class="field" for="contact-message">
+                <label class="field" for="message">
                     <span>Message</span>
-                    <textarea id="contact-message" name="Message" rows="6" required></textarea>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        required><?= htmlspecialchars($old['message'] ?? '') ?></textarea>
+                    <?php if (!empty($errors['message'])): ?>
+                        <small class="field-error"><?= htmlspecialchars($errors['message']) ?></small>
+                    <?php endif; ?>
                 </label>
 
                 <button class="btn btn-primary btn-lg" type="submit">Preparer mon email</button>
