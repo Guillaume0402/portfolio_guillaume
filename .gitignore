@@ -1,5 +1,6 @@
 .env
 .env.local
+.env.prod
 
 /vendor/
 node_modules/
@@ -16,3 +17,4 @@ public/assets/*.map
 
 public/assets/app.css
 public/assets/app.css.map
+
