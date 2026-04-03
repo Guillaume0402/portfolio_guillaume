@@ -1,3 +1,6 @@
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+
 USE `portfolio`;
 
 INSERT INTO `projects` (`idproject`, `title`, `description`, `github_link`, `project_link`, `image`, `tech_stack`) VALUES
