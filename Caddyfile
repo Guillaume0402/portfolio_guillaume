@@ -1,4 +1,8 @@
-ton-domaine.fr, www.ton-domaine.fr {
+{
+    email {$ACME_EMAIL}
+}
+
+{$DOMAIN}, www.{$DOMAIN} {
     encode zstd gzip
     reverse_proxy web:80
 }
