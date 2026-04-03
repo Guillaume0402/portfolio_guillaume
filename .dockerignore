@@ -1,0 +1,13 @@
+.git
+.gitignore
+node_modules
+vendor
+documents
+.env
+.env.prod
+docker-compose.yml
+compose.prod.yml
+Caddyfile
+README.md
+Makefile
+docker/mysql/initdb
