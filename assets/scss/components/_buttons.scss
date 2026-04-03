@@ -1,26 +1,61 @@
 @use "../abstracts/mixins" as *;
 
-.app-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+/* Unified button system for consistent actions across the portfolio */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    transition:
+        background var(--transition),
+        border-color var(--transition),
+        color var(--transition),
+        transform var(--transition),
+        box-shadow var(--transition);
 
-  padding: 10px 14px;
-  border-radius: var(--radius);
-  border: 1px solid rgba(255,255,255,0.10);
+    
 
-  background: rgba(255,255,255,0.06);
-  color: var(--text);
-  cursor: pointer;
-
-  &:hover { background: rgba(255,255,255,0.10); }
-  &:focus-visible { @include focus-ring; }
+    &:focus-visible {
+        @include focus-ring;
+    }
 }
 
-.app-btn--primary {
-  border-color: rgba(0,230,118,0.35);
-  background: rgba(0,230,118,0.14);
+.btn-primary {
+    border-color: transparent;
+    background: linear-gradient(125deg, var(--accent2), var(--accent));
+    color: #061015;
+    box-shadow: 0 10px 24px rgba(0, 200, 245, 0.2);
 
-  &:hover { background: rgba(0,230,118,0.20); }
+    &:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.30);
+        box-shadow: 0 12px 24px rgba(0, 200, 245, 0.28);
+    }
+}
+
+.btn-ghost {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text);
+
+    &:hover {
+        border-color: rgba(0, 200, 245, 0.45);
+        background: rgba(255, 255, 255, 0.07);
+    }
+}
+
+.btn-lg {
+    min-height: 48px;
+    padding: 12px 20px;
 }

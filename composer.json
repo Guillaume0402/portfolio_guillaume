@@ -1,0 +1,11 @@
+{
+  "name": "guillaume/portfolio",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {
+    "phpmailer/phpmailer": "^7.0"
+  }
+}

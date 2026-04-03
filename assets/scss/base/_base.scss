@@ -1,13 +1,82 @@
-:root { color-scheme: dark; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
+* {
+    box-sizing: border-box;
 }
 
-.surface {
-  background: var(--surface);
-  border-radius: var(--radius);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.04);
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+    background-image: url("../images/bg4.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    margin: 0;
+    color: var(--text);
+    position: relative;
+    background-color: transparent;
+    font-family:
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+:focus-visible {
+    outline: 2px solid rgba(57, 255, 136, 0.85);
+    outline-offset: 2px;
+    border-radius: 12px;
+}
+
+main {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+section {
+    scroll-margin-top: 72px;
+    position: relative;
+    z-index: 1;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

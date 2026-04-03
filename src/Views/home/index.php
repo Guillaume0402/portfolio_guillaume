@@ -1,10 +1,247 @@
-<section class="app-card home-hero">
-  <h1><?= htmlspecialchars($title ?? 'Accueil') ?></h1>
-  <p><?= htmlspecialchars($subtitle ?? 'Routeur OK') ?></p>
+   <main>
+       <section class="container-app hero-section">
+           <div class="container hero-inner">
+               <div class="hero-media reveal">
+                   <div class="container hero-copy">
+                       <p class="hero-kicker">
+                           <span class="hero-kicker-text">
+                               <span class="hero-kicker-name">Guillaume Maignaut</span>
+                               <span class="hero-kicker-role">Développeur Web</span>
+                           </span>
+                       </p>
+                       <h1 class="hero-title">Je crée des sites internet modernes, fiables et pensés pour durer.</h1>
+                       <p class="hero-subtitle">
+                           Intégration minutieuse, accessibilité, validation des données, protection des accès et optimisation SEO pour des expériences web fiables et durables.
+                       </p>
 
-  <div class="d-flex gap-2 mt-3">
-    <a class="btn btn-primary app-btn" href="/about">Voir about</a>
-    <a class="btn btn-outline-light app-btn" href="/">Reload</a>
-  </div>
-</section>
+                       <div class="hero-actions">
+                           <a class="btn btn-primary" href="#projects">Voir mes projets</a>
+                           <a class="btn btn-ghost" href="/contact">Me contacter</a>
+                       </div>
 
+                       <div class="hero-badges" aria-label="Points forts">
+                           <span class="badge">Sécurité</span>
+                           <span class="badge">Responsive</span>
+                           <span class="badge">Performance</span>
+                           <span class="badge">UX &amp; UI</span>
+                       </div>
+                   </div>
+
+                   <div class="hero-terminal" aria-hidden="true">
+                       <div class="terminal-bar">
+                           <span class="terminal-dot dot-r"></span>
+                           <span class="terminal-dot dot-y"></span>
+                           <span class="terminal-dot dot-g"></span>
+                           <span class="terminal-title">developer.php</span>
+                       </div>
+                       <div class="terminal-body">
+                           <p class="tl"><span class="t-dim">01</span> <span class="t-kw">class</span> <span class="t-cls">Developer</span> {</p>
+                           <p class="tl"><span class="t-dim">02</span> <span class="t-kw">public</span> <span class="t-var">$name</span> = <span class="t-str">'Guillaume'</span>;</p>
+                           <p class="tl"><span class="t-dim">03</span> <span class="t-kw">public</span> <span class="t-var">$skills</span> = [</p>
+                           <p class="tl"><span class="t-dim">04</span> <span class="t-str">'HTML'</span>, <span class="t-str">'CSS'</span>, <span class="t-str">'JS'</span>,</p>
+                           <p class="tl"><span class="t-dim">05</span> <span class="t-str">'PHP'</span>, <span class="t-str">'Git'</span>, <span class="t-str">'Docker'</span>,</p>
+                           <p class="tl"><span class="t-dim">04</span> <span class="t-str">'Linux'</span> ];</p>
+                           <p class="tl t-blank"></p>
+                           <p class="tl"><span class="t-dim">07</span> <span class="t-kw">public function</span> <span class="t-fn">build</span>(<span class="t-var">$idea</span>) {</p>
+                           <p class="tl"><span class="t-dim">08</span> <span class="t-kw">return</span> <span class="t-str">"quelque chose de beau"</span>;</p>
+                           <p class="tl"><span class="t-dim">09</span> }</p>
+                           <p class="tl"><span class="t-dim">10</span> }</p>
+                           <p class="tl t-blank"></p>
+                           <p class="tl"><span class="t-dim">11</span> <span class="t-comment">// $ php -r "(new Developer)->build($idea);"</span></p>
+                           <p class="tl"><span class="t-dim">12</span> <span class="t-ok">✓ Prêt à construire votre projet</span></p>
+                           <p class="tl"><span class="t-dim">13</span> <span class="t-cur">▌</span></p>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+       <section id="priorities" class="section section-priorities">
+           <div class="container">
+               <header class="section-header reveal">
+                   <h2>Ce que je soigne dans chaque projet</h2>
+                   <p>Des bases solides pour créer des sites agréables à utiliser, fiables et pensés pour durer.</p>
+               </header>
+
+               <div class="priorities-grid">
+                   <article class="priority-card reveal">
+                       <h3>Sécurité</h3>
+                       <p>
+                           Validation des données, protection des accès, gestion des sessions et mots de passe hashés :
+                           je veille à construire des bases propres et rassurantes.
+                       </p>
+                   </article>
+
+                   <article class="priority-card reveal">
+                       <h3>Performance</h3>
+                       <p>
+                           Une structure claire, un chargement fluide et une interface réactive pour offrir une expérience
+                           rapide, agréable et sans lourdeur inutile.
+                       </p>
+                   </article>
+
+                   <article class="priority-card reveal">
+                       <h3>Maintenabilité</h3>
+                       <p>
+                           Un code lisible, organisé et cohérent pour faciliter les évolutions, les corrections
+                           et la vie du projet dans le temps.
+                       </p>
+                   </article>
+               </div>
+           </div>
+       </section>
+       <section id="projects" class="section">
+           <div class="container">
+               <header class="section-header reveal">
+                   <h2>Projets</h2>
+                   <p>Une sélection de réalisations issues de la base de données.</p>
+               </header>
+
+               <?php if (empty($projects)): ?>
+                   <p>Aucun projet pour le moment.</p>
+               <?php else: ?>
+                   <div class="cards-grid">
+                       <?php foreach ($projects as $project): ?>
+                           <?php $img = $project['image'] ?? 'default.png'; ?>
+
+                           <article class="card reveal">
+                               <div class="card-body">
+                                   <div class="card-top">
+                                       <h3 class="card-title">
+                                           <?= htmlspecialchars($project['title']) ?>
+                                       </h3>
+
+                                       <div class="card-media">
+                                           <img
+                                               loading="lazy"
+                                               src="/images/<?= htmlspecialchars($img) ?>"
+                                               alt="Aperçu du projet <?= htmlspecialchars($project['title']) ?>">
+                                       </div>
+
+                                       <?php if (!empty($project['description'])): ?>
+                                           <div class="card-description">
+                                               <p class="card-text">
+                                                   <?= htmlspecialchars($project['description']) ?>
+                                               </p>
+
+                                               <button type="button" class="card-text-toggle">
+                                                   Lire plus
+                                               </button>
+                                           </div>
+                                       <?php endif; ?>
+                                   </div>
+                               </div>
+
+                               <?php $stacks = array_filter(array_map('trim', explode(',', $project['tech_stack'] ?? ''))); ?>
+
+                               <div class="tag-row" aria-label="Technologies">
+                                   <?php foreach ($stacks as $stack): ?>
+                                       <span class="tag"><?= htmlspecialchars($stack) ?></span>
+                                   <?php endforeach; ?>
+                               </div>
+
+                               <div class="btn-projects">
+                                   <?php if (!empty($project['github_link'])): ?>
+                                       <div class="card-actions">
+                                           <a
+                                               class="card-link"
+                                               href="<?= htmlspecialchars($project['github_link']) ?>"
+                                               aria-label="Voir le GitHub du projet <?= htmlspecialchars($project['title']) ?>"
+                                               target="_blank"
+                                               rel="noopener noreferrer">
+                                               GitHub
+                                           </a>
+                                       </div>
+                                   <?php endif; ?>
+
+                                   <?php if (!empty($project['project_link'])): ?>
+                                       <div class="card-actions">
+                                           <a
+                                               class="card-link"
+                                               href="<?= htmlspecialchars($project['project_link']) ?>"
+                                               aria-label="Voir le projet <?= htmlspecialchars($project['title']) ?>"
+                                               target="_blank"
+                                               rel="noopener noreferrer">
+                                               Voir le projet
+                                           </a>
+                                       </div>
+                                   <?php endif; ?>
+                               </div>
+                           </article>
+                       <?php endforeach; ?>
+                   </div>
+               <?php endif; ?>
+           </div>
+       </section>
+
+       <section id="skills" class="section">
+           <div class="container">
+               <header class="section-header reveal">
+                   <h2>Compétences</h2>
+                   <p>Stack orientée front-end, avec bases solides côté back.</p>
+               </header>
+
+               <div class="chips-grid" aria-label="Compétences">
+                   <?php foreach ($skills as $skill): ?>
+                       <span class="chip reveal">
+                           <?php if (!empty($skill['logo'])): ?>
+                               <img
+                                   loading="lazy"
+                                   src="/images/<?= htmlspecialchars($skill['logo']) ?>"
+                                   alt="Logo de <?= htmlspecialchars($skill['name']) ?>">
+                           <?php endif; ?>
+                       </span>
+                   <?php endforeach; ?>
+               </div>
+           </div>
+       </section>
+
+       <section id="about" class="section">
+           <div class="container about-grid">
+               <header class="section-header reveal">
+                   <h2>À propos</h2>
+                   <p>Je privilégie des interfaces lisibles, rapides, et faciles à maintenir.</p>
+               </header>
+
+               <div class="about-card reveal">
+                   <p class="about-text">
+                       J’aime concevoir des pages qui vont droit au but, tout en restant agréables à regarder et simples à utiliser. Je soigne la hiérarchie, la typographie et la cohérence des éléments pour créer des interfaces professionnelles, lisibles et efficaces, avec une attention particulière portée à la fiabilité et à la sécurité.
+                   </p>
+                   <p class="about-text">
+                       Si tu souhaites discuter d'un projet, le moyen le plus facile est d'utiliser le bouton Me contacter ou de passer par l'adresse email indiquée en bas de page.
+                   </p>
+                   <div class="about-stats">
+                       <div class="stat">
+                           <span class="stat-num">3+</span>
+                           <span class="stat-label">Projets réalisés</span>
+                       </div>
+                       <div class="stat">
+                           <span class="stat-num">6</span>
+                           <span class="stat-label">Technologies</span>
+                       </div>
+                       <div class="stat">
+                           <span class="stat-num">100</span>
+                           <span class="stat-label">Score Lighthouse</span>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+
+       <section id="contact" class="section section-contact">
+           <div class="container">
+               <div class="contact-card reveal">
+                   <div class="contact-inner">
+                       <div>
+                           <p class="contact-kicker">Travaillons ensemble</p>
+                           <h2 class="contact-title">Un projet en tête&nbsp;?</h2>
+                           <p class="contact-lead">Disponible pour des projets en freelance, des partenariats ou juste pour échanger vos idées.</p>
+                       </div>
+                       <div class="contact-actions">
+                           <a class="btn btn-primary btn-lg" href="mailto:g.maignaut@gmail.com">M’envoyer un email</a>
+                           <a class="btn btn-ghost btn-lg" href="https://www.linkedin.com/in/guillaume-maignaut-9b3464340/" target="_blank" rel="noreferrer">LinkedIn</a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+   </main>

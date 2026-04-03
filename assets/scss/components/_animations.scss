@@ -1,0 +1,104 @@
+/* Reveal on scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(8px);
+    will-change: transform, opacity, filter;
+}
+
+.reveal.is-visible {
+    animation: reveal-in 750ms var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        animation: none;
+    }
+
+    .hero-section::before,
+    .hero-section::after,
+    .card:hover::after,
+    .chip:hover::after,
+    .t-cur,
+    .scroll-line {
+        animation: none !important;
+    }
+}
+
+@keyframes reveal-in {
+    0% {
+        opacity: 0;
+        transform: translateY(14px);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes aurora-drift {
+    0% {
+        transform: translate3d(-2%, -2%, 0) rotate(-6deg) scale(1.02);
+    }
+    100% {
+        transform: translate3d(2%, 1%, 0) rotate(6deg) scale(1.06);
+    }
+}
+
+@keyframes aurora-drift-2 {
+    0% {
+        transform: translate3d(2%, -1%, 0) rotate(8deg) scale(1.02);
+    }
+    100% {
+        transform: translate3d(-2%, 2%, 0) rotate(-8deg) scale(1.07);
+    }
+}
+
+@keyframes floaty {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes shine-sweep {
+    0% {
+        transform: translateX(-85%);
+    }
+    100% {
+        transform: translateX(85%);
+    }
+}
+
+@keyframes terminal-blink {
+    0%,
+    49% {
+        opacity: 1;
+    }
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes scroll-bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(6px);
+        opacity: 1;
+    }
+}
