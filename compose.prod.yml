@@ -2,9 +2,15 @@ services:
   caddy:
     image: caddy:2
     restart: unless-stopped
+    env_file:
+      - .env.prod
+    environment:
+      DOMAIN: ${DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
     ports:
       - "80:80"
-      - "443:443"
+      - "443:443/tcp"
+      - "443:443/udp"
     depends_on:
       - web
     volumes:
@@ -18,6 +24,7 @@ services:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
+      target: prod
     restart: unless-stopped
     env_file:
       - .env.prod
