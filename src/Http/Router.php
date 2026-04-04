@@ -2,6 +2,9 @@
 
 namespace App\Http;
 
+use App\Controllers\ErrorController;
+use Throwable;
+
 final class Router
 {
     private array $routes = [
@@ -23,32 +26,37 @@ final class Router
     {
         $path = parse_url($uri, PHP_URL_PATH) ?? '/';
         $path = $this->normalize($path);
+        $method = strtoupper($method);
 
-        $handler = $this->routes[$method][$path] ?? null;
+        $methodRoutes = $this->routes[$method] ?? [];
+        $handler = $methodRoutes[$path] ?? null;
+
+        $errorController = new ErrorController();
 
         if (!$handler) {
-            http_response_code(404);
-            echo "404 - Route introuvable";
+            echo $errorController->notFound();
             return;
         }
 
         [$controllerClass, $action] = $handler;
 
         if (!class_exists($controllerClass)) {
-            http_response_code(500);
-            echo "500 - Controller introuvable";
+            echo $errorController->serverError();
             return;
         }
 
         $controller = new $controllerClass();
 
         if (!method_exists($controller, $action)) {
-            http_response_code(500);
-            echo "500 - Action introuvable";
+            echo $errorController->serverError();
             return;
         }
 
-        echo (string) $controller->$action();
+        try {
+            echo (string) $controller->$action();
+        } catch (Throwable $e) {
+            echo $errorController->serverError($e);
+        }
     }
 
     private function normalize(string $path): string
