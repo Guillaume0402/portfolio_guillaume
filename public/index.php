@@ -1,10 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 use App\Http\Router;
 use App\Controllers\ErrorController;
-use Throwable;
-
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -17,23 +16,18 @@ error_reporting(E_ALL);
 ini_set('display_errors', $isProd ? '0' : '1');
 ini_set('display_startup_errors', $isProd ? '0' : '1');
 ini_set('log_errors', '1');
-
-$logDir = ROOT . '/var/log';
-if (!is_dir($logDir)) {
-    mkdir($logDir, 0775, true);
-}
-ini_set('error_log', $logDir . '/php-error.log');
+ini_set('error_log', 'php://stderr');
 
 session_start();
+
+set_exception_handler(function (\Throwable $e): void {
+    error_log((string) $e);
+    echo (new ErrorController())->serverError($e);
+});
 
 $router = new Router();
 
 require ROOT . '/routes/web.php';
-
-set_exception_handler(function (Throwable $e): void {
-    error_log((string) $e);
-    echo (new ErrorController())->serverError($e);
-});
 
 register_shutdown_function(function (): void {
     $error = error_get_last();
