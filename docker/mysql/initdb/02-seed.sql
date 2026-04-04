@@ -9,12 +9,12 @@ INSERT INTO `projects` (`idproject`, `title`, `description`, `github_link`, `pro
 (3, 'TutoPHP', 'Site d’apprentissage orienté PHP vanilla, créé pour rendre les notions essentielles plus accessibles à travers une présentation claire et des cas pratiques.', 'https://github.com/Guillaume0402/Tuto-php', 'https://tuto-php-19982edf3ffe.herokuapp.com/', 'tuto-php.png', 'PHP, HTML, CSS');
 
 INSERT INTO `skills` (`idskills`, `name`, `logo`) VALUES
-(1, 'PHP', 'phpsbg.png'),
-(2, 'HTML', 'htmlsbg.png'),
-(3, 'CSS', 'csssbg.png'),
-(4, 'JAVASCRIPT', 'jssbg.png'),
-(5, 'SASS', 'sasssbg.png'),
-(6, 'SQL', 'sqlsbg.png'),
-(7, 'DOCKER', 'dockersbg.png'),
-(8, 'NOSQL', 'nosqlsbg.png'),
-(9, 'LINUX', 'linuxsbg.png');
+(1, 'PHP', 'phpsbg.webp'),
+(2, 'HTML', 'htmlsbg.webp'),
+(3, 'CSS', 'csssbg.webp'),
+(4, 'JAVASCRIPT', 'jssbg.webp'),
+(5, 'SASS', 'sasssbg.webp'),
+(6, 'SQL', 'sqlsbg.webp'),
+(7, 'DOCKER', 'dockersbg.webp'),
+(8, 'NOSQL', 'nosqlsbg.webp'),
+(9, 'LINUX', 'linuxsbg.webp');
