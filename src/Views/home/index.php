@@ -101,7 +101,7 @@
                <?php else: ?>
                    <div class="cards-grid">
                        <?php foreach ($projects as $project): ?>
-                           <?php $img = $project['image'] ?? 'default.png'; ?>
+                           <?php $img = $project['image'] ?? 'default.webp'; ?>
 
                            <article class="card reveal">
                                <div class="card-body">
