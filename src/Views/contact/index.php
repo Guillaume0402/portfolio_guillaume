@@ -5,11 +5,10 @@ use App\Security\Csrf;
 <section class="contact-page section">
     <div class="container contact-page-grid">
         <header class="contact-page-hero reveal">
-            <p class="contact-page-kicker">Discutons de votre projet</p>
-            <h1 class="contact-page-title">Une idée en tete ? Je peux la transformer en site web concret et fiable.</h1>
+            <p class="contact-page-kicker">Prenons contact</p>
+            <h1 class="contact-page-title">Parlons de développement web, d’opportunités et de projets concrets.</h1>
             <p class="contact-page-lead">
-                Je reponds rapidement pour cadrer votre besoin, definir les priorites
-                et proposer une solution claire, performante et maintenable.
+                Tu peux me contacter pour échanger autour de mes projets, de mon parcours, d’une opportunité professionnelle, d’une collaboration ou d’un besoin en développement web. Mon objectif est de proposer des interfaces claires, fiables, maintenables et pensées pour durer.
             </p>
             <div class="contact-page-actions">
                 <a class="btn btn-primary btn-lg" href="mailto:g.maignaut@gmail.com">Envoyer un email</a>
@@ -30,7 +29,7 @@ use App\Security\Csrf;
                 </li>
                 <li>
                     <span class="contact-label">Disponibilite</span>
-                    <span>Freelance, collaborations, missions ponctuelles</span>
+                    <span>Opportunités professionnelles, collaborations et missions freelance</span>
                 </li>
             </ul>
         </aside>
@@ -38,10 +37,9 @@ use App\Security\Csrf;
 
     <div class="container contact-form-wrap reveal">
         <article class="contact-form-card">
-            <h2>Parlez-moi de votre besoin</h2>
+            <h2>Me contacter</h2>
             <p>
-                Ce formulaire prepare votre message avant l'envoi par email.
-                Je vous recontacte avec une proposition adaptee.
+                Vous souhaitez me contacter à propos d'un projet, d'une opportunité professionnelle ou pour échanger sur mes compétences en développement web ? Ce formulaire est fait pour vous.
             </p>
             <?php if (!empty($errors['global'])): ?>
                 <p class="form-error">
@@ -109,7 +107,7 @@ use App\Security\Csrf;
                     <?php endif; ?>
                 </label>
 
-                <button class="btn btn-primary btn-lg" type="submit">Preparer mon email</button>
+                <button class="btn btn-primary btn-lg" type="submit">Envoyer votre message</button>
             </form>
         </article>
     </div>

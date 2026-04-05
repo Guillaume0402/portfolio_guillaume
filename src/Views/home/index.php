@@ -2,7 +2,7 @@
        <section class="container-app hero-section">
            <div class="container hero-inner">
                <div class="hero-media reveal">
-                   <div class="container hero-copy">
+                   <div class="container">
                        <p class="hero-kicker">
                            <span class="hero-kicker-text">
                                <span class="hero-kicker-name">Guillaume Maignaut</span>
@@ -11,7 +11,7 @@
                        </p>
                        <h1 class="hero-title">Je crée des sites internet modernes, fiables et pensés pour durer.</h1>
                        <p class="hero-subtitle">
-                           Intégration minutieuse, accessibilité, validation des données, protection des accès et optimisation SEO pour des expériences web fiables et durables.
+                           En tant que développeur web, je mets l'accent sur la qualité du front-end, tout en m'appuyant sur des bases solides en back-end. J'accorde une attention particulière à la sécurité, aux performances et à la maintenabilité de chaque projet.
                        </p>
 
                        <div class="hero-actions">
@@ -40,16 +40,19 @@
                            <p class="tl"><span class="t-dim">03</span> <span class="t-kw">public</span> <span class="t-var">$skills</span> = [</p>
                            <p class="tl"><span class="t-dim">04</span> <span class="t-str">'HTML'</span>, <span class="t-str">'CSS'</span>, <span class="t-str">'JS'</span>,</p>
                            <p class="tl"><span class="t-dim">05</span> <span class="t-str">'PHP'</span>, <span class="t-str">'Git'</span>, <span class="t-str">'Docker'</span>,</p>
-                           <p class="tl"><span class="t-dim">04</span> <span class="t-str">'Linux'</span> ];</p>
+                           <p class="tl"><span class="t-dim">06</span> <span class="t-str">'Linux'</span> ];</p>
                            <p class="tl t-blank"></p>
                            <p class="tl"><span class="t-dim">07</span> <span class="t-kw">public function</span> <span class="t-fn">build</span>(<span class="t-var">$idea</span>) {</p>
                            <p class="tl"><span class="t-dim">08</span> <span class="t-kw">return</span> <span class="t-str">"quelque chose de beau"</span>;</p>
-                           <p class="tl"><span class="t-dim">09</span> }</p>
-                           <p class="tl"><span class="t-dim">10</span> }</p>
+                           <p class="tl"><span class="t-dim">09</span> }</p>                           
                            <p class="tl t-blank"></p>
-                           <p class="tl"><span class="t-dim">11</span> <span class="t-comment">// $ php -r "(new Developer)->build($idea);"</span></p>
-                           <p class="tl"><span class="t-dim">12</span> <span class="t-ok">✓ Prêt à construire votre projet</span></p>
-                           <p class="tl"><span class="t-dim">13</span> <span class="t-cur">▌</span></p>
+                           <p class="tl"><span class="t-dim">10</span> <span class="t-comment">/*</span></p>
+                           <p class="tl"><span class="t-dim">11</span> <span class="t-comment"> $ php -r "(new Developer)</span></p>
+                           <p class="tl"><span class="t-dim">12</span> <span class="t-comment"> ->build($idea);" </span></p>
+                           <p class="tl"><span class="t-dim">13</span> <span class="t-comment">*/</span></p>
+                           <p class="tl"><span class="t-dim">14</span> <span class="t-ok">✓ Développement propre, structuré </span></p>
+                           <p class="tl"><span class="t-dim">15</span> <span class="t-ok">✓ et évolutif</span></p>
+                           <p class="tl"><span class="t-dim">16</span> <span class="t-cur">▌</span></p>
                        </div>
                    </div>
                </div>
@@ -204,10 +207,10 @@
 
                <div class="about-card reveal">
                    <p class="about-text">
-                       J’aime concevoir des pages qui vont droit au but, tout en restant agréables à regarder et simples à utiliser. Je soigne la hiérarchie, la typographie et la cohérence des éléments pour créer des interfaces professionnelles, lisibles et efficaces, avec une attention particulière portée à la fiabilité et à la sécurité.
+                       J’aime concevoir des pages qui vont à l'essentiel, sans sacrifier l'esthétique ni la simplicité d'utilisation. Mon travail repose sur une hiérarchie claire, une typographie soignée et une cohérence visuelle, afin de créer des interfaces à la fois professionnelles, lisibles et efficaces. Je porte une attention particulière à la fiabilité et à la sécurité, des aspects essentiels pour une expérience utilisateur de qualité.
                    </p>
                    <p class="about-text">
-                       Si tu souhaites discuter d'un projet, le moyen le plus facile est d'utiliser le bouton Me contacter ou de passer par l'adresse email indiquée en bas de page.
+                       Ce portfolio vous invite à découvrir ma démarche, mes partis pris techniques et les projets concrets que j'ai menés en développement web.
                    </p>
                    <div class="about-stats">
                        <div class="stat">
@@ -219,8 +222,8 @@
                            <span class="stat-label">Technologies</span>
                        </div>
                        <div class="stat">
-                           <span class="stat-num">100</span>
-                           <span class="stat-label">Score Lighthouse</span>
+                           <span class="stat-num">PHP</span>
+                           <span class="stat-label">MVC, validation, sécurité</span>
                        </div>
                    </div>
                </div>
@@ -232,9 +235,9 @@
                <div class="contact-card reveal">
                    <div class="contact-inner">
                        <div>
-                           <p class="contact-kicker">Travaillons ensemble</p>
-                           <h2 class="contact-title">Un projet en tête&nbsp;?</h2>
-                           <p class="contact-lead">Disponible pour des projets en freelance, des partenariats ou juste pour échanger vos idées.</p>
+                           <p class="contact-kicker">Contact</p>
+                           <h2 class="contact-title">Échanger autour de mon travail</h2>
+                           <p class="contact-lead">N'hésitez pas à me contacter si vous souhaitez échanger sur mes projets, mon parcours professionnel, ou pour explorer ensemble une opportunité de collaboration.</p>
                        </div>
                        <div class="contact-actions">
                            <a class="btn btn-primary btn-lg" href="mailto:g.maignaut@gmail.com">M’envoyer un email</a>

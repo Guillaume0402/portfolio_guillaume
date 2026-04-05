@@ -8,8 +8,9 @@
             </a>
 
             <p class="footer-text">
-                Je construis des interfaces propres, rapides et maintenables.
-                Disponible pour missions freelance et projets web.
+                Je conçois des interfaces web qui allient esthétique, simplicité et pérennité.
+                Ce portfolio vous présente mes réalisations, mes compétences et ma vision du développement web.
+                Je suis actuellement ouvert à de nouvelles opportunités professionnelles, en CDI, en collaboration ou en mission freelance.
             </p>
 
             <div class="footer-actions">
