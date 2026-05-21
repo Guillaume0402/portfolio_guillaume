@@ -1,0 +1,19 @@
+.section {
+    padding: 40px 40px ;
+
+    @media (max-width: 820px) {
+        padding: 56px 0;
+    }
+}
+
+.section-header {
+    display: grid;
+    text-align: center;
+    gap: 8px;
+    margin-bottom: 36px;
+
+    @media (max-width: 820px) {
+        margin-bottom: 28px;
+    }
+}
+

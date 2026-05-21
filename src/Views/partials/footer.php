@@ -3,14 +3,13 @@
         <div class="footer-brand">
             <a class="brand footer-brand-link" href="#top" aria-label="Retour en haut">
                 <img class="brand-photo" src="/images/Avatar-tiny.webp" alt="Photo de Guillaume" width="40" height="40">
-                <span class="brand-name">Guillaume</span>
-                <span class="brand-tag">Développeur Web</span>
+                <span class="brand-name">Guillaume Maignaut</span>
+                <span class="brand-tag">Freelance web</span>
             </a>
 
             <p class="footer-text">
-                Je conçois des interfaces web qui allient esthétique, simplicité et pérennité.
-                Ce portfolio vous présente mes réalisations, mes compétences et ma vision du développement web.
-                Je suis actuellement ouvert à de nouvelles opportunités professionnelles, en CDI, en collaboration ou en mission freelance.
+                Je crée des sites vitrines, landing pages et refontes web pour aider les indépendants,
+                artisans et petites entreprises à présenter clairement leur activité et recevoir des demandes de contact.
             </p>
 
             <div class="footer-actions">

@@ -1,16 +1,23 @@
 /* Reveal on scroll */
 .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+}
+
+.reveal-ready .reveal {
     opacity: 0;
     transform: translateY(14px);
     filter: blur(8px);
     will-change: transform, opacity, filter;
 }
 
-.reveal.is-visible {
+.reveal-ready .reveal.is-visible {
     animation: reveal-in 750ms var(--ease-out) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .reveal-ready .reveal,
     .reveal {
         opacity: 1;
         transform: none;

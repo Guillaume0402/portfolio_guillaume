@@ -1,250 +1,243 @@
-   <main>
-       <section class="container-app hero-section">
-           <div class="container hero-inner">
-               <div class="hero-media reveal">
-                   <div class="container">
-                       <p class="hero-kicker">
-                           <span class="hero-kicker-text">
-                               <span class="hero-kicker-name">Guillaume Maignaut</span>
-                               <span class="hero-kicker-role">Développeur Web</span>
-                           </span>
-                       </p>
-                       <h1 class="hero-title">Je crée des sites internet modernes, fiables et pensés pour durer.</h1>
-                       <p class="hero-subtitle">
-                           En tant que développeur web, je mets l'accent sur la qualité du front-end, tout en m'appuyant sur des bases solides en back-end. J'accorde une attention particulière à la sécurité, aux performances et à la maintenabilité de chaque projet.
-                       </p>
+<?php
+$showcaseSites = [
+    [
+        'title' => 'Atelier Belle Ligne',
+        'sector' => 'Artisanat et création',
+        'status' => 'Maquette vitrine en préparation',
+        'description' => 'Site vitrine élégant pour présenter un savoir-faire, rassurer les visiteurs et faciliter la prise de contact.',
+        'tags' => ['Présentation', 'Galerie', 'Contact'],
+        'class' => 'showcase-preview-atelier',
+    ],
+    [
+        'title' => 'Cabinet Horizon',
+        'sector' => 'Accompagnement et conseil',
+        'status' => 'Projet client non déployé',
+        'description' => 'Structure claire pour expliquer les prestations, valoriser l’expertise et guider vers une demande de rendez-vous.',
+        'tags' => ['Services', 'SEO local', 'Rendez-vous'],
+        'class' => 'showcase-preview-cabinet',
+    ],
+    [
+        'title' => 'Maison Nova',
+        'sector' => 'Commerce local',
+        'status' => 'Prototype vitrine',
+        'description' => 'Page commerciale responsive pour mettre en avant une offre, des produits phares et un contact rapide.',
+        'tags' => ['Landing page', 'Responsive', 'Conversion'],
+        'class' => 'showcase-preview-nova',
+    ],
+];
+?>
 
-                       <div class="hero-actions">
-                           <a class="btn btn-primary" href="#projects">Voir mes projets</a>
-                           <a class="btn btn-ghost" href="/contact">Me contacter</a>
-                       </div>
+<section class="container-app hero-section freelance-hero">
+        <div class="container hero-inner">
+            <div class="hero-media reveal">
+                <div class="hero-copy">
+                    <p class="hero-kicker">
+                        <span class="hero-kicker-text">
+                            <span class="hero-kicker-name">Guillaume Maignaut</span>
+                            <span class="hero-kicker-role">Création de sites web freelance</span>
+                        </span>
+                    </p>
 
-                       <div class="hero-badges" aria-label="Points forts">
-                           <span class="badge">Sécurité</span>
-                           <span class="badge">Responsive</span>
-                           <span class="badge">Performance</span>
-                           <span class="badge">UX &amp; UI</span>
-                       </div>
-                   </div>
+                    <h1 class="hero-title">Un site clair, rapide et professionnel pour développer votre activité.</h1>
 
-                   <div class="hero-terminal" aria-hidden="true">
-                       <div class="terminal-bar">
-                           <span class="terminal-dot dot-r"></span>
-                           <span class="terminal-dot dot-y"></span>
-                           <span class="terminal-dot dot-g"></span>
-                           <span class="terminal-title">developer.php</span>
-                       </div>
-                       <div class="terminal-body">
-                           <p class="tl"><span class="t-dim">01</span> <span class="t-kw">class</span> <span class="t-cls">Developer</span> {</p>
-                           <p class="tl"><span class="t-dim">02</span> <span class="t-kw">public</span> <span class="t-var">$name</span> = <span class="t-str">'Guillaume'</span>;</p>
-                           <p class="tl"><span class="t-dim">03</span> <span class="t-kw">public</span> <span class="t-var">$skills</span> = [</p>
-                           <p class="tl"><span class="t-dim">04</span> <span class="t-str">'HTML'</span>, <span class="t-str">'CSS'</span>, <span class="t-str">'JS'</span>,</p>
-                           <p class="tl"><span class="t-dim">05</span> <span class="t-str">'PHP'</span>, <span class="t-str">'Git'</span>, <span class="t-str">'Docker'</span>,</p>
-                           <p class="tl"><span class="t-dim">06</span> <span class="t-str">'Linux'</span> ];</p>
-                           <p class="tl t-blank"></p>
-                           <p class="tl"><span class="t-dim">07</span> <span class="t-kw">public function</span> <span class="t-fn">build</span>(<span class="t-var">$idea</span>) {</p>
-                           <p class="tl"><span class="t-dim">08</span> <span class="t-kw">return</span> <span class="t-str">"quelque chose de beau"</span>;</p>
-                           <p class="tl"><span class="t-dim">09</span> }</p>                           
-                           <p class="tl t-blank"></p>
-                           <p class="tl"><span class="t-dim">10</span> <span class="t-comment">/*</span></p>
-                           <p class="tl"><span class="t-dim">11</span> <span class="t-comment"> $ php -r "(new Developer)</span></p>
-                           <p class="tl"><span class="t-dim">12</span> <span class="t-comment"> ->build($idea);" </span></p>
-                           <p class="tl"><span class="t-dim">13</span> <span class="t-comment">*/</span></p>
-                           <p class="tl"><span class="t-dim">14</span> <span class="t-ok">✓ Développement propre, structuré </span></p>
-                           <p class="tl"><span class="t-dim">15</span> <span class="t-ok">✓ et évolutif</span></p>
-                           <p class="tl"><span class="t-dim">16</span> <span class="t-cur">▌</span></p>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </section>
-       <section id="priorities" class="section section-priorities">
-           <div class="container">
-               <header class="section-header reveal">
-                   <h2>Ce que je soigne dans chaque projet</h2>
-                   <p>Des bases solides pour créer des sites agréables à utiliser, fiables et pensés pour durer.</p>
-               </header>
+                    <p class="hero-subtitle">
+                        J'aide les indépendants, artisans et petites entreprises à créer une présence en ligne sérieuse :
+                        site vitrine, landing page, refonte, optimisation et formulaire de contact prêt à recevoir vos demandes.
+                    </p>
 
-               <div class="priorities-grid">
-                   <article class="priority-card reveal">
-                       <h3>Sécurité</h3>
-                       <p>
-                           Validation des données, protection des accès, gestion des sessions et mots de passe hashés :
-                           je veille à construire des bases propres et rassurantes.
-                       </p>
-                   </article>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="/contact">Parler de mon projet</a>
+                        <a class="btn btn-ghost" href="#realisations">Voir les sites vitrines</a>
+                    </div>
 
-                   <article class="priority-card reveal">
-                       <h3>Performance</h3>
-                       <p>
-                           Une structure claire, un chargement fluide et une interface réactive pour offrir une expérience
-                           rapide, agréable et sans lourdeur inutile.
-                       </p>
-                   </article>
+                    <div class="hero-badges" aria-label="Services principaux">
+                        <span class="badge">Site vitrine</span>
+                        <span class="badge">Responsive</span>
+                        <span class="badge">SEO technique</span>
+                        <span class="badge">Formulaire contact</span>
+                    </div>
+                </div>
 
-                   <article class="priority-card reveal">
-                       <h3>Maintenabilité</h3>
-                       <p>
-                           Un code lisible, organisé et cohérent pour faciliter les évolutions, les corrections
-                           et la vie du projet dans le temps.
-                       </p>
-                   </article>
-               </div>
-           </div>
-       </section>
-       <section id="projects" class="section">
-           <div class="container">
-               <header class="section-header reveal">
-                   <h2>Projets</h2>
-                   <p>Une sélection de réalisations issues de la base de données.</p>
-               </header>
+                <aside class="hero-offer-panel" aria-label="Résumé de l'offre">
+                    <p class="panel-kicker">Accompagnement web</p>
+                    <h2>De l'idée à la mise en ligne</h2>
+                    <ul class="hero-checklist">
+                        <li>Structure de page orientée conversion</li>
+                        <li>Design responsive et lisible</li>
+                        <li>Base SEO propre dès le départ</li>
+                        <li>Contact fonctionnel et suivi humain</li>
+                    </ul>
+                    <a class="panel-link" href="#offers">Découvrir les offres</a>
+                </aside>
+            </div>
+        </div>
+    </section>
 
-               <?php if (empty($projects)): ?>
-                   <p>Aucun projet pour le moment.</p>
-               <?php else: ?>
-                   <div class="cards-grid">
-                       <?php foreach ($projects as $project): ?>
-                           <?php $img = $project['image'] ?? 'default.webp'; ?>
+    <section id="services" class="section">
+        <div class="container">
+            <header class="section-header reveal">
+                <p class="section-kicker">Services</p>
+                <h2>Ce que je peux construire pour vous</h2>
+                <p>Des prestations simples à comprendre, pensées pour obtenir un site utile, fiable et facile à faire évoluer.</p>
+            </header>
 
-                           <article class="card reveal">
-                               <div class="card-body">
-                                   <div class="card-top">
-                                       <h3 class="card-title">
-                                           <?= htmlspecialchars($project['title']) ?>
-                                       </h3>
+            <div class="service-grid">
+                <article class="service-card reveal">
+                    <span class="service-number">01</span>
+                    <h3>Site vitrine</h3>
+                    <p>Une présence professionnelle pour présenter votre activité, vos services, vos réalisations et générer des demandes de contact.</p>
+                </article>
 
-                                       <div class="card-media">
-                                           <img
-                                               loading="lazy"
-                                               src="/images/<?= htmlspecialchars($img) ?>"
-                                               alt="Aperçu du projet <?= htmlspecialchars($project['title']) ?>">
-                                       </div>
+                <article class="service-card reveal">
+                    <span class="service-number">02</span>
+                    <h3>Landing page</h3>
+                    <p>Une page ciblée pour une offre, un lancement ou une campagne, avec un message clair et un appel à l'action visible.</p>
+                </article>
 
-                                       <?php if (!empty($project['description'])): ?>
-                                           <div class="card-description">
-                                               <p class="card-text">
-                                                   <?= htmlspecialchars($project['description']) ?>
-                                               </p>
+                <article class="service-card reveal">
+                    <span class="service-number">03</span>
+                    <h3>Refonte web</h3>
+                    <p>Modernisation d'un site existant : structure, lisibilité, responsive, performances et parcours utilisateur plus fluide.</p>
+                </article>
 
-                                               <button type="button" class="card-text-toggle">
-                                                   Lire plus
-                                               </button>
-                                           </div>
-                                       <?php endif; ?>
-                                   </div>
-                               </div>
+                <article class="service-card reveal">
+                    <span class="service-number">04</span>
+                    <h3>Maintenance</h3>
+                    <p>Corrections, petites évolutions, mises à jour de contenu et amélioration continue pour garder un site propre dans le temps.</p>
+                </article>
+            </div>
+        </div>
+    </section>
 
-                               <?php $stacks = array_filter(array_map('trim', explode(',', $project['tech_stack'] ?? ''))); ?>
+    <section id="realisations" class="section section-featured">
+        <div class="container">
+            <header class="section-header reveal">
+                <p class="section-kicker">Réalisations freelance</p>
+                <h2>Sites vitrines en préparation</h2>
+                <p>Ces exemples représentent le type de sites clients que je construis. Les projets techniques restent disponibles sur le portfolio.</p>
+            </header>
 
-                               <div class="tag-row" aria-label="Technologies">
-                                   <?php foreach ($stacks as $stack): ?>
-                                       <span class="tag"><?= htmlspecialchars($stack) ?></span>
-                                   <?php endforeach; ?>
-                               </div>
+            <div class="showcase-grid">
+                <?php foreach ($showcaseSites as $site): ?>
+                    <article class="showcase-card reveal">
+                        <div class="showcase-preview <?= htmlspecialchars($site['class'], ENT_QUOTES, 'UTF-8') ?>" aria-hidden="true">
+                            <div class="showcase-browser">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="showcase-visual">
+                                <div class="showcase-line showcase-line-strong"></div>
+                                <div class="showcase-line"></div>
+                                <div class="showcase-line showcase-line-short"></div>
+                                <div class="showcase-blocks">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
 
-                               <div class="btn-projects">
-                                   <?php if (!empty($project['github_link'])): ?>
-                                       <div class="card-actions">
-                                           <a
-                                               class="card-link"
-                                               href="<?= htmlspecialchars($project['github_link']) ?>"
-                                               aria-label="Voir le GitHub du projet <?= htmlspecialchars($project['title']) ?>"
-                                               target="_blank"
-                                               rel="noopener noreferrer">
-                                               GitHub
-                                           </a>
-                                       </div>
-                                   <?php endif; ?>
+                        <div class="showcase-body">
+                            <p class="showcase-status"><?= htmlspecialchars($site['status'], ENT_QUOTES, 'UTF-8') ?></p>
+                            <h3><?= htmlspecialchars($site['title'], ENT_QUOTES, 'UTF-8') ?></h3>
+                            <p class="showcase-sector"><?= htmlspecialchars($site['sector'], ENT_QUOTES, 'UTF-8') ?></p>
+                            <p><?= htmlspecialchars($site['description'], ENT_QUOTES, 'UTF-8') ?></p>
 
-                                   <?php if (!empty($project['project_link'])): ?>
-                                       <div class="card-actions">
-                                           <a
-                                               class="card-link"
-                                               href="<?= htmlspecialchars($project['project_link']) ?>"
-                                               aria-label="Voir le projet <?= htmlspecialchars($project['title']) ?>"
-                                               target="_blank"
-                                               rel="noopener noreferrer">
-                                               Voir le projet
-                                           </a>
-                                       </div>
-                                   <?php endif; ?>
-                               </div>
-                           </article>
-                       <?php endforeach; ?>
-                   </div>
-               <?php endif; ?>
-           </div>
-       </section>
+                            <div class="tag-row showcase-tags" aria-label="Points clés">
+                                <?php foreach ($site['tags'] as $tag): ?>
+                                    <span class="tag"><?= htmlspecialchars($tag, ENT_QUOTES, 'UTF-8') ?></span>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            </div>
 
-       <section id="skills" class="section">
-           <div class="container">
-               <header class="section-header reveal">
-                   <h2>Compétences</h2>
-                   <p>Stack orientée front-end, avec bases solides côté back.</p>
-               </header>
+            <div class="section-actions reveal">
+                <a class="btn btn-ghost btn-lg" href="/portfolio">Voir le portfolio technique</a>
+            </div>
+        </div>
+    </section>
 
-               <div class="chips-grid" aria-label="Compétences">
-                   <?php foreach ($skills as $skill): ?>
-                       <span class="chip reveal">
-                           <?php if (!empty($skill['logo'])): ?>
-                               <img
-                                   loading="lazy"
-                                   src="/images/<?= htmlspecialchars($skill['logo']) ?>"
-                                   alt="Logo de <?= htmlspecialchars($skill['name']) ?>">
-                           <?php endif; ?>
-                       </span>
-                   <?php endforeach; ?>
-               </div>
-           </div>
-       </section>
+    <section id="about" class="section">
+        <div class="container about-grid">
+            <header class="section-header reveal">
+                <p class="section-kicker">À propos</p>
+                <h2>Un interlocuteur technique qui garde le besoin métier en tête</h2>
+                <p>Je conçois des interfaces lisibles, rapides et maintenables, avec une attention particulière portée à la fiabilité.</p>
+            </header>
 
-       <section id="about" class="section">
-           <div class="container about-grid">
-               <header class="section-header reveal">
-                   <h2>À propos</h2>
-                   <p>Je privilégie des interfaces lisibles, rapides, et faciles à maintenir.</p>
-               </header>
+            <div class="about-card reveal">
+                <p class="about-text">
+                    Mon objectif n'est pas seulement de produire du code : je veux créer un site qui aide vos visiteurs à comprendre vite ce que vous proposez, à vous faire confiance et à vous contacter facilement.
+                </p>
+                <p class="about-text">
+                    Je travaille avec une approche structurée : cadrage du besoin, organisation des contenus, intégration responsive, sécurité du formulaire, mise en ligne et améliorations possibles après lancement.
+                </p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <span class="stat-num">PHP</span>
+                        <span class="stat-label">Back-end et formulaires</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">SEO</span>
+                        <span class="stat-label">Bases techniques propres</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">UX</span>
+                        <span class="stat-label">Parcours clair et responsive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-               <div class="about-card reveal">
-                   <p class="about-text">
-                       J’aime concevoir des pages qui vont à l'essentiel, sans sacrifier l'esthétique ni la simplicité d'utilisation. Mon travail repose sur une hiérarchie claire, une typographie soignée et une cohérence visuelle, afin de créer des interfaces à la fois professionnelles, lisibles et efficaces. Je porte une attention particulière à la fiabilité et à la sécurité, des aspects essentiels pour une expérience utilisateur de qualité.
-                   </p>
-                   <p class="about-text">
-                       Ce portfolio vous invite à découvrir ma démarche, mes partis pris techniques et les projets concrets que j'ai menés en développement web.
-                   </p>
-                   <div class="about-stats">
-                       <div class="stat">
-                           <span class="stat-num">3+</span>
-                           <span class="stat-label">Projets réalisés</span>
-                       </div>
-                       <div class="stat">
-                           <span class="stat-num">6</span>
-                           <span class="stat-label">Technologies</span>
-                       </div>
-                       <div class="stat">
-                           <span class="stat-num">PHP</span>
-                           <span class="stat-label">MVC, validation, sécurité</span>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </section>
+    <section id="offers" class="section">
+        <div class="container">
+            <header class="section-header reveal">
+                <p class="section-kicker">Tarifs et offres</p>
+                <h2>Des bases de budget pour cadrer votre projet</h2>
+                <p>Chaque projet est ajusté selon le contenu, les fonctionnalités et le niveau d'accompagnement souhaité.</p>
+            </header>
 
-       <section id="contact" class="section section-contact">
-           <div class="container">
-               <div class="contact-card reveal">
-                   <div class="contact-inner">
-                       <div>
-                           <p class="contact-kicker">Contact</p>
-                           <h2 class="contact-title">Échanger autour de mon travail</h2>
-                           <p class="contact-lead">N'hésitez pas à me contacter si vous souhaitez échanger sur mes projets, mon parcours professionnel, ou pour explorer ensemble une opportunité de collaboration.</p>
-                       </div>
-                       <div class="contact-actions">
-                           <a class="btn btn-primary btn-lg" href="mailto:g.maignaut@gmail.com">M’envoyer un email</a>
-                           <a class="btn btn-ghost btn-lg" href="https://www.linkedin.com/in/guillaume-maignaut-9b3464340/" target="_blank" rel="noreferrer">LinkedIn</a>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </section>
-   </main>
+            <div class="offers-grid">
+                <article class="offer-card reveal">
+                    <h3>Landing page</h3>
+                    <p class="offer-price">À partir de 450 €</p>
+                    <p>Une page unique pour présenter une offre, capter des contacts ou préparer une campagne.</p>
+                </article>
+
+                <article class="offer-card offer-card-featured reveal">
+                    <p class="offer-label">Le plus demandé</p>
+                    <h3>Site vitrine</h3>
+                    <p class="offer-price">À partir de 900 €</p>
+                    <p>Un site complet avec pages principales, responsive, SEO de base et formulaire de contact.</p>
+                </article>
+
+                <article class="offer-card reveal">
+                    <h3>Refonte ou maintenance</h3>
+                    <p class="offer-price">Sur devis</p>
+                    <p>Amélioration d'un site existant, corrections, évolutions ou accompagnement ponctuel.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section section-contact">
+        <div class="container">
+            <div class="contact-card reveal">
+                <div class="contact-inner">
+                    <div>
+                        <p class="contact-kicker">Contact</p>
+                        <h2 class="contact-title">Vous avez un projet de site web ?</h2>
+                        <p class="contact-lead">Décrivez votre besoin, votre délai et votre objectif. Je vous répondrai avec une première lecture claire de la meilleure approche.</p>
+                    </div>
+                    <div class="contact-actions">
+                        <a class="btn btn-primary btn-lg" href="/contact">Remplir le formulaire</a>
+                        <a class="btn btn-ghost btn-lg" href="mailto:g.maignaut@gmail.com">Email direct</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

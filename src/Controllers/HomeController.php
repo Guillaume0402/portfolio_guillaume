@@ -13,15 +13,24 @@ final class HomeController extends AbstractController
 {
     public function index(): string
     {
+        return $this->render('home/index', [
+            'pageTitle' => 'Guillaume Maignaut | Création de sites web freelance',
+            'pageDescription' => 'Création de sites vitrines, landing pages et refontes web pour indépendants, artisans et petites entreprises. Portfolio, offres et contact.',
+            'pageCanonical' => 'https://guillaumemaignaut.com/',
+        ]);
+    }
+
+    public function portfolio(): string
+    {
         $projectRepository = new ProjectRepository(Database::getConnection());
         $projects = $projectRepository->findAll();
         $skillsRepository = new SkillsRepository(Database::getConnection());
         $skills = $skillsRepository->findAll();
 
-        return $this->render('home/index', [
-            'pageTitle' => 'Accueil',
-            'title' => 'Accueil',
-            'subtitle' => 'Routeur + layout OK',
+        return $this->render('portfolio/index', [
+            'pageTitle' => 'Réalisations | Guillaume Maignaut',
+            'pageDescription' => 'Découvrez les réalisations web de Guillaume Maignaut : sites, applications, interfaces et projets PHP, JavaScript, HTML, Sass et MySQL.',
+            'pageCanonical' => 'https://guillaumemaignaut.com/portfolio',
             'projects' => $projects,
             'skills' => $skills,
         ]);

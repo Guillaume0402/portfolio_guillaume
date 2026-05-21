@@ -11,6 +11,8 @@ export function initReveal() {
         return;
     }
 
+    document.documentElement.classList.add("reveal-ready");
+
     const io = new IntersectionObserver(
         (entries) => {
             for (const entry of entries) {
@@ -23,5 +25,13 @@ export function initReveal() {
         { threshold: 0.12, rootMargin: "0px 0px -10% 0px" },
     );
 
-    revealEls.forEach((el) => io.observe(el));
+    revealEls.forEach((el) => {
+        io.observe(el);
+
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add("is-visible");
+            io.unobserve(el);
+        }
+    });
 }

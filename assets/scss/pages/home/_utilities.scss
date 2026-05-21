@@ -1,0 +1,12 @@
+.empty-state {
+    margin: 0;
+    text-align: center;
+    color: var(--muted);
+}
+
+@media (max-width: 900px) {
+    .freelance-hero .hero-media,
+    .portfolio-hero .hero-media {
+        flex-direction: column;
+    }
+}

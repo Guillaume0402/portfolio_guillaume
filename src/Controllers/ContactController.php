@@ -16,6 +16,9 @@ class ContactController extends AbstractController
         unset($_SESSION['contact_errors'], $_SESSION['contact_old'], $_SESSION['contact_success']);
 
         return $this->render('contact/index', [
+            'pageTitle' => 'Contact | Guillaume Maignaut',
+            'pageDescription' => 'Contactez Guillaume Maignaut pour un site vitrine, une landing page, une refonte ou une mission de développement web freelance.',
+            'pageCanonical' => 'https://guillaumemaignaut.com/contact',
             'errors' => $errors,
             'old' => $old,
             'success' => $success,

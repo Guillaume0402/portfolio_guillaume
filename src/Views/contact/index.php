@@ -5,10 +5,10 @@ use App\Security\Csrf;
 <section class="contact-page section">
     <div class="container contact-page-grid">
         <header class="contact-page-hero reveal">
-            <p class="contact-page-kicker">Prenons contact</p>
-            <h1 class="contact-page-title">Parlons de développement web, d’opportunités et de projets concrets.</h1>
+            <p class="contact-page-kicker">Demande de projet</p>
+            <h1 class="contact-page-title">Parlons de votre site vitrine, landing page ou refonte web.</h1>
             <p class="contact-page-lead">
-                Tu peux me contacter pour échanger autour de mes projets, de mon parcours, d’une opportunité professionnelle, d’une collaboration ou d’un besoin en développement web. Mon objectif est de proposer des interfaces claires, fiables, maintenables et pensées pour durer.
+                Décrivez votre activité, votre objectif, vos délais et votre budget approximatif si vous en avez un. Je vous répondrai avec une première lecture claire de la meilleure approche.
             </p>
             <div class="contact-page-actions">
                 <a class="btn btn-primary btn-lg" href="mailto:g.maignaut@gmail.com">Envoyer un email</a>
@@ -29,7 +29,7 @@ use App\Security\Csrf;
                 </li>
                 <li>
                     <span class="contact-label">Disponibilite</span>
-                    <span>Opportunités professionnelles, collaborations et missions freelance</span>
+                    <span>Sites vitrines, landing pages, refontes et missions freelance</span>
                 </li>
             </ul>
         </aside>
@@ -39,7 +39,7 @@ use App\Security\Csrf;
         <article class="contact-form-card">
             <h2>Me contacter</h2>
             <p>
-                Vous souhaitez me contacter à propos d'un projet, d'une opportunité professionnelle ou pour échanger sur mes compétences en développement web ? Ce formulaire est fait pour vous.
+                Vous souhaitez créer ou améliorer un site web ? Donnez-moi les informations utiles : type de projet, objectif, délai souhaité et lien du site actuel si vous en avez un.
             </p>
             <?php if (!empty($errors['global'])): ?>
                 <p class="form-error">
@@ -88,6 +88,7 @@ use App\Security\Csrf;
                         id="sujet"
                         name="sujet"
                         type="text"
+                        placeholder="Ex : création d'un site vitrine"
                         value="<?= htmlspecialchars($old['sujet'] ?? '') ?>"
                         required>
                     <?php if (!empty($errors['sujet'])): ?>
@@ -101,6 +102,7 @@ use App\Security\Csrf;
                         id="message"
                         name="message"
                         rows="6"
+                        placeholder="Présentez votre activité, votre besoin, vos délais et votre budget indicatif si vous en avez un."
                         required><?= htmlspecialchars($old['message'] ?? '') ?></textarea>
                     <?php if (!empty($errors['message'])): ?>
                         <small class="field-error"><?= htmlspecialchars($errors['message']) ?></small>
