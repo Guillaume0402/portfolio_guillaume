@@ -1,0 +1,177 @@
+[data-theme="light"] {
+    color-scheme: light;
+
+    --bg: #f5f8fc;
+    --surface: #ffffff;
+    --text: #101724;
+    --muted: rgba(16, 23, 36, 0.68);
+    --stroke: rgba(15, 23, 42, 0.12);
+    --accent: #00e676;
+    --accent2: #00c8f5;
+    --accent3: #7c3aed;
+    --glass-bg: rgba(255, 255, 255, 0.76);
+    --glass-border: rgba(15, 23, 42, 0.12);
+    --glass-hover: rgba(15, 23, 42, 0.06);
+    --shadow: 0 18px 48px rgba(15, 23, 42, 0.14);
+    --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.1);
+}
+
+html[data-theme="light"] {
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(circle at 18% 16%, rgba(0, 200, 245, 0.12), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(0, 230, 118, 0.12), transparent 32%),
+        linear-gradient(180deg, #f8fbff 0%, #eef4f9 100%);
+    background-attachment: fixed;
+}
+
+[data-theme="light"] {
+    .site-header {
+        border-bottom-color: var(--stroke);
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.82));
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .site-footer {
+        border-top-color: var(--stroke);
+        background: linear-gradient(to top, rgba(241, 245, 249, 0.98), rgba(255, 255, 255, 0.86));
+    }
+
+    .hero-media,
+    .hero-offer-panel,
+    .service-card,
+    .offer-card,
+    .about-card,
+    .contact-card,
+    .showcase-card,
+    .card,
+    .priority-card,
+    .footer-col,
+    .contact-page-hero,
+    .contact-page-panel,
+    .contact-form-card {
+        border-color: var(--glass-border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.72));
+        box-shadow: var(--shadow-sm);
+    }
+
+    .brand-tag,
+    .nav-link,
+    .footer-text,
+    .footer-link,
+    .footer-social,
+    .footer-bottom,
+    .footer-mini,
+    .hero-kicker,
+    .hero-checklist,
+    .badge,
+    .service-card p,
+    .offer-card p,
+    .about-text,
+    .about-stats .stat-label,
+    .showcase-body p,
+    .card-text,
+    .chip,
+    .priority-card p,
+    .contact-label,
+    .field span,
+    .contact-list a {
+        color: var(--muted);
+    }
+
+    .brand-tag,
+    .nav-toggle,
+    .theme-toggle,
+    .btn-ghost,
+    .badge,
+    .about-stats .stat,
+    .contact-list li,
+    .card-media,
+    .tag {
+        border-color: var(--glass-border);
+        background: rgba(255, 255, 255, 0.74);
+    }
+
+    .nav-link:hover,
+    .footer-link:hover,
+    .footer-social:hover,
+    .theme-toggle:hover,
+    .btn-ghost:hover,
+    .chip:hover {
+        color: var(--text);
+        background: var(--glass-hover);
+    }
+
+    .btn-primary,
+    .nav-cta,
+    .footer-cta {
+        border-color: transparent;
+        color: #061015;
+        background: linear-gradient(125deg, var(--accent2), var(--accent));
+        box-shadow: 0 10px 24px rgba(0, 200, 245, 0.2);
+    }
+
+    .btn-primary:hover,
+    .nav-cta:hover,
+    .footer-cta:hover {
+        color: #061015;
+        filter: brightness(1.06);
+    }
+
+    .hero-title {
+        color: var(--text);
+    }
+
+    @supports (background-clip: text) or (-webkit-background-clip: text) {
+        .hero-title {
+            background: linear-gradient(96deg, #101724 0%, #1f2937 44%, #0284c7 72%, #059669 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    }
+
+    .showcase-browser,
+    .showcase-visual,
+    .field input,
+    .field textarea {
+        border-color: var(--glass-border);
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--text);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+        color: rgba(16, 23, 36, 0.42);
+    }
+
+    .showcase-line {
+        background: rgba(15, 23, 42, 0.22);
+    }
+
+    .showcase-line-strong {
+        background: rgba(15, 23, 42, 0.42);
+    }
+
+    .showcase-sector {
+        color: var(--text) !important;
+    }
+
+    .form-success {
+        color: #065f46;
+        background: rgba(5, 150, 105, 0.1);
+    }
+
+    .form-error {
+        color: #991b1b;
+        background: rgba(220, 38, 38, 0.1);
+    }
+
+    @media (max-width: 820px) {
+        .site-nav {
+            border-color: var(--glass-border);
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14);
+        }
+    }
+}

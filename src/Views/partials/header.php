@@ -17,6 +17,10 @@
             <a href="/portfolio" class="nav-link">Réalisations</a>
             <a href="/#about" class="nav-link">À propos</a>
             <a href="/#offers" class="nav-link">Offres</a>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Activer le mode sombre" aria-pressed="false" title="Changer de thème">
+                <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></span>
+                <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></span>
+            </button>
             <a href="/contact" class="nav-cta">Me contacter</a>
         </nav>
     </div>

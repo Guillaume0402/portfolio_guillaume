@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="light" data-bs-theme="light">
 
 <head>
     <?php
@@ -24,6 +24,18 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (() => {
+            try {
+                const theme = localStorage.getItem("theme") === "dark" ? "dark" : "light";
+                document.documentElement.dataset.theme = theme;
+                document.documentElement.dataset.bsTheme = theme;
+            } catch (error) {
+                document.documentElement.dataset.theme = "light";
+                document.documentElement.dataset.bsTheme = "light";
+            }
+        })();
+    </script>
 
     <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
 

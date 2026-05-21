@@ -111,6 +111,72 @@
     box-shadow: 0 12px 24px rgba(0, 200, 245, 0.28);
 }
 
+.theme-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    cursor: pointer;
+    transition:
+        background var(--transition),
+        border-color var(--transition),
+        transform var(--transition);
+
+    &:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.08);
+    }
+}
+
+.theme-toggle-icon {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    transition:
+        opacity var(--transition),
+        transform var(--transition);
+}
+
+.theme-toggle-icon-sun {
+    opacity: 0;
+    transform: scale(0.7) rotate(-20deg);
+    border-radius: 999px;
+    border: 2px solid currentColor;
+    box-shadow:
+        0 -8px 0 -6px currentColor,
+        0 8px 0 -6px currentColor,
+        8px 0 0 -6px currentColor,
+        -8px 0 0 -6px currentColor,
+        6px 6px 0 -6px currentColor,
+        -6px 6px 0 -6px currentColor,
+        6px -6px 0 -6px currentColor,
+        -6px -6px 0 -6px currentColor;
+}
+
+.theme-toggle-icon-moon {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+    border-radius: 999px;
+    box-shadow: inset -6px 0 0 currentColor;
+}
+
+[data-theme="dark"] .theme-toggle-icon-sun {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}
+
+[data-theme="dark"] .theme-toggle-icon-moon {
+    opacity: 0;
+    transform: scale(0.7) rotate(20deg);
+}
+
 /* Burger (mobile) */
 .nav-toggle {
     display: none;
@@ -186,9 +252,14 @@
     }
 
     .nav-link,
-    .nav-cta {
+    .nav-cta,
+    .theme-toggle {
         width: 100%;
         text-align: center;
+    }
+
+    .theme-toggle {
+        flex-basis: auto;
     }
 
     .nav-cta {
