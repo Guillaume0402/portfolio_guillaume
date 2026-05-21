@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     libzip-dev \
     && docker-php-ext-install pdo pdo_mysql mysqli zip \
-    && a2enmod rewrite \
+    && a2enmod rewrite headers expires \
     && rm -rf /var/lib/apt/lists/*
 
 # Composer
