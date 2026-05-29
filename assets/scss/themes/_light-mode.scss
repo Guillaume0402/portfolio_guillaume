@@ -141,10 +141,38 @@ html[data-theme="light"] {
     .showcase-browser,
     .showcase-visual,
     .field input,
-    .field textarea {
-        border-color: var(--glass-border);
+    .field select,
+    .field textarea,
+    .choice-option span {
+        border-color: rgba(15, 23, 42, 0.26);
         background: rgba(255, 255, 255, 0.9);
         color: var(--text);
+    }
+
+    .choice-option span,
+    .choice-field legend,
+    .form-privacy {
+        color: var(--muted);
+    }
+
+    .choice-option span {
+        color: rgba(16, 23, 36, 0.84);
+    }
+
+    .choice-option:hover span {
+        background: rgba(255, 255, 255, 0.96);
+    }
+
+    .choice-option input:checked + span {
+        border-color: rgba(5, 150, 105, 0.62);
+        background: rgba(5, 150, 105, 0.14);
+        color: #064e3b;
+    }
+
+    .choice-option input:checked + span::after {
+        border-color: rgba(5, 150, 105, 0.9);
+        background: #059669;
+        box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.14);
     }
 
     .field input::placeholder,

@@ -3,6 +3,15 @@
     padding-bottom: 84px;
 }
 
+.contact-feedback {
+    margin-bottom: 24px;
+
+    .form-success,
+    .form-error {
+        margin-bottom: 0;
+    }
+}
+
 .contact-page-grid {
     display: grid;
     grid-template-columns: 1.35fr 0.9fr;
@@ -156,6 +165,14 @@
     gap: 14px;
 }
 
+.spam-check {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
 .field-row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -177,6 +194,7 @@
     }
 
     input,
+    select,
     textarea {
         width: 100%;
         border-radius: 12px;
@@ -202,9 +220,123 @@
         }
     }
 
+    select {
+        cursor: pointer;
+        color-scheme: light;
+
+        option {
+            color: #101724;
+            background: #ffffff;
+        }
+    }
+
     textarea {
         min-height: 170px;
         resize: vertical;
+    }
+}
+
+.choice-field {
+    display: grid;
+    gap: 10px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    legend {
+        padding: 0;
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(233, 238, 252, 0.88);
+    }
+}
+
+.choice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+.choice-grid-compact {
+    grid-template-columns: 1fr;
+}
+
+.choice-option {
+    position: relative;
+    display: block;
+    cursor: pointer;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    span {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-height: 46px;
+        padding: 12px 40px 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(7, 12, 18, 0.65);
+        color: rgba(248, 250, 252, 0.94);
+        transition:
+            border-color var(--transition),
+            box-shadow var(--transition),
+            background var(--transition);
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 14px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid rgba(233, 238, 252, 0.36);
+            transform: translateY(-50%);
+            transition:
+                border-color var(--transition),
+                background var(--transition),
+                box-shadow var(--transition);
+        }
+
+        @media (max-width: 640px) {
+            min-height: 44px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    }
+
+    &:hover span {
+        border-color: rgba(0, 200, 245, 0.32);
+        background: rgba(7, 12, 18, 0.78);
+    }
+
+    input:focus-visible + span {
+        border-color: rgba(0, 200, 245, 0.55);
+        box-shadow: 0 0 0 3px rgba(0, 200, 245, 0.12);
+    }
+
+    input:checked + span {
+        border-color: rgba(0, 230, 118, 0.76);
+        background: rgba(0, 230, 118, 0.16);
+        color: #f3fff8;
+
+        &::after {
+            border-color: rgba(0, 230, 118, 0.95);
+            background: #00e676;
+            box-shadow: 0 0 0 4px rgba(0, 230, 118, 0.18);
+        }
     }
 }
 
@@ -231,4 +363,12 @@
     border: 1px solid rgba(255, 107, 107, 0.28);
     background: rgba(255, 107, 107, 0.08);
     color: #ffd5d5;
+}
+
+.form-privacy {
+    margin: 0;
+    max-width: 68ch;
+    color: rgba(233, 238, 252, 0.6);
+    font-size: 0.9rem;
+    line-height: 1.55;
 }

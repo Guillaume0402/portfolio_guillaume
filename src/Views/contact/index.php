@@ -1,8 +1,45 @@
 <?php
 use App\Security\Csrf;
+
+$projectTypes = [
+    'site_vitrine' => 'Site vitrine',
+    'landing_page' => 'Landing page',
+    'refonte' => 'Refonte',
+    'maintenance' => 'Maintenance',
+    'indecis' => 'Je ne sais pas encore',
+];
+
+$budgetOptions = [
+    '450_900' => '450 à 900 €',
+    '900_1500' => '900 à 1500 €',
+    '1500_plus' => '1500 € et plus',
+    'indecis' => 'Je ne sais pas encore',
+];
+
+$deadlineOptions = [
+    'urgent' => 'Urgent',
+    'moins_un_mois' => 'Moins d’un mois',
+    'un_a_trois_mois' => '1 à 3 mois',
+    'non_defini' => 'Pas encore défini',
+];
 ?>
 
 <section class="contact-page section">
+    <?php if (!empty($errors['global']) || !empty($success)): ?>
+        <div class="container contact-feedback">
+            <?php if (!empty($errors['global'])): ?>
+                <p class="form-error">
+                    <?= htmlspecialchars($errors['global']) ?>
+                </p>
+            <?php endif; ?>
+            <?php if (!empty($success)): ?>
+                <p class="form-success">
+                    <?= htmlspecialchars($success) ?>
+                </p>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+
     <div class="container contact-page-grid">
         <header class="contact-page-hero reveal">
             <p class="contact-page-kicker">Demande de projet</p>
@@ -29,7 +66,7 @@ use App\Security\Csrf;
                 </li>
                 <li>
                     <span class="contact-label">Disponibilite</span>
-                    <span>Sites vitrines, landing pages, refontes et missions freelance</span>
+                    <span>Sites vitrines, landing pages, refontes et accompagnement web</span>
                 </li>
             </ul>
         </aside>
@@ -39,21 +76,21 @@ use App\Security\Csrf;
         <article class="contact-form-card">
             <h2>Me contacter</h2>
             <p>
-                Vous souhaitez créer ou améliorer un site web ? Donnez-moi les informations utiles : type de projet, objectif, délai souhaité et lien du site actuel si vous en avez un.
+                Vous souhaitez créer ou améliorer un site web ? Indiquez votre type de projet, votre budget approximatif et le délai souhaité. Je vous répondrai avec une première analyse claire.
             </p>
-            <?php if (!empty($errors['global'])): ?>
-                <p class="form-error">
-                    <?= htmlspecialchars($errors['global']) ?>
-                </p>
-            <?php endif; ?>
-            <?php if (!empty($success)): ?>
-                <p class="form-success">
-                    <?= htmlspecialchars($success) ?>
-                </p>
-            <?php endif; ?>
 
             <form class="contact-form" action="/contact/submit" method="post">
                 <input type="hidden" name="csrf_token" value="<?= Csrf::token() ?>">
+                <label class="field spam-check" for="site_web" aria-hidden="true">
+                    <span>Site web</span>
+                    <input
+                        id="site_web"
+                        name="site_web"
+                        type="text"
+                        value=""
+                        tabindex="-1"
+                        autocomplete="off">
+                </label>
                 <div class="field-row">
                     <label class="field" for="nom">
                         <span>Nom</span>
@@ -96,6 +133,68 @@ use App\Security\Csrf;
                     <?php endif; ?>
                 </label>
 
+                <fieldset class="choice-field">
+                    <legend>Type de projet</legend>
+                    <div class="choice-grid">
+                        <?php foreach ($projectTypes as $value => $label): ?>
+                            <label class="choice-option">
+                                <input
+                                    type="radio"
+                                    name="type_projet"
+                                    value="<?= htmlspecialchars($value) ?>"
+                                    <?= (($old['type_projet'] ?? '') === $value) ? 'checked' : '' ?>
+                                    required>
+                                <span><?= htmlspecialchars($label) ?></span>
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php if (!empty($errors['type_projet'])): ?>
+                        <small class="field-error"><?= htmlspecialchars($errors['type_projet']) ?></small>
+                    <?php endif; ?>
+                </fieldset>
+
+                <div class="field-row">
+                    <fieldset class="choice-field">
+                        <legend>Budget approximatif</legend>
+                        <div class="choice-grid choice-grid-compact">
+                            <?php foreach ($budgetOptions as $value => $label): ?>
+                                <label class="choice-option">
+                                    <input
+                                        type="radio"
+                                        name="budget"
+                                        value="<?= htmlspecialchars($value) ?>"
+                                        <?= (($old['budget'] ?? '') === $value) ? 'checked' : '' ?>
+                                        required>
+                                    <span><?= htmlspecialchars($label) ?></span>
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php if (!empty($errors['budget'])): ?>
+                            <small class="field-error"><?= htmlspecialchars($errors['budget']) ?></small>
+                        <?php endif; ?>
+                    </fieldset>
+
+                    <fieldset class="choice-field">
+                        <legend>Délai souhaité</legend>
+                        <div class="choice-grid choice-grid-compact">
+                            <?php foreach ($deadlineOptions as $value => $label): ?>
+                                <label class="choice-option">
+                                    <input
+                                        type="radio"
+                                        name="delai"
+                                        value="<?= htmlspecialchars($value) ?>"
+                                        <?= (($old['delai'] ?? '') === $value) ? 'checked' : '' ?>
+                                        required>
+                                    <span><?= htmlspecialchars($label) ?></span>
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php if (!empty($errors['delai'])): ?>
+                            <small class="field-error"><?= htmlspecialchars($errors['delai']) ?></small>
+                        <?php endif; ?>
+                    </fieldset>
+                </div>
+
                 <label class="field" for="message">
                     <span>Message</span>
                     <textarea
@@ -109,7 +208,10 @@ use App\Security\Csrf;
                     <?php endif; ?>
                 </label>
 
-                <button class="btn btn-primary btn-lg" type="submit">Envoyer votre message</button>
+                <button class="btn btn-primary btn-lg" type="submit">Envoyer ma demande</button>
+                <p class="form-privacy">
+                    Les informations envoyées via ce formulaire sont utilisées uniquement pour répondre à votre demande. Vous pouvez demander leur suppression à tout moment.
+                </p>
             </form>
         </article>
     </div>

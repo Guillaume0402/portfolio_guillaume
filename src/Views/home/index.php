@@ -57,7 +57,7 @@ $offers = [
         'included' => [
             '1 page complète orientée conversion',
             'affichage adapté mobile, tablette et ordinateur',
-            'formulaire de contact',
+            'formulaire de contact avec protection anti-spam de base',
             'optimisation des balises SEO de base',
             'mise en ligne initiale',
             '1 série de corrections après livraison',
@@ -79,7 +79,7 @@ $offers = [
         'included' => [
             '4 à 5 pages principales',
             'affichage adapté mobile, tablette et ordinateur',
-            'formulaire de contact',
+            'formulaire de contact avec protection anti-spam de base',
             'optimisation des balises SEO de base',
             'mise en ligne initiale',
             'accompagnement après livraison',

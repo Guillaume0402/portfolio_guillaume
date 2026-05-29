@@ -22,7 +22,10 @@ class MailerService
         string $nom,
         string $email,
         string $sujet,
-        string $message
+        string $message,
+        string $typeProjet,
+        string $budget,
+        string $delai
     ): bool {
         $mail = new PHPMailer(true);
 
@@ -65,6 +68,9 @@ class MailerService
                 <p><strong>Nom :</strong> ' . htmlspecialchars($nom, ENT_QUOTES, 'UTF-8') . '</p>
                 <p><strong>Email :</strong> ' . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . '</p>
                 <p><strong>Sujet :</strong> ' . htmlspecialchars($sujet, ENT_QUOTES, 'UTF-8') . '</p>
+                <p><strong>Type de projet :</strong> ' . htmlspecialchars($typeProjet, ENT_QUOTES, 'UTF-8') . '</p>
+                <p><strong>Budget approximatif :</strong> ' . htmlspecialchars($budget, ENT_QUOTES, 'UTF-8') . '</p>
+                <p><strong>Délai souhaité :</strong> ' . htmlspecialchars($delai, ENT_QUOTES, 'UTF-8') . '</p>
                 <p><strong>Message :</strong><br>' . nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8')) . '</p>
             ';
 
@@ -74,7 +80,10 @@ class MailerService
                 "Nouveau message depuis le formulaire de contact\n\n" .
                 "Nom : {$nom}\n" .
                 "Email : {$email}\n" .
-                "Sujet : {$sujet}\n\n" .
+                "Sujet : {$sujet}\n" .
+                "Type de projet : {$typeProjet}\n" .
+                "Budget approximatif : {$budget}\n" .
+                "Délai souhaité : {$delai}\n\n" .
                 "Message :\n{$message}";
 
             $mail->send();
