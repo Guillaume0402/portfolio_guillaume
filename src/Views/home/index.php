@@ -56,13 +56,14 @@ $offers = [
         'description' => 'Une page unique pour présenter une offre, capter des contacts ou préparer une campagne.',
         'included' => [
             '1 page complète orientée conversion',
-            'design responsive mobile / tablette / desktop',
-            'formulaire de contact sécurisé',
+            'affichage adapté mobile, tablette et ordinateur',
+            'formulaire de contact',
             'optimisation des balises SEO de base',
-            'mise en ligne',
+            'mise en ligne initiale',
             '1 série de corrections après livraison',
         ],
         'excluded' => [
+            'hébergement et nom de domaine',
             'rédaction complète des textes',
             'logo / identité visuelle complète',
             'maintenance mensuelle',
@@ -77,13 +78,14 @@ $offers = [
         'featured' => true,
         'included' => [
             '4 à 5 pages principales',
-            'design responsive mobile / tablette / desktop',
-            'formulaire de contact sécurisé',
+            'affichage adapté mobile, tablette et ordinateur',
+            'formulaire de contact',
             'optimisation des balises SEO de base',
-            'mise en ligne',
+            'mise en ligne initiale',
             'accompagnement après livraison',
         ],
         'excluded' => [
+            'hébergement et nom de domaine',
             'rédaction complète des textes',
             'logo / identité visuelle complète',
             'maintenance mensuelle',
@@ -98,13 +100,14 @@ $offers = [
             'analyse rapide de l\'existant',
             'corrections ou améliorations ciblées',
             'ajustements responsive si nécessaire',
+            'mise en ligne initiale si nécessaire',
             'optimisations simples de performance',
             'conseils pour prioriser les prochaines actions',
         ],
         'excluded' => [
-            'refonte complète sans cadrage préalable',
+            'refonte complète sans devis détaillé',
             'hébergement et nom de domaine',
-            'maintenance mensuelle automatique',
+            'maintenance mensuelle',
             'développement applicatif complexe',
         ],
     ],
@@ -235,6 +238,10 @@ $offers = [
                         <p><?= htmlspecialchars($step['description'], ENT_QUOTES, 'UTF-8') ?></p>
                     </article>
                 <?php endforeach; ?>
+            </div>
+
+            <div class="offers-note reveal">
+                <p>Les tarifs indiqués concernent la création du site. L'hébergement, le nom de domaine et la maintenance mensuelle restent à la charge du client, avec possibilité d'accompagnement pour la mise en place.</p>
             </div>
         </div>
     </section>

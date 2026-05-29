@@ -134,3 +134,22 @@
 .offer-list-excluded li::before {
     background: rgba(255, 255, 255, 0.36);
 }
+
+.offers-note {
+    max-width: 860px;
+    margin: 26px auto 0;
+    padding: 18px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.03)),
+        rgba(255, 255, 255, 0.035);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+    text-align: center;
+
+    p {
+        margin: 0;
+        color: rgba(233, 238, 252, 0.76);
+        line-height: 1.65;
+    }
+}
