@@ -69,6 +69,7 @@ html[data-theme="light"] {
     .badge,
     .service-card p,
     .offer-card p,
+    .offer-list li,
     .process-card p,
     .about-text,
     .about-stats .stat-label,
@@ -165,6 +166,10 @@ html[data-theme="light"] {
         border-color: rgba(2, 132, 199, 0.18);
         background: rgba(2, 132, 199, 0.08);
         color: #0369a1;
+    }
+
+    .offer-list-excluded li::before {
+        background: rgba(15, 23, 42, 0.28);
     }
 
     .hero-client-visual::after {

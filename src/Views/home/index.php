@@ -48,6 +48,67 @@ $processSteps = [
         'description' => 'On vérifie les pages, le formulaire, les bases SEO et les points essentiels avant publication.',
     ],
 ];
+
+$offers = [
+    [
+        'title' => 'Landing page',
+        'price' => 'À partir de 450 €',
+        'description' => 'Une page unique pour présenter une offre, capter des contacts ou préparer une campagne.',
+        'included' => [
+            '1 page complète orientée conversion',
+            'design responsive mobile / tablette / desktop',
+            'formulaire de contact sécurisé',
+            'optimisation des balises SEO de base',
+            'mise en ligne',
+            '1 série de corrections après livraison',
+        ],
+        'excluded' => [
+            'rédaction complète des textes',
+            'logo / identité visuelle complète',
+            'maintenance mensuelle',
+            'fonctionnalités avancées sur mesure',
+        ],
+    ],
+    [
+        'title' => 'Site vitrine',
+        'price' => 'À partir de 900 €',
+        'description' => 'Un site complet pour présenter votre activité, vos services et générer des demandes de contact.',
+        'label' => 'Le plus demandé',
+        'featured' => true,
+        'included' => [
+            '4 à 5 pages principales',
+            'design responsive mobile / tablette / desktop',
+            'formulaire de contact sécurisé',
+            'optimisation des balises SEO de base',
+            'mise en ligne',
+            'accompagnement après livraison',
+        ],
+        'excluded' => [
+            'rédaction complète des textes',
+            'logo / identité visuelle complète',
+            'maintenance mensuelle',
+            'fonctionnalités avancées sur mesure',
+        ],
+    ],
+    [
+        'title' => 'Refonte ou maintenance',
+        'price' => 'Sur devis',
+        'description' => 'Amélioration d\'un site existant, corrections, évolutions ou accompagnement ponctuel.',
+        'included' => [
+            'analyse rapide de l\'existant',
+            'corrections ou améliorations ciblées',
+            'ajustements responsive si nécessaire',
+            'optimisations simples de performance',
+            'conseils pour prioriser les prochaines actions',
+        ],
+        'excluded' => [
+            'refonte complète sans cadrage préalable',
+            'hébergement et nom de domaine',
+            'maintenance mensuelle automatique',
+            'développement applicatif complexe',
+        ],
+    ],
+];
 ?>
 
 <section class="container-app hero-section freelance-hero">
@@ -271,24 +332,37 @@ $processSteps = [
             </header>
 
             <div class="offers-grid">
-                <article class="offer-card reveal">
-                    <h3>Landing page</h3>
-                    <p class="offer-price">À partir de 450 €</p>
-                    <p>Une page unique pour présenter une offre, capter des contacts ou préparer une campagne.</p>
-                </article>
+                <?php foreach ($offers as $offer): ?>
+                    <article class="offer-card <?= !empty($offer['featured']) ? 'offer-card-featured' : '' ?> reveal">
+                        <?php if (!empty($offer['label'])): ?>
+                            <p class="offer-label"><?= htmlspecialchars($offer['label'], ENT_QUOTES, 'UTF-8') ?></p>
+                        <?php endif; ?>
 
-                <article class="offer-card offer-card-featured reveal">
-                    <p class="offer-label">Le plus demandé</p>
-                    <h3>Site vitrine</h3>
-                    <p class="offer-price">À partir de 900 €</p>
-                    <p>Un site complet avec pages principales, responsive, SEO de base et formulaire de contact.</p>
-                </article>
+                        <h3><?= htmlspecialchars($offer['title'], ENT_QUOTES, 'UTF-8') ?></h3>
+                        <p class="offer-price"><?= htmlspecialchars($offer['price'], ENT_QUOTES, 'UTF-8') ?></p>
+                        <p class="offer-summary"><?= htmlspecialchars($offer['description'], ENT_QUOTES, 'UTF-8') ?></p>
 
-                <article class="offer-card reveal">
-                    <h3>Refonte ou maintenance</h3>
-                    <p class="offer-price">Sur devis</p>
-                    <p>Amélioration d'un site existant, corrections, évolutions ou accompagnement ponctuel.</p>
-                </article>
+                        <div class="offer-details">
+                            <div>
+                                <p class="offer-list-title">Inclus</p>
+                                <ul class="offer-list">
+                                    <?php foreach ($offer['included'] as $item): ?>
+                                        <li><?= htmlspecialchars($item, ENT_QUOTES, 'UTF-8') ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <p class="offer-list-title">Non inclus</p>
+                                <ul class="offer-list offer-list-excluded">
+                                    <?php foreach ($offer['excluded'] as $item): ?>
+                                        <li><?= htmlspecialchars($item, ENT_QUOTES, 'UTF-8') ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
