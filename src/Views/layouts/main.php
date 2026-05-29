@@ -26,13 +26,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         (() => {
+            const getSystemTheme = () => window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
             try {
-                const theme = localStorage.getItem("theme") === "dark" ? "dark" : "light";
+                const storedTheme = localStorage.getItem("theme");
+                const theme = storedTheme === "dark" || storedTheme === "light" ? storedTheme : getSystemTheme();
+
                 document.documentElement.dataset.theme = theme;
                 document.documentElement.dataset.bsTheme = theme;
             } catch (error) {
-                document.documentElement.dataset.theme = "light";
-                document.documentElement.dataset.bsTheme = "light";
+                const theme = getSystemTheme();
+
+                document.documentElement.dataset.theme = theme;
+                document.documentElement.dataset.bsTheme = theme;
             }
         })();
     </script>

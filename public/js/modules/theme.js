@@ -2,10 +2,22 @@ const STORAGE_KEY = "theme";
 
 function getStoredTheme() {
     try {
-        return localStorage.getItem(STORAGE_KEY) === "dark" ? "dark" : "light";
+        const theme = localStorage.getItem(STORAGE_KEY);
+
+        return theme === "dark" || theme === "light" ? theme : null;
     } catch (error) {
-        return "light";
+        return null;
     }
+}
+
+function getSystemTheme() {
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function getInitialTheme() {
+    const currentTheme = document.documentElement.dataset.theme;
+
+    return currentTheme === "dark" || currentTheme === "light" ? currentTheme : getStoredTheme() ?? getSystemTheme();
 }
 
 function saveTheme(theme) {
@@ -32,7 +44,7 @@ function applyTheme(theme, toggle) {
 
 export function initThemeToggle() {
     const toggle = document.querySelector("[data-theme-toggle]");
-    const initialTheme = document.documentElement.dataset.theme === "dark" ? "dark" : getStoredTheme();
+    const initialTheme = getInitialTheme();
 
     applyTheme(initialTheme, toggle);
 
