@@ -25,6 +25,29 @@ $showcaseSites = [
         'class' => 'showcase-preview-nova',
     ],
 ];
+
+$processSteps = [
+    [
+        'number' => '01',
+        'title' => 'Cadrage clair',
+        'description' => 'On pose vos objectifs, vos contenus importants et le parcours attendu pour transformer les visiteurs en contacts.',
+    ],
+    [
+        'number' => '02',
+        'title' => 'Maquette utile',
+        'description' => 'Je prépare une structure lisible, avec les bons messages, les bons appels à l\'action et une navigation simple.',
+    ],
+    [
+        'number' => '03',
+        'title' => 'Intégration propre',
+        'description' => 'Le site est responsive, rapide, maintenable et pensé pour fonctionner correctement sur mobile comme sur ordinateur.',
+    ],
+    [
+        'number' => '04',
+        'title' => 'Mise en ligne suivie',
+        'description' => 'On vérifie les pages, le formulaire, les bases SEO et les points essentiels avant publication.',
+    ],
+];
 ?>
 
 <section class="container-app hero-section freelance-hero">
@@ -56,18 +79,44 @@ $showcaseSites = [
                         <span class="badge">SEO technique</span>
                         <span class="badge">Formulaire contact</span>
                     </div>
+
+                    <div class="hero-proof-list" aria-label="Points de confiance">
+                        <div class="hero-proof-item">
+                            <strong>7 jours</strong>
+                            <span>pour recevoir une première structure claire</span>
+                        </div>
+                        <div class="hero-proof-item">
+                            <strong>100%</strong>
+                            <span>adapté mobile, tablette et ordinateur</span>
+                        </div>
+                        <div class="hero-proof-item">
+                            <strong>1 seul</strong>
+                            <span>interlocuteur du cadrage à la mise en ligne</span>
+                        </div>
+                    </div>
                 </div>
 
                 <aside class="hero-offer-panel" aria-label="Résumé de l'offre">
-                    <p class="panel-kicker">Accompagnement web</p>
-                    <h2>De l'idée à la mise en ligne</h2>
-                    <ul class="hero-checklist">
-                        <li>Structure de page orientée conversion</li>
-                        <li>Design responsive et lisible</li>
-                        <li>Base SEO propre dès le départ</li>
-                        <li>Contact fonctionnel et suivi humain</li>
-                    </ul>
-                    <a class="panel-link" href="#offers">Découvrir les offres</a>
+                    <figure class="hero-client-visual">
+                        <img
+                            src="/images/client-workspace.webp"
+                            alt="Entrepreneuse travaillant sur son ordinateur pour développer son activité en ligne"
+                            width="1200"
+                            height="675"
+                            loading="eager">
+                    </figure>
+
+                    <div class="hero-offer-content">
+                        <p class="panel-kicker">Accompagnement web</p>
+                        <h2>De l'idée à la mise en ligne</h2>
+                        <ul class="hero-checklist">
+                            <li>Structure de page orientée conversion</li>
+                            <li>Design responsive et lisible</li>
+                            <li>Base SEO propre dès le départ</li>
+                            <li>Contact fonctionnel et suivi humain</li>
+                        </ul>
+                        <a class="panel-link" href="#offers">Découvrir les offres</a>
+                    </div>
                 </aside>
             </div>
         </div>
@@ -105,6 +154,26 @@ $showcaseSites = [
                     <h3>Maintenance</h3>
                     <p>Corrections, petites évolutions, mises à jour de contenu et amélioration continue pour garder un site propre dans le temps.</p>
                 </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section process-section">
+        <div class="container">
+            <header class="section-header reveal">
+                <p class="section-kicker">Méthode</p>
+                <h2>Un déroulé simple pour avancer sans flou</h2>
+                <p>Chaque étape sert à garder un site clair, utile et prêt à inspirer confiance à vos futurs clients.</p>
+            </header>
+
+            <div class="process-grid">
+                <?php foreach ($processSteps as $step): ?>
+                    <article class="process-card reveal">
+                        <span class="process-number"><?= htmlspecialchars($step['number'], ENT_QUOTES, 'UTF-8') ?></span>
+                        <h3><?= htmlspecialchars($step['title'], ENT_QUOTES, 'UTF-8') ?></h3>
+                        <p><?= htmlspecialchars($step['description'], ENT_QUOTES, 'UTF-8') ?></p>
+                    </article>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>

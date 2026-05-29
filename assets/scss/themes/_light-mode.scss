@@ -39,11 +39,13 @@ html[data-theme="light"] {
 
     .hero-media,
     .hero-offer-panel,
+    .hero-proof-item,
     .service-card,
     .offer-card,
     .about-card,
     .contact-card,
     .showcase-card,
+    .process-card,
     .card,
     .priority-card,
     .footer-col,
@@ -67,6 +69,7 @@ html[data-theme="light"] {
     .badge,
     .service-card p,
     .offer-card p,
+    .process-card p,
     .about-text,
     .about-stats .stat-label,
     .showcase-body p,
@@ -85,6 +88,7 @@ html[data-theme="light"] {
     .btn-ghost,
     .badge,
     .about-stats .stat,
+    .hero-proof-item,
     .contact-list li,
     .card-media,
     .tag {
@@ -155,6 +159,18 @@ html[data-theme="light"] {
 
     .showcase-sector {
         color: var(--text) !important;
+    }
+
+    .process-number {
+        border-color: rgba(2, 132, 199, 0.18);
+        background: rgba(2, 132, 199, 0.08);
+        color: #0369a1;
+    }
+
+    .hero-client-visual::after {
+        background:
+            linear-gradient(180deg, transparent 48%, rgba(255, 255, 255, 0.68)),
+            linear-gradient(90deg, rgba(14, 165, 233, 0.16), transparent 46%);
     }
 
     .form-success {
