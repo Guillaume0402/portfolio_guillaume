@@ -37,8 +37,12 @@ Date de recherche : 2026-06-07.
 
 La date de naissance presente sur l'attestation n'a pas ete ajoutee aux pages publiques, car elle n'est pas necessaire aux mentions legales du site.
 
-## Informations a completer avant production
+## Informations completees ensuite
 
-- Statut TVA exact.
-- Nom, raison sociale, adresse et telephone de l'hebergeur VPS.
+- TVA : pas de numero de TVA intracommunautaire ; mention retenue : "TVA non applicable, art. 293 B du CGI".
+- Hebergeur : Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Allemagne.
+- Telephone hebergeur : +49 9831 505-0, releve depuis les informations contractuelles publiques Hetzner. Le numero DPO Hetzner fourni dans la politique de confidentialite n'a pas ete utilise comme telephone d'hebergement.
+
+## Informations a verifier avant production
+
 - Eventuels credits images si certaines images ne sont pas creees par toi ou sous licence suffisamment claire.

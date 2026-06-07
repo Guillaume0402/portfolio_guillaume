@@ -98,11 +98,5 @@
             </p>
         </article>
 
-        <article class="legal-card legal-card-wide legal-warning reveal">
-            <h2>Informations à compléter</h2>
-            <p>
-                Les informations relatives à la TVA et à l'hébergeur doivent encore être confirmées avant une mise en production définitive.
-            </p>
-        </article>
     </div>
 </section>
