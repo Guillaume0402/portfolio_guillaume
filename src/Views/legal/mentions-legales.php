@@ -96,6 +96,9 @@
             <p>
                 Les contenus présents sur ce site, notamment les textes, visuels, interfaces, éléments graphiques et codes sources spécifiques, sont protégés par le droit d'auteur. Toute reproduction ou réutilisation non autorisée est interdite, sauf accord écrit préalable.
             </p>
+            <p>
+                Les visuels utilisés sur ce site ont été créés pour le site ou générés à l'aide d'outils d'intelligence artificielle, puis sélectionnés et intégrés par l'éditeur du site.
+            </p>
         </article>
 
     </div>
