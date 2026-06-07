@@ -60,6 +60,6 @@
 
     <div class="footer-bottom">
         <span>© <span data-current-year></span> Guillaume Maignaut. Tous droits réservés.</span>
-        <span class="footer-mini">Fait avec HTML/CSS/JS/PHP/DOCKER.</span>
+        <span class="footer-mini">Sites vitrines et landing pages pour indépendants et petites entreprises.</span>
     </div>
 </footer>
