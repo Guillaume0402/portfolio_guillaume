@@ -1,28 +1,34 @@
 <?php
 $showcaseSites = [
     [
-        'title' => 'Atelier Belle Ligne',
-        'sector' => 'Artisanat et création',
-        'status' => 'Maquette vitrine en préparation',
-        'description' => 'Site vitrine élégant pour présenter un savoir-faire, rassurer les visiteurs et faciliter la prise de contact.',
-        'tags' => ['Présentation', 'Galerie', 'Contact'],
-        'class' => 'showcase-preview-atelier',
+        'title' => 'Démo Plombier',
+        'sector' => 'Artisan local',
+        'status' => 'Démo en ligne',
+        'description' => 'Site vitrine orienté prise de contact rapide : services, zones d’intervention, avis, formulaire et appel à l’action visible.',
+        'tags' => ['Urgence locale', 'Formulaire', 'Mobile first'],
+        'image' => '/images/demo-plombier.webp',
+        'alt' => 'Capture du site démo plombier avec hero, formulaire et services',
+        'url' => 'https://demo-plombier.guillaumemaignaut.com/',
     ],
     [
-        'title' => 'Cabinet Horizon',
-        'sector' => 'Accompagnement et conseil',
-        'status' => 'Projet client non déployé',
-        'description' => 'Structure claire pour expliquer les prestations, valoriser l’expertise et guider vers une demande de rendez-vous.',
-        'tags' => ['Services', 'SEO local', 'Rendez-vous'],
-        'class' => 'showcase-preview-cabinet',
+        'title' => 'Démo Restaurant',
+        'sector' => 'Restaurant local',
+        'status' => 'Démo en ligne',
+        'description' => 'Présentation chaleureuse avec carte, informations pratiques, réservation simulée et mise en avant visuelle des plats.',
+        'tags' => ['Carte en ligne', 'Réservation', 'Images produit'],
+        'image' => '/images/demo-restaurant.webp',
+        'alt' => 'Capture du site démo restaurant avec menu et plats',
+        'url' => 'https://demo-restaurant.guillaumemaignaut.com/',
     ],
     [
-        'title' => 'Maison Nova',
-        'sector' => 'Commerce local',
-        'status' => 'Prototype vitrine',
-        'description' => 'Page commerciale responsive pour mettre en avant une offre, des produits phares et un contact rapide.',
-        'tags' => ['Landing page', 'Responsive', 'Conversion'],
-        'class' => 'showcase-preview-nova',
+        'title' => 'Démo Coach Sportif',
+        'sector' => 'Service indépendant',
+        'status' => 'Démo en ligne',
+        'description' => 'Landing page claire pour présenter une offre, rassurer avec une méthode, expliquer les tarifs et déclencher une demande de bilan.',
+        'tags' => ['Landing page', 'Offres', 'Conversion'],
+        'image' => '/images/demo-coach.webp',
+        'alt' => 'Capture du site démo coach sportif avec hero et offres',
+        'url' => 'https://demo-coach.guillaumemaignaut.com/',
     ],
 ];
 
@@ -121,15 +127,15 @@ $offers = [
                     <p class="hero-kicker">
                         <span class="hero-kicker-text">
                             <span class="hero-kicker-name">Guillaume Maignaut</span>
-                            <span class="hero-kicker-role">Création de sites web freelance</span>
+                            <span class="hero-kicker-role">Développeur web junior freelance</span>
                         </span>
                     </p>
 
-                    <h1 class="hero-title">Un site clair, rapide et professionnel pour développer votre activité.</h1>
+                    <h1 class="hero-title">Un site clair, rapide et professionnel pour donner confiance à vos futurs clients.</h1>
 
                     <p class="hero-subtitle">
-                        J'aide les indépendants, artisans et petites entreprises à créer une présence en ligne sérieuse :
-                        site vitrine, landing page, refonte, optimisation et formulaire de contact prêt à recevoir vos demandes.
+                        Je crée des sites vitrines et landing pages pour indépendants, artisans et petites entreprises :
+                        une présentation lisible, un parcours simple, un formulaire fonctionnel et une base technique propre.
                     </p>
 
                     <div class="hero-actions">
@@ -146,16 +152,16 @@ $offers = [
 
                     <div class="hero-proof-list" aria-label="Points de confiance">
                         <div class="hero-proof-item">
-                            <strong>7 jours</strong>
-                            <span>pour recevoir une première structure claire</span>
+                            <strong>3 démos</strong>
+                            <span>consultables en ligne pour voir mon approche</span>
                         </div>
                         <div class="hero-proof-item">
                             <strong>100%</strong>
                             <span>adapté mobile, tablette et ordinateur</span>
                         </div>
                         <div class="hero-proof-item">
-                            <strong>1 seul</strong>
-                            <span>interlocuteur du cadrage à la mise en ligne</span>
+                            <strong>Suivi clair</strong>
+                            <span>un échange simple du cadrage à la mise en ligne</span>
                         </div>
                     </div>
                 </div>
@@ -163,21 +169,21 @@ $offers = [
                 <aside class="hero-offer-panel" aria-label="Résumé de l'offre">
                     <figure class="hero-client-visual">
                         <img
-                            src="/images/client-workspace.webp"
-                            alt="Entrepreneuse travaillant sur son ordinateur pour développer son activité en ligne"
+                            src="/images/hero-laptop-man.webp"
+                            alt="Homme travaillant sur un ordinateur portable dans un espace de travail professionnel"
                             width="1200"
-                            height="675"
+                            height="750"
                             loading="eager">
                     </figure>
 
                     <div class="hero-offer-content">
                         <p class="panel-kicker">Accompagnement web</p>
-                        <h2>De l'idée à la mise en ligne</h2>
+                        <h2>De l'idée à une page qui donne envie d'agir</h2>
                         <ul class="hero-checklist">
                             <li>Structure de page orientée conversion</li>
                             <li>Design responsive et lisible</li>
                             <li>Base SEO propre dès le départ</li>
-                            <li>Contact fonctionnel et suivi humain</li>
+                            <li>Formulaire de contact prêt à recevoir vos demandes</li>
                         </ul>
                         <a class="panel-link" href="#offers">Découvrir les offres</a>
                     </div>
@@ -250,30 +256,21 @@ $offers = [
         <div class="container">
             <header class="section-header reveal">
                 <p class="section-kicker">Réalisations freelance</p>
-                <h2>Sites vitrines en préparation</h2>
-                <p>Ces exemples représentent le type de sites clients que je construis. Les projets techniques restent disponibles sur le portfolio.</p>
+                <h2>Trois démos concrètes pour vous projeter</h2>
+                <p>Chaque démo montre un cas fréquent de site vitrine : une activité locale, une offre claire et un parcours pensé pour déclencher un contact.</p>
             </header>
 
             <div class="showcase-grid">
                 <?php foreach ($showcaseSites as $site): ?>
                     <article class="showcase-card reveal">
-                        <div class="showcase-preview <?= htmlspecialchars($site['class'], ENT_QUOTES, 'UTF-8') ?>" aria-hidden="true">
-                            <div class="showcase-browser">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div class="showcase-visual">
-                                <div class="showcase-line showcase-line-strong"></div>
-                                <div class="showcase-line"></div>
-                                <div class="showcase-line showcase-line-short"></div>
-                                <div class="showcase-blocks">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </div>
-                        </div>
+                        <a class="showcase-preview" href="<?= htmlspecialchars($site['url'], ENT_QUOTES, 'UTF-8') ?>" target="_blank" rel="noopener noreferrer" aria-label="Voir <?= htmlspecialchars($site['title'], ENT_QUOTES, 'UTF-8') ?>">
+                            <img
+                                src="<?= htmlspecialchars($site['image'], ENT_QUOTES, 'UTF-8') ?>"
+                                alt="<?= htmlspecialchars($site['alt'], ENT_QUOTES, 'UTF-8') ?>"
+                                width="1200"
+                                height="932"
+                                loading="lazy">
+                        </a>
 
                         <div class="showcase-body">
                             <p class="showcase-status"><?= htmlspecialchars($site['status'], ENT_QUOTES, 'UTF-8') ?></p>
@@ -286,12 +283,17 @@ $offers = [
                                     <span class="tag"><?= htmlspecialchars($tag, ENT_QUOTES, 'UTF-8') ?></span>
                                 <?php endforeach; ?>
                             </div>
+
+                            <div class="showcase-actions">
+                                <a class="showcase-link" href="<?= htmlspecialchars($site['url'], ENT_QUOTES, 'UTF-8') ?>" target="_blank" rel="noopener noreferrer">Voir la démo</a>
+                            </div>
                         </div>
                     </article>
                 <?php endforeach; ?>
             </div>
 
             <div class="section-actions reveal">
+                <a class="btn btn-primary btn-lg" href="/contact">Me confier un projet</a>
                 <a class="btn btn-ghost btn-lg" href="/portfolio">Voir le portfolio technique</a>
             </div>
         </div>
@@ -301,17 +303,32 @@ $offers = [
         <div class="container about-grid">
             <header class="section-header reveal">
                 <p class="section-kicker">À propos</p>
-                <h2>Un interlocuteur technique qui garde le besoin métier en tête</h2>
-                <p>Je conçois des interfaces lisibles, rapides et maintenables, avec une attention particulière portée à la fiabilité.</p>
+                <h2>Un développeur junior sérieux, attentif au besoin réel</h2>
+                <p>Je construis des sites simples à comprendre, faciles à consulter et prêts à recevoir vos premières demandes.</p>
             </header>
 
             <div class="about-card reveal">
-                <p class="about-text">
-                    Mon objectif n'est pas seulement de produire du code : je veux créer un site qui aide vos visiteurs à comprendre vite ce que vous proposez, à vous faire confiance et à vous contacter facilement.
-                </p>
-                <p class="about-text">
-                    Je travaille avec une approche structurée : cadrage du besoin, organisation des contenus, intégration responsive, sécurité du formulaire, mise en ligne et améliorations possibles après lancement.
-                </p>
+                <div class="about-profile">
+                    <figure class="about-photo">
+                        <img
+                            src="/images/photo_profil.jpg"
+                            alt="Portrait de Guillaume Maignaut, développeur web junior freelance"
+                            width="240"
+                            height="240"
+                            loading="lazy">
+                    </figure>
+
+                    <div class="about-content">
+                        <p class="about-name">Guillaume Maignaut</p>
+                        <p class="about-text">
+                            Mon objectif n'est pas seulement de produire du code : je veux créer un site qui aide vos visiteurs à comprendre vite ce que vous proposez, à vous faire confiance et à vous contacter facilement.
+                        </p>
+                        <p class="about-text">
+                            En tant que développeur junior, je privilégie une méthode claire : cadrage du besoin, organisation des contenus, intégration responsive, sécurité du formulaire, mise en ligne et échanges réguliers.
+                        </p>
+                    </div>
+                </div>
+
                 <div class="about-stats">
                     <div class="stat">
                         <span class="stat-num">PHP</span>
