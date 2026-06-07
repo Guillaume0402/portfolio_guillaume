@@ -36,7 +36,7 @@ RewriteRule ^ index.php [L]
     Header always setifempty X-Frame-Options "DENY"
     Header always setifempty Referrer-Policy "strict-origin-when-cross-origin"
     Header always setifempty Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), fullscreen=(self)"
-    Header always setifempty Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'"
+    Header always setifempty Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; upgrade-insecure-requests"
 
     <FilesMatch "\.(css|js|mjs|png|jpg|jpeg|webp|svg|ico|woff|woff2)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
