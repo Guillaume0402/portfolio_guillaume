@@ -30,12 +30,28 @@
                         <dd><?= htmlspecialchars($legal['editor_status'], ENT_QUOTES, 'UTF-8') ?></dd>
                     </div>
                     <div>
+                        <dt>Activité principale</dt>
+                        <dd><?= htmlspecialchars($legal['editor_activity'], ENT_QUOTES, 'UTF-8') ?></dd>
+                    </div>
+                    <div>
                         <dt>Adresse</dt>
                         <dd><?= htmlspecialchars($legal['editor_address'], ENT_QUOTES, 'UTF-8') ?></dd>
                     </div>
                     <div>
-                        <dt>SIRET / SIREN</dt>
+                        <dt>SIREN</dt>
+                        <dd><?= htmlspecialchars($legal['siren'], ENT_QUOTES, 'UTF-8') ?></dd>
+                    </div>
+                    <div>
+                        <dt>SIRET</dt>
                         <dd><?= htmlspecialchars($legal['siret'], ENT_QUOTES, 'UTF-8') ?></dd>
+                    </div>
+                    <div>
+                        <dt>RNE</dt>
+                        <dd><?= htmlspecialchars($legal['rne'], ENT_QUOTES, 'UTF-8') ?></dd>
+                    </div>
+                    <div>
+                        <dt>Code APE</dt>
+                        <dd><?= htmlspecialchars($legal['ape'], ENT_QUOTES, 'UTF-8') ?></dd>
                     </div>
                     <div>
                         <dt>TVA</dt>
@@ -85,7 +101,7 @@
         <article class="legal-card legal-card-wide legal-warning reveal">
             <h2>Informations à compléter</h2>
             <p>
-                Les champs marqués "A completer" doivent être remplacés par les informations juridiques exactes avant une mise en production définitive.
+                Les informations relatives à la TVA et à l'hébergeur doivent encore être confirmées avant une mise en production définitive.
             </p>
         </article>
     </div>
