@@ -27,6 +27,11 @@ final class Router
         $path = parse_url($uri, PHP_URL_PATH) ?? '/';
         $path = $this->normalize($path);
         $method = strtoupper($method);
+        $isHead = $method === 'HEAD';
+
+        if ($isHead) {
+            $method = 'GET';
+        }
 
         $methodRoutes = $this->routes[$method] ?? [];
         $handler = $methodRoutes[$path] ?? null;
@@ -34,28 +39,43 @@ final class Router
         $errorController = new ErrorController();
 
         if (!$handler) {
-            echo $errorController->notFound();
+            $response = $errorController->notFound();
+            if (!$isHead) {
+                echo $response;
+            }
             return;
         }
 
         [$controllerClass, $action] = $handler;
 
         if (!class_exists($controllerClass)) {
-            echo $errorController->serverError();
+            $response = $errorController->serverError();
+            if (!$isHead) {
+                echo $response;
+            }
             return;
         }
 
         $controller = new $controllerClass();
 
         if (!method_exists($controller, $action)) {
-            echo $errorController->serverError();
+            $response = $errorController->serverError();
+            if (!$isHead) {
+                echo $response;
+            }
             return;
         }
 
         try {
-            echo (string) $controller->$action();
+            $response = (string) $controller->$action();
+            if (!$isHead) {
+                echo $response;
+            }
         } catch (Throwable $e) {
-            echo $errorController->serverError($e);
+            $response = $errorController->serverError($e);
+            if (!$isHead) {
+                echo $response;
+            }
         }
     }
 

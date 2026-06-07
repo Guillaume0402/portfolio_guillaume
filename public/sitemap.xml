@@ -12,4 +12,16 @@
         <loc>https://guillaumemaignaut.com/contact</loc>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://guillaumemaignaut.com/mentions-legales</loc>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://guillaumemaignaut.com/confidentialite</loc>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://guillaumemaignaut.com/cookies</loc>
+        <priority>0.3</priority>
+    </url>
 </urlset>

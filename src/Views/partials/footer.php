@@ -48,14 +48,18 @@
             </a>
         </div>
 
+        <div class="footer-col">
+            <h3 class="footer-title">Légal</h3>
+
+            <a class="footer-social" href="/mentions-legales">Mentions légales</a>
+            <a class="footer-social" href="/confidentialite">Confidentialité</a>
+            <a class="footer-social" href="/cookies">Cookies</a>
+        </div>
+
     </div>
 
     <div class="footer-bottom">
-        <span>© <span id="year"></span> Guillaume Maignaut. Tous droits réservés.</span>
+        <span>© <span data-current-year></span> Guillaume Maignaut. Tous droits réservés.</span>
         <span class="footer-mini">Fait avec HTML/CSS/JS/PHP/DOCKER.</span>
     </div>
-
-    <script>
-        document.querySelector("#year").textContent = new Date().getFullYear();
-    </script>
 </footer>

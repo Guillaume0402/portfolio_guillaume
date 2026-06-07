@@ -210,7 +210,8 @@ $deadlineOptions = [
 
                 <button class="btn btn-primary btn-lg" type="submit">Envoyer ma demande</button>
                 <p class="form-privacy">
-                    Les informations envoyées via ce formulaire sont utilisées uniquement pour répondre à votre demande. Vous pouvez demander leur suppression à tout moment.
+                    Les informations envoyées via ce formulaire sont utilisées uniquement pour répondre à votre demande.
+                    Consultez la <a href="/confidentialite">politique de confidentialité</a>.
                 </p>
             </form>
         </article>

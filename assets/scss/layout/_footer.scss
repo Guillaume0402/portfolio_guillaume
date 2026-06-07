@@ -11,7 +11,7 @@
 
 .footer-inner {
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+    grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(220px, 0.55fr));
     gap: 26px;
     align-items: start;
     padding: 44px 0 24px;
@@ -94,7 +94,7 @@
     background: rgba(255, 255, 255, 0.035);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    width: 300px;    
+    width: min(100%, 300px);
     margin: 0 auto;
 }
 
