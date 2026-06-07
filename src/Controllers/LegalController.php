@@ -25,9 +25,6 @@ final class LegalController extends AbstractController
         'host_name' => 'Hetzner Online GmbH',
         'host_address' => 'Industriestr. 25, 91710 Gunzenhausen, Allemagne',
         'host_phone' => '+49 9831 505-0',
-        'mediator_name' => 'Médiateur de la consommation à désigner avant toute vente à un consommateur',
-        'mediator_address' => 'A compléter après adhésion à un médiateur référencé',
-        'mediator_website' => 'A compléter après adhésion à un médiateur référencé',
         'retention_contact' => '3 ans après le dernier contact entrant',
         'last_update' => '7 juin 2026',
     ];

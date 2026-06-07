@@ -8,8 +8,8 @@
             </a>
 
             <p class="footer-text">
-                Je crée des sites vitrines, landing pages et refontes web pour aider les indépendants,
-                artisans et petites entreprises à présenter clairement leur activité et recevoir des demandes de contact.
+                Je crée des sites vitrines, landing pages et refontes web pour aider les professionnels,
+                indépendants, artisans, associations et petites entreprises à présenter clairement leur activité et recevoir des demandes de contact.
             </p>
 
             <div class="footer-actions">
@@ -61,6 +61,6 @@
 
     <div class="footer-bottom">
         <span>© <span data-current-year></span> Guillaume Maignaut. Tous droits réservés.</span>
-        <span class="footer-mini">Sites vitrines et landing pages pour indépendants et petites entreprises.</span>
+        <span class="footer-mini">Sites vitrines et landing pages pour professionnels et petites structures.</span>
     </div>
 </footer>

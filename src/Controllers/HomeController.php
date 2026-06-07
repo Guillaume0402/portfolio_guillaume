@@ -15,7 +15,7 @@ final class HomeController extends AbstractController
     {
         return $this->render('home/index', [
             'pageTitle' => 'Guillaume Maignaut | Création de sites web freelance',
-            'pageDescription' => 'Création de sites vitrines, landing pages et refontes web pour indépendants, artisans et petites entreprises. Portfolio, offres et contact.',
+            'pageDescription' => 'Création de sites vitrines, landing pages et refontes web pour professionnels, indépendants, artisans, associations et petites entreprises. Portfolio, offres et contact.',
             'pageCanonical' => 'https://guillaumemaignaut.com/',
         ]);
     }

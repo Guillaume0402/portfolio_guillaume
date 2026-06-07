@@ -134,7 +134,7 @@ $offers = [
                     <h1 class="hero-title">Un site clair, rapide et professionnel pour donner confiance à vos futurs clients.</h1>
 
                     <p class="hero-subtitle">
-                        Je crée des sites vitrines et landing pages pour indépendants, artisans et petites entreprises :
+                        Je crée des sites vitrines et landing pages pour professionnels, indépendants, artisans, associations et petites entreprises :
                         une présentation lisible, un parcours simple, un formulaire fonctionnel et une base technique propre.
                     </p>
 

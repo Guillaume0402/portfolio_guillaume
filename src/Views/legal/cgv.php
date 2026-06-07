@@ -8,15 +8,18 @@
             <p class="section-kicker">Conditions contractuelles</p>
             <h1>Conditions générales de vente</h1>
             <p>
-                Ces conditions générales encadrent les prestations de création de sites web, landing pages, refontes, maintenance et accompagnement technique proposées par <?= htmlspecialchars($legal['editor_name'], ENT_QUOTES, 'UTF-8') ?>.
+                Ces conditions générales encadrent les prestations de création de sites web, landing pages, refontes, maintenance et accompagnement technique proposées par <?= htmlspecialchars($legal['editor_name'], ENT_QUOTES, 'UTF-8') ?> à une clientèle professionnelle.
             </p>
             <p class="legal-updated">Dernière mise à jour : <?= htmlspecialchars($legal['last_update'], ENT_QUOTES, 'UTF-8') ?></p>
         </header>
 
         <article class="legal-card legal-card-wide legal-warning reveal">
-            <h2>Médiateur à désigner avant vente à un consommateur</h2>
+            <h2>Clientèle professionnelle uniquement</h2>
             <p>
-                Avant toute vente à un consommateur particulier, l'éditeur doit adhérer à un médiateur de la consommation référencé et remplacer les informations ci-dessous par les coordonnées exactes du médiateur désigné.
+                Les prestations proposées par <?= htmlspecialchars($legal['editor_name'], ENT_QUOTES, 'UTF-8') ?> sont exclusivement destinées aux professionnels, entreprises, indépendants, associations ou organismes agissant dans le cadre de leur activité professionnelle.
+            </p>
+            <p>
+                Les présentes conditions générales ne s'appliquent pas aux consommateurs particuliers au sens du Code de la consommation.
             </p>
         </article>
 
@@ -109,12 +112,9 @@
         </article>
 
         <article class="legal-card legal-card-wide reveal">
-            <h2>Droit de rétractation des consommateurs</h2>
+            <h2>Absence de droit de rétractation consommateur</h2>
             <p>
-                Lorsqu'un contrat est conclu à distance avec un consommateur, celui-ci dispose en principe d'un délai de rétractation de 14 jours à compter de la conclusion du contrat de prestation de services.
-            </p>
-            <p>
-                Si le consommateur souhaite que l'exécution commence avant la fin du délai de rétractation, il doit en faire la demande expresse. Si la prestation est pleinement exécutée avant la fin du délai avec son accord préalable et sa renonciation expresse, le droit de rétractation peut ne plus s'appliquer. Si l'exécution a commencé sans être achevée, le consommateur peut devoir payer un montant proportionnel au service déjà fourni.
+                Les prestations étant exclusivement destinées à une clientèle professionnelle, les dispositions relatives au droit de rétractation des consommateurs ne sont pas applicables.
             </p>
         </article>
 
@@ -122,7 +122,7 @@
             <article class="legal-card reveal">
                 <h2>Garanties et responsabilité</h2>
                 <p>
-                    L'éditeur s'engage à réaliser les prestations avec diligence et conformément au périmètre accepté. Les garanties légales applicables aux consommateurs restent dues lorsqu'elles s'appliquent.
+                    L'éditeur s'engage à réaliser les prestations avec diligence et conformément au périmètre accepté. Les garanties et responsabilités applicables sont celles prévues par le droit commun et par les documents contractuels acceptés entre les parties.
                 </p>
                 <p>
                     La responsabilité de l'éditeur ne peut être engagée pour les contenus fournis par le client, les services tiers, l'hébergement tiers, les modifications effectuées par un tiers ou un usage non conforme des livrables.
@@ -149,27 +149,19 @@
 
             <article class="legal-card reveal">
                 <h2>Médiation de la consommation</h2>
-                <dl class="legal-list">
-                    <div>
-                        <dt>Médiateur</dt>
-                        <dd><?= htmlspecialchars($legal['mediator_name'], ENT_QUOTES, 'UTF-8') ?></dd>
-                    </div>
-                    <div>
-                        <dt>Adresse</dt>
-                        <dd><?= htmlspecialchars($legal['mediator_address'], ENT_QUOTES, 'UTF-8') ?></dd>
-                    </div>
-                    <div>
-                        <dt>Site internet</dt>
-                        <dd><?= htmlspecialchars($legal['mediator_website'], ENT_QUOTES, 'UTF-8') ?></dd>
-                    </div>
-                </dl>
+                <p>
+                    Les prestations proposées étant exclusivement destinées à une clientèle professionnelle, les dispositions relatives à la médiation de la consommation ne sont pas applicables.
+                </p>
+                <p>
+                    En cas de litige, les parties s'engagent à rechercher une solution amiable avant toute action judiciaire.
+                </p>
             </article>
         </div>
 
         <article class="legal-card legal-card-wide reveal">
             <h2>Droit applicable</h2>
             <p>
-                Les présentes conditions sont soumises au droit français. En cas de litige, les parties recherchent d'abord une solution amiable. Les règles impératives protectrices du consommateur restent applicables lorsque le client agit en qualité de consommateur.
+                Les présentes conditions sont soumises au droit français. En cas de litige persistant entre professionnels, les juridictions compétentes sont déterminées selon les règles de droit commun applicables.
             </p>
         </article>
     </div>

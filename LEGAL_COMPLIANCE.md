@@ -22,8 +22,9 @@ Date de recherche : 2026-06-07.
 - Le site est un site professionnel de freelance : les mentions legales doivent etre facilement accessibles.
 - Le formulaire de contact collecte des donnees personnelles : une information claire sur les finalites, base legale, destinataires, duree de conservation et droits RGPD est necessaire.
 - Le site ne declare pas d'outil publicitaire ni de mesure d'audience externe : aucune banniere cookies n'est ajoutee pour l'instant. La page cookies informe sur les traceurs strictement necessaires et la preference locale de theme.
-- Une page `/cgv` est ajoutee pour couvrir les ventes sur devis a des professionnels et a des consommateurs.
-- Les CGV restent a finaliser avec les coordonnees du mediateur de la consommation que l'editeur doit designer avant toute vente a un consommateur.
+- Une page `/cgv` est ajoutee pour couvrir les ventes sur devis a une clientele professionnelle.
+- Les prestations sont cadrees comme exclusivement destinees aux professionnels, entreprises, independants, associations ou organismes agissant dans le cadre de leur activite professionnelle.
+- Les dispositions relatives a la mediation de la consommation ne sont pas applicables tant que les prestations ne sont pas proposees a des consommateurs particuliers.
 
 ## Informations completees depuis l'attestation RNE du 5 juin 2026
 
@@ -45,6 +46,6 @@ La date de naissance presente sur l'attestation n'a pas ete ajoutee aux pages pu
 - Telephone hebergeur : +49 9831 505-0, releve depuis les informations contractuelles publiques Hetzner. Le numero DPO Hetzner fourni dans la politique de confidentialite n'a pas ete utilise comme telephone d'hebergement.
 - Visuels : mention ajoutee dans les mentions legales indiquant que les visuels ont ete crees pour le site ou generes avec des outils d'intelligence artificielle.
 
-## Information a completer avant vente a un consommateur
+## Evolution future avant vente a un consommateur
 
-- Mediateur de la consommation : l'editeur doit adherer a un mediateur reference, puis publier son nom, son adresse et son site internet dans les CGV et sur le site.
+- Si l'editeur ouvre plus tard ses prestations aux consommateurs particuliers, il devra adapter les CGV, ajouter les informations precontractuelles B2C pertinentes, et adherer a un mediateur de la consommation reference avant de vendre a ce public.
