@@ -24,6 +24,7 @@ services:
       - no-new-privileges:true
 
   web:
+    container_name: portfolio_web_prod
     build:
       context: .
       dockerfile: docker/php/Dockerfile
