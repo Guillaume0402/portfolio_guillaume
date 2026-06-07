@@ -14,3 +14,4 @@ $router->post('/contact/submit', [ContactController::class, 'submit']);
 $router->get('/mentions-legales', [LegalController::class, 'legalNotice']);
 $router->get('/confidentialite', [LegalController::class, 'privacy']);
 $router->get('/cookies', [LegalController::class, 'cookies']);
+$router->get('/cgv', [LegalController::class, 'terms']);

@@ -58,7 +58,7 @@ $processSteps = [
 $offers = [
     [
         'title' => 'Landing page',
-        'price' => 'À partir de 450 €',
+        'price' => 'À partir de 450 € TTC',
         'description' => 'Une page unique pour présenter une offre, capter des contacts ou préparer une campagne.',
         'included' => [
             '1 page complète orientée conversion',
@@ -78,7 +78,7 @@ $offers = [
     ],
     [
         'title' => 'Site vitrine',
-        'price' => 'À partir de 900 €',
+        'price' => 'À partir de 900 € TTC',
         'description' => 'Un site complet pour présenter votre activité, vos services et générer des demandes de contact.',
         'label' => 'Le plus demandé',
         'featured' => true,

@@ -52,6 +52,7 @@
             <h3 class="footer-title">Légal</h3>
 
             <a class="footer-social" href="/mentions-legales">Mentions légales</a>
+            <a class="footer-social" href="/cgv">CGV</a>
             <a class="footer-social" href="/confidentialite">Confidentialité</a>
             <a class="footer-social" href="/cookies">Cookies</a>
         </div>

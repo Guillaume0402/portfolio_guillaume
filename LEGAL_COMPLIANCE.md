@@ -22,8 +22,8 @@ Date de recherche : 2026-06-07.
 - Le site est un site professionnel de freelance : les mentions legales doivent etre facilement accessibles.
 - Le formulaire de contact collecte des donnees personnelles : une information claire sur les finalites, base legale, destinataires, duree de conservation et droits RGPD est necessaire.
 - Le site ne declare pas d'outil publicitaire ni de mesure d'audience externe : aucune banniere cookies n'est ajoutee pour l'instant. La page cookies informe sur les traceurs strictement necessaires et la preference locale de theme.
-- Les CGV ne sont pas ajoutees dans cette branche, car le site ne permet pas de commander ou payer directement une prestation. Si une vente en ligne, un acompte, un abonnement ou un parcours de commande est ajoute plus tard, il faudra publier des CGV adaptees.
-- Les offres du site visent des clients professionnels (independants, artisans, petites entreprises). Si des contrats sont conclus avec des consommateurs particuliers, il faudra ajouter des CGV adaptees aux consommateurs et publier les coordonnees du mediateur de la consommation designe.
+- Une page `/cgv` est ajoutee pour couvrir les ventes sur devis a des professionnels et a des consommateurs.
+- Les CGV restent a finaliser avec les coordonnees du mediateur de la consommation que l'editeur doit designer avant toute vente a un consommateur.
 
 ## Informations completees depuis l'attestation RNE du 5 juin 2026
 
@@ -44,3 +44,7 @@ La date de naissance presente sur l'attestation n'a pas ete ajoutee aux pages pu
 - Hebergeur : Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Allemagne.
 - Telephone hebergeur : +49 9831 505-0, releve depuis les informations contractuelles publiques Hetzner. Le numero DPO Hetzner fourni dans la politique de confidentialite n'a pas ete utilise comme telephone d'hebergement.
 - Visuels : mention ajoutee dans les mentions legales indiquant que les visuels ont ete crees pour le site ou generes avec des outils d'intelligence artificielle.
+
+## Information a completer avant vente a un consommateur
+
+- Mediateur de la consommation : l'editeur doit adherer a un mediateur reference, puis publier son nom, son adresse et son site internet dans les CGV et sur le site.

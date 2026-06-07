@@ -25,6 +25,9 @@ final class LegalController extends AbstractController
         'host_name' => 'Hetzner Online GmbH',
         'host_address' => 'Industriestr. 25, 91710 Gunzenhausen, Allemagne',
         'host_phone' => '+49 9831 505-0',
+        'mediator_name' => 'Médiateur de la consommation à désigner avant toute vente à un consommateur',
+        'mediator_address' => 'A compléter après adhésion à un médiateur référencé',
+        'mediator_website' => 'A compléter après adhésion à un médiateur référencé',
         'retention_contact' => '3 ans après le dernier contact entrant',
         'last_update' => '7 juin 2026',
     ];
@@ -55,6 +58,16 @@ final class LegalController extends AbstractController
             'pageTitle' => 'Cookies et traceurs | Guillaume Maignaut',
             'pageDescription' => 'Informations sur les cookies et traceurs utilisés sur le site guillaumemaignaut.com.',
             'pageCanonical' => 'https://guillaumemaignaut.com/cookies',
+            'legal' => self::LEGAL_INFO,
+        ]);
+    }
+
+    public function terms(): string
+    {
+        return $this->render('legal/cgv', [
+            'pageTitle' => 'Conditions générales de vente | Guillaume Maignaut',
+            'pageDescription' => 'Conditions générales de vente des prestations de création de sites web, landing pages, refontes, maintenance et accompagnement technique.',
+            'pageCanonical' => 'https://guillaumemaignaut.com/cgv',
             'legal' => self::LEGAL_INFO,
         ]);
     }
