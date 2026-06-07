@@ -18,3 +18,6 @@ public/assets/*.map
 public/assets/app.css
 public/assets/app.css.map
 
+
+# IDE
+.idea/
