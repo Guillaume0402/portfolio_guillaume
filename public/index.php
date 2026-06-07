@@ -32,30 +32,6 @@ session_set_cookie_params([
 ]);
 
 header_remove('X-Powered-By');
-header('X-Content-Type-Options: nosniff');
-header('X-Frame-Options: DENY');
-header('Referrer-Policy: strict-origin-when-cross-origin');
-header('Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), fullscreen=(self)');
-
-$contentSecurityPolicy = [
-    "default-src 'self'",
-    "base-uri 'self'",
-    "form-action 'self'",
-    "frame-ancestors 'none'",
-    "object-src 'none'",
-    "script-src 'self'",
-    "style-src 'self'",
-    "style-src-attr 'unsafe-inline'",
-    "img-src 'self' data: https:",
-    "font-src 'self' data:",
-    "connect-src 'self'",
-];
-
-if ($isProd) {
-    $contentSecurityPolicy[] = 'upgrade-insecure-requests';
-}
-
-header('Content-Security-Policy: ' . implode('; ', $contentSecurityPolicy));
 
 session_start();
 
