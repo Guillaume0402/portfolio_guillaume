@@ -23,6 +23,7 @@ Date de recherche : 2026-06-07.
 - Le formulaire de contact collecte des donnees personnelles : une information claire sur les finalites, base legale, destinataires, duree de conservation et droits RGPD est necessaire.
 - Le site ne declare pas d'outil publicitaire ni de mesure d'audience externe : aucune banniere cookies n'est ajoutee pour l'instant. La page cookies informe sur les traceurs strictement necessaires et la preference locale de theme.
 - Les CGV ne sont pas ajoutees dans cette branche, car le site ne permet pas de commander ou payer directement une prestation. Si une vente en ligne, un acompte, un abonnement ou un parcours de commande est ajoute plus tard, il faudra publier des CGV adaptees.
+- Les offres du site visent des clients professionnels (independants, artisans, petites entreprises). Si des contrats sont conclus avec des consommateurs particuliers, il faudra ajouter des CGV adaptees aux consommateurs et publier les coordonnees du mediateur de la consommation designe.
 
 ## Informations completees depuis l'attestation RNE du 5 juin 2026
 

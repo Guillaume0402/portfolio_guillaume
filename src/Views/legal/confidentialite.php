@@ -54,9 +54,25 @@
             </article>
 
             <article class="legal-card reveal">
+                <h2>Champs obligatoires</h2>
+                <p>
+                    Les champs demandés dans le formulaire sont nécessaires pour comprendre votre demande et pouvoir y répondre. Sans ces informations, la demande ne pourra pas être traitée correctement.
+                </p>
+            </article>
+        </div>
+
+        <div class="legal-grid">
+            <article class="legal-card reveal">
                 <h2>Durée de conservation</h2>
                 <p>
                     Les messages de contact sont conservés pendant <?= htmlspecialchars($legal['retention_contact'], ENT_QUOTES, 'UTF-8') ?>, sauf obligation légale imposant une durée différente.
+                </p>
+            </article>
+
+            <article class="legal-card reveal">
+                <h2>Transferts hors Union européenne</h2>
+                <p>
+                    Le site est hébergé dans l'Union européenne. Les messages peuvent toutefois transiter par le service de messagerie utilisé par l'éditeur. Si ce prestataire implique un transfert hors Union européenne, celui-ci doit être encadré par les garanties prévues par le RGPD.
                 </p>
             </article>
         </div>
@@ -64,7 +80,7 @@
         <article class="legal-card legal-card-wide reveal">
             <h2>Destinataires et transferts</h2>
             <p>
-                Les données sont destinées uniquement à <?= htmlspecialchars($legal['editor_name'], ENT_QUOTES, 'UTF-8') ?>. Elles peuvent transiter par les prestataires techniques nécessaires à l'hébergement du site et à l'envoi des emails. Aucun transfert volontaire à des tiers commerciaux n'est effectué.
+                Les données sont destinées uniquement à <?= htmlspecialchars($legal['editor_name'], ENT_QUOTES, 'UTF-8') ?>. Elles peuvent transiter par les prestataires techniques nécessaires à l'hébergement du site et à la réception des emails. Aucun transfert volontaire à des tiers commerciaux n'est effectué.
             </p>
         </article>
 

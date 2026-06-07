@@ -12,7 +12,7 @@ final class LegalController extends AbstractController
         'site_url' => 'https://guillaumemaignaut.com',
         'editor_name' => 'Guillaume Pascal Maignaut',
         'editor_status' => 'Entrepreneur individuel',
-        'editor_activity' => 'Développement web, création de sites internet, intégration d interfaces, maintenance et évolution de sites web, développement d applications web, hébergement et accompagnement technique de projets numériques.',
+        'editor_activity' => 'Développement web, création de sites internet, intégration d\'interfaces, maintenance et évolution de sites web, développement d\'applications web, hébergement et accompagnement technique de projets numériques.',
         'editor_address' => '5 rue du Docteur Schweitzer, 32500 Fleurance, France',
         'editor_email' => 'g.maignaut@gmail.com',
         'editor_phone' => '+33 6 50 42 80 39',
@@ -21,11 +21,11 @@ final class LegalController extends AbstractController
         'rne' => 'Immatriculé au Registre national des entreprises le 4 juin 2026',
         'ape' => '6201Z - Programmation informatique',
         'vat' => 'TVA non applicable, art. 293 B du CGI',
-        'publication_director' => 'Guillaume Maignaut',
+        'publication_director' => 'Guillaume Pascal Maignaut',
         'host_name' => 'Hetzner Online GmbH',
         'host_address' => 'Industriestr. 25, 91710 Gunzenhausen, Allemagne',
         'host_phone' => '+49 9831 505-0',
-        'retention_contact' => '3 ans apres le dernier contact entrant',
+        'retention_contact' => '3 ans après le dernier contact entrant',
         'last_update' => '7 juin 2026',
     ];
 
