@@ -23,4 +23,11 @@ final class Csrf
 
         return hash_equals($_SESSION['csrf'], $t);
     }
+
+    public static function regenerate(): string
+    {
+        $_SESSION['csrf'] = bin2hex(random_bytes(32));
+
+        return $_SESSION['csrf'];
+    }
 }

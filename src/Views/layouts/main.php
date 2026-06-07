@@ -24,24 +24,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        (() => {
-            const getSystemTheme = () => window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-
-            try {
-                const storedTheme = localStorage.getItem("theme");
-                const theme = storedTheme === "dark" || storedTheme === "light" ? storedTheme : getSystemTheme();
-
-                document.documentElement.dataset.theme = theme;
-                document.documentElement.dataset.bsTheme = theme;
-            } catch (error) {
-                const theme = getSystemTheme();
-
-                document.documentElement.dataset.theme = theme;
-                document.documentElement.dataset.bsTheme = theme;
-            }
-        })();
-    </script>
+    <script src="/js/theme-init.js?v=<?= $assetVersion('/js/theme-init.js') ?>"></script>
 
     <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
 
@@ -89,7 +72,6 @@
     ?>
 
     <script type="module" src="/js/main.js?v=<?= $assetVersion('/js/main.js') ?>"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

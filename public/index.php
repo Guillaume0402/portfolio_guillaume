@@ -17,8 +17,52 @@ ini_set('display_errors', $isProd ? '0' : '1');
 ini_set('display_startup_errors', $isProd ? '0' : '1');
 ini_set('log_errors', '1');
 ini_set('error_log', 'php://stderr');
+ini_set('session.use_strict_mode', '1');
+ini_set('session.use_only_cookies', '1');
+ini_set('session.cookie_httponly', '1');
+
+$isHttps = $isProd || (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
+
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'secure' => $isHttps,
+    'httponly' => true,
+    'samesite' => 'Lax',
+]);
+
+header_remove('X-Powered-By');
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+header('Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), fullscreen=(self)');
+
+$contentSecurityPolicy = [
+    "default-src 'self'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+    "object-src 'none'",
+    "script-src 'self'",
+    "style-src 'self'",
+    "style-src-attr 'unsafe-inline'",
+    "img-src 'self' data: https:",
+    "font-src 'self' data:",
+    "connect-src 'self'",
+];
+
+if ($isProd) {
+    $contentSecurityPolicy[] = 'upgrade-insecure-requests';
+}
+
+header('Content-Security-Policy: ' . implode('; ', $contentSecurityPolicy));
 
 session_start();
+
+if (empty($_SESSION['initialized'])) {
+    session_regenerate_id(true);
+    $_SESSION['initialized'] = true;
+}
 
 set_exception_handler(function (\Throwable $e): void {
     error_log((string) $e);

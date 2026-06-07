@@ -50,8 +50,7 @@ class ContactController extends AbstractController
     public function submit(): void
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: /contact');
-            exit;
+            $this->redirectToContact();
         }
        
         if (!Csrf::check($_POST['csrf_token'] ?? null)) {
@@ -62,34 +61,33 @@ class ContactController extends AbstractController
             ];
 
             $_SESSION['contact_old'] = [
-                'nom' => trim($_POST['nom'] ?? ''),
-                'email' => trim($_POST['email'] ?? ''),
-                'sujet' => trim($_POST['sujet'] ?? ''),
-                'type_projet' => trim($_POST['type_projet'] ?? ''),
-                'budget' => trim($_POST['budget'] ?? ''),
-                'delai' => trim($_POST['delai'] ?? ''),
-                'message' => trim($_POST['message'] ?? ''),
+                'nom' => $this->postString('nom'),
+                'email' => $this->postString('email'),
+                'sujet' => $this->postString('sujet'),
+                'type_projet' => $this->postString('type_projet'),
+                'budget' => $this->postString('budget'),
+                'delai' => $this->postString('delai'),
+                'message' => $this->postString('message'),
             ];
 
-            header('Location: /contact');
-            exit;
+            $this->redirectToContact();
         }
 
-        if (trim($_POST['site_web'] ?? '') !== '') {
+        if ($this->postString('site_web') !== '') {
             error_log('Spam honeypot triggered on contact form');
 
             $_SESSION['contact_success'] = 'Votre message a bien été envoyé. Je vous répondrai dès que possible.';
-            header('Location: /contact');
-            exit;
+            Csrf::regenerate();
+            $this->redirectToContact();
         }
 
-        $nom = trim($_POST['nom'] ?? '');
-        $email = trim($_POST['email'] ?? '');
-        $sujet = trim($_POST['sujet'] ?? '');
-        $typeProjet = trim($_POST['type_projet'] ?? '');
-        $budget = trim($_POST['budget'] ?? '');
-        $delai = trim($_POST['delai'] ?? '');
-        $message = trim($_POST['message'] ?? '');
+        $nom = $this->postString('nom');
+        $email = $this->postString('email');
+        $sujet = $this->postString('sujet');
+        $typeProjet = $this->postString('type_projet');
+        $budget = $this->postString('budget');
+        $delai = $this->postString('delai');
+        $message = $this->postString('message');
 
         $errors = [];
 
@@ -101,6 +99,8 @@ class ContactController extends AbstractController
 
         if ($email === '') {
             $errors['email'] = 'L’email est requis.';
+        } elseif (mb_strlen($email) > 254) {
+            $errors['email'] = 'L’email est trop long.';
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors['email'] = 'Veuillez saisir un email valide.';
         }
@@ -143,8 +143,7 @@ class ContactController extends AbstractController
                 'message' => $message,
             ];
 
-            header('Location: /contact');
-            exit;
+            $this->redirectToContact();
         }
 
         $typeProjetLabel = self::PROJECT_TYPES[$typeProjet];
@@ -176,12 +175,24 @@ class ContactController extends AbstractController
                 'message' => $message,
             ];
 
-            header('Location: /contact');
-            exit;
+            $this->redirectToContact();
         }
 
         $_SESSION['contact_success'] = 'Votre message a bien été envoyé. Je vous répondrai dès que possible.';
-        header('Location: /contact');
+        Csrf::regenerate();
+        $this->redirectToContact();
+    }
+
+    private function postString(string $key): string
+    {
+        $value = $_POST[$key] ?? '';
+
+        return is_string($value) ? trim($value) : '';
+    }
+
+    private function redirectToContact(): never
+    {
+        header('Location: /contact', true, 303);
         exit;
     }
 }

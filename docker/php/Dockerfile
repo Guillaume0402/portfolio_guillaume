@@ -1,10 +1,9 @@
 # syntax=docker/dockerfile:1
 
-FROM php:8.3-apache AS php_base
+FROM php:8.4-apache AS php_base
 
 # Dépendances système + extensions PHP
-RUN apt-get update && apt-get install -y \
-    git \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
     zip \
     curl \
@@ -45,7 +44,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-di
 # =========================
 # FRONTEND PROD (SASS)
 # =========================
-FROM node:20-alpine AS frontend_prod
+FROM node:24-alpine AS frontend_prod
 
 WORKDIR /app
 

@@ -3,7 +3,7 @@
 use App\Controllers\HomeController;
 use App\Controllers\ContactController;
 
-/** @var \App\Core\Router $router */
+/** @var \App\Http\Router $router */
 
 $router->get('/', [HomeController::class, 'index']);
 $router->get('/about', [HomeController::class, 'about']);

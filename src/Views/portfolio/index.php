@@ -1,3 +1,25 @@
+<?php
+$safeImage = static function (?string $image): string {
+    $filename = basename(trim((string) $image));
+
+    if ($filename === '' || !preg_match('/\A[a-zA-Z0-9._-]+\.(?:avif|webp|png|jpe?g|svg)\z/i', $filename)) {
+        return 'default.webp';
+    }
+
+    return $filename;
+};
+
+$safeHttpsUrl = static function (?string $url): ?string {
+    $url = trim((string) $url);
+
+    if ($url === '' || !filter_var($url, FILTER_VALIDATE_URL)) {
+        return null;
+    }
+
+    return parse_url($url, PHP_URL_SCHEME) === 'https' ? $url : null;
+};
+?>
+
 <section class="container-app hero-section portfolio-hero">
         <div class="container hero-inner">
             <div class="hero-media reveal">
@@ -36,7 +58,11 @@
             <?php else: ?>
                 <div class="cards-grid">
                     <?php foreach ($projects as $project): ?>
-                        <?php $img = $project['image'] ?? 'default.webp'; ?>
+                        <?php
+                        $img = $safeImage($project['image'] ?? null);
+                        $githubLink = $safeHttpsUrl($project['github_link'] ?? null);
+                        $projectLink = $safeHttpsUrl($project['project_link'] ?? null);
+                        ?>
 
                         <article class="card reveal">
                             <div class="card-body">
@@ -75,11 +101,11 @@
                             </div>
 
                             <div class="btn-projects">
-                                <?php if (!empty($project['github_link'])): ?>
+                                <?php if ($githubLink !== null): ?>
                                     <div class="card-actions">
                                         <a
                                             class="card-link"
-                                            href="<?= htmlspecialchars($project['github_link'], ENT_QUOTES, 'UTF-8') ?>"
+                                            href="<?= htmlspecialchars($githubLink, ENT_QUOTES, 'UTF-8') ?>"
                                             aria-label="Voir le GitHub du projet <?= htmlspecialchars($project['title'], ENT_QUOTES, 'UTF-8') ?>"
                                             target="_blank"
                                             rel="noopener noreferrer">
@@ -88,11 +114,11 @@
                                     </div>
                                 <?php endif; ?>
 
-                                <?php if (!empty($project['project_link'])): ?>
+                                <?php if ($projectLink !== null): ?>
                                     <div class="card-actions">
                                         <a
                                             class="card-link"
-                                            href="<?= htmlspecialchars($project['project_link'], ENT_QUOTES, 'UTF-8') ?>"
+                                            href="<?= htmlspecialchars($projectLink, ENT_QUOTES, 'UTF-8') ?>"
                                             aria-label="Voir le projet <?= htmlspecialchars($project['title'], ENT_QUOTES, 'UTF-8') ?>"
                                             target="_blank"
                                             rel="noopener noreferrer">
@@ -120,9 +146,10 @@
                 <?php foreach ($skills as $skill): ?>
                     <span class="chip reveal">
                         <?php if (!empty($skill['logo'])): ?>
+                            <?php $logo = $safeImage($skill['logo']); ?>
                             <img
                                 loading="lazy"
-                                src="/images/<?= htmlspecialchars($skill['logo'], ENT_QUOTES, 'UTF-8') ?>"
+                                src="/images/<?= htmlspecialchars($logo, ENT_QUOTES, 'UTF-8') ?>"
                                 alt="Logo de <?= htmlspecialchars($skill['name'], ENT_QUOTES, 'UTF-8') ?>">
                         <?php endif; ?>
                     </span>
