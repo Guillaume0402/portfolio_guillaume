@@ -3,16 +3,41 @@
     flex-wrap: wrap;
     gap: 12px;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 34px;
 }
 
 .showcase-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
+    gap: 20px;
 
     @media (max-width: 1100px) {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
+    }
+}
+
+.showcase-card {
+    display: grid;
+    grid-template-rows: minmax(260px, auto) 1fr;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: none;
+
+    @media (min-width: 1101px) {
+        &:nth-child(1) {
+            transform: translateY(24px);
+        }
+
+        &:nth-child(3) {
+            transform: translateY(44px);
+        }
+    }
+
+    @media (max-width: 1100px) {
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+        grid-template-rows: auto;
     }
 
     @media (max-width: 760px) {
@@ -20,24 +45,12 @@
     }
 }
 
-.showcase-card {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    overflow: hidden;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.03));
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.26);
-}
-
 .showcase-preview {
     position: relative;
     display: block;
-    aspect-ratio: 16 / 11;
-    min-height: 230px;
-    background:
-        linear-gradient(135deg, rgba(233, 238, 252, 0.16), rgba(233, 238, 252, 0.03)),
-        rgba(255, 255, 255, 0.04);
+    aspect-ratio: 16 / 12;
+    min-height: 260px;
+    background: rgba(255, 255, 255, 0.06);
     overflow: hidden;
     text-decoration: none;
 
@@ -79,12 +92,16 @@
             transform: translateY(0);
         }
     }
+
+    @media (max-width: 760px) {
+        min-height: 230px;
+    }
 }
 
 .showcase-body {
     display: grid;
-    gap: 10px;
-    padding: 22px;
+    gap: 12px;
+    padding: 24px;
     align-content: start;
 
     h3,
@@ -93,33 +110,58 @@
     }
 
     h3 {
-        color: var(--text);
-        font-size: clamp(20px, 1.8vw, 24px);
-        letter-spacing: -0.02em;
-        line-height: 1.2;
+        color: #ffffff;
+        font-size: clamp(24px, 2.2vw, 32px);
+        letter-spacing: -0.035em;
+        line-height: 1.05;
     }
 
     p {
-        color: rgba(233, 238, 252, 0.75);
-        line-height: 1.68;
+        color: rgba(248, 250, 252, 0.68);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 760px) {
+        padding: 20px;
     }
 }
 
+.showcase-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
 .showcase-status {
-    color: var(--accent) !important;
+    width: fit-content;
+    margin: 0;
+    padding: 6px 9px;
+    border-radius: 999px;
+    color: #061015 !important;
     font-size: 11px;
     font-weight: 800;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
 }
 
 .showcase-sector {
-    color: rgba(233, 238, 252, 0.92) !important;
+    margin: 0;
+    color: rgba(248, 250, 252, 0.82) !important;
     font-weight: 750;
 }
 
+.showcase-result {
+    margin: 0;
+    color: #ffffff !important;
+    font-size: 18px;
+    font-weight: 850;
+    letter-spacing: -0.015em;
+}
+
 .showcase-tags {
-    padding: 6px 0 0;
+    padding: 4px 0 0;
 }
 
 .showcase-actions {
@@ -127,9 +169,18 @@
 }
 
 .showcase-link {
-    color: var(--accent2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 42px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #061015;
     font-weight: 850;
     text-decoration: none;
+    background: #ffffff;
 
     &::after {
         content: " ->";
@@ -137,6 +188,7 @@
 
     &:hover,
     &:focus-visible {
-        color: var(--accent);
+        color: #061015;
+        background: linear-gradient(135deg, var(--accent2), var(--accent));
     }
 }

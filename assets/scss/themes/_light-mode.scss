@@ -1,13 +1,13 @@
 [data-theme="light"] {
     color-scheme: light;
 
-    --bg: #f5f8fc;
+    --bg: #f8fafc;
     --surface: #ffffff;
-    --text: #101724;
-    --muted: rgba(16, 23, 36, 0.68);
+    --text: #07111f;
+    --muted: rgba(7, 17, 31, 0.66);
     --stroke: rgba(15, 23, 42, 0.12);
-    --accent: #00e676;
-    --accent2: #00c8f5;
+    --accent: #16db84;
+    --accent2: #00a7d8;
     --accent3: #7c3aed;
     --glass-bg: rgba(255, 255, 255, 0.76);
     --glass-border: rgba(15, 23, 42, 0.12);
@@ -19,9 +19,7 @@
 html[data-theme="light"] {
     background-color: var(--bg);
     background-image:
-        radial-gradient(circle at 18% 16%, rgba(0, 200, 245, 0.12), transparent 34%),
-        radial-gradient(circle at 82% 12%, rgba(0, 230, 118, 0.12), transparent 32%),
-        linear-gradient(180deg, #f8fbff 0%, #eef4f9 100%);
+        linear-gradient(180deg, #ffffff 0%, #f8fafc 42%, #f3f7fb 100%);
     background-attachment: fixed;
 }
 
@@ -37,16 +35,7 @@ html[data-theme="light"] {
         background: linear-gradient(to top, rgba(241, 245, 249, 0.98), rgba(255, 255, 255, 0.86));
     }
 
-    .hero-media,
-    .hero-offer-panel,
-    .hero-proof-item,
-    .service-card,
-    .offer-card,
-    .offers-note,
-    .about-card,
-    .contact-card,
     .showcase-card,
-    .process-card,
     .card,
     .priority-card,
     .footer-col,
@@ -68,16 +57,8 @@ html[data-theme="light"] {
     .footer-bottom,
     .footer-mini,
     .hero-kicker,
-    .hero-checklist,
     .badge,
-    .service-card p,
-    .offer-card p,
-    .offer-list li,
-    .offers-note p,
-    .process-card p,
-    .about-text,
     .about-stats .stat-label,
-    .showcase-body p,
     .card-text,
     .chip,
     .priority-card p,
@@ -103,7 +84,6 @@ html[data-theme="light"] {
     .btn-ghost,
     .badge,
     .about-stats .stat,
-    .hero-proof-item,
     .contact-list li,
     .card-media,
     .tag {
@@ -138,16 +118,8 @@ html[data-theme="light"] {
     }
 
     .hero-title {
-        color: var(--text);
-    }
-
-    @supports (background-clip: text) or (-webkit-background-clip: text) {
-        .hero-title {
-            background: linear-gradient(96deg, #101724 0%, #1f2937 44%, #0284c7 72%, #059669 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
+        color: #07111f;
+        background: none;
     }
 
     .showcase-browser,
@@ -200,10 +172,6 @@ html[data-theme="light"] {
         background: rgba(15, 23, 42, 0.42);
     }
 
-    .showcase-sector {
-        color: var(--text) !important;
-    }
-
     .process-number {
         border-color: rgba(2, 132, 199, 0.18);
         background: rgba(2, 132, 199, 0.08);
@@ -212,12 +180,6 @@ html[data-theme="light"] {
 
     .offer-list-excluded li::before {
         background: rgba(15, 23, 42, 0.28);
-    }
-
-    .hero-client-visual::after {
-        background:
-            linear-gradient(180deg, transparent 48%, rgba(255, 255, 255, 0.68)),
-            linear-gradient(90deg, rgba(14, 165, 233, 0.16), transparent 46%);
     }
 
     .form-success {
@@ -236,5 +198,129 @@ html[data-theme="light"] {
             background: rgba(255, 255, 255, 0.94);
             box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14);
         }
+    }
+
+    .hero-section {
+        background:
+            linear-gradient(115deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 250, 252, 0.94) 48%, rgba(232, 245, 248, 0.7) 100%);
+    }
+
+    .hero-kicker {
+        border-color: rgba(14, 165, 233, 0.16);
+        background: rgba(255, 255, 255, 0.78);
+        color: rgba(15, 23, 42, 0.78);
+    }
+
+    .hero-media,
+    .service-card,
+    .about-card,
+    .process-card {
+        border-color: transparent;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .hero-offer-panel,
+    .hero-offer-panel .hero-offer-content,
+    .contact-card {
+        background:
+            linear-gradient(135deg, rgba(0, 167, 216, 0.16), transparent 46%),
+            #07111f;
+        border-color: rgba(15, 23, 42, 0.12);
+        box-shadow: 0 24px 80px rgba(15, 23, 42, 0.16);
+    }
+
+    .contact-card {
+        box-shadow: none;
+    }
+
+    .hero-offer-panel h2,
+    .hero-demo-link strong,
+    .contact-title {
+        color: #ffffff;
+    }
+
+    .hero-demo-link span span,
+    .contact-lead {
+        color: rgba(248, 250, 252, 0.7);
+    }
+
+    .hero-proof-item {
+        border-color: rgba(15, 23, 42, 0.14);
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .hero-proof-item strong {
+        color: #07111f;
+    }
+
+    .process-section {
+        background: rgba(248, 250, 252, 0.7);
+    }
+
+    .service-card p,
+    .process-card p,
+    .about-text,
+    .offers-note p,
+    .offer-card:not(.offer-card-featured) p,
+    .offer-card:not(.offer-card-featured) .offer-list li {
+        color: rgba(7, 17, 31, 0.68);
+    }
+
+    .offer-card:not(.offer-card-featured) .offer-list-title {
+        color: #07111f !important;
+    }
+
+    .section-featured {
+        background:
+            linear-gradient(135deg, rgba(0, 167, 216, 0.16), transparent 36%),
+            linear-gradient(180deg, #07111f 0%, #0b1727 100%);
+    }
+
+    .section-featured .showcase-card {
+        background:
+            linear-gradient(135deg, rgba(0, 167, 216, 0.16), transparent 36%),
+            linear-gradient(180deg, #07111f 0%, #0b1727 100%);
+    }
+
+    .section-featured .showcase-card {
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow: none;
+    }
+
+    .section-featured .tag {
+        border-color: rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.08);
+        color: rgba(248, 250, 252, 0.76);
+    }
+
+    .section-featured .btn-ghost {
+        border-color: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    .offer-card {
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: none;
+    }
+
+    .offer-card-featured {
+        border-color: rgba(0, 167, 216, 0.34);
+        background:
+            linear-gradient(135deg, rgba(0, 167, 216, 0.14), transparent 42%),
+            #07111f;
+    }
+
+    .offer-card-featured h3,
+    .offer-card-featured .offer-price,
+    .offer-card-featured .offer-list-title {
+        color: #ffffff !important;
+    }
+
+    .offer-card-featured .offer-summary,
+    .offer-card-featured .offer-list li {
+        color: rgba(248, 250, 252, 0.72) !important;
     }
 }

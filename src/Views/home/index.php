@@ -4,7 +4,8 @@ $showcaseSites = [
         'title' => 'Démo Plombier',
         'sector' => 'Artisan local',
         'status' => 'Démo en ligne',
-        'description' => 'Site vitrine orienté prise de contact rapide : services, zones d’intervention, avis, formulaire et appel à l’action visible.',
+        'result' => 'Recevoir des appels rapidement',
+        'description' => 'Un parcours court pour présenter les urgences, rassurer vite et faciliter la prise de contact depuis mobile.',
         'tags' => ['Urgence locale', 'Formulaire', 'Mobile first'],
         'image' => '/images/demo-plombier.webp',
         'alt' => 'Capture du site démo plombier avec hero, formulaire et services',
@@ -14,7 +15,8 @@ $showcaseSites = [
         'title' => 'Démo Restaurant',
         'sector' => 'Restaurant local',
         'status' => 'Démo en ligne',
-        'description' => 'Présentation chaleureuse avec carte, informations pratiques, réservation simulée et mise en avant visuelle des plats.',
+        'result' => 'Présenter la carte et faciliter la réservation',
+        'description' => 'Une présentation claire avec carte, informations pratiques et réservation simulée pour aider les clients à passer à l’action.',
         'tags' => ['Carte en ligne', 'Réservation', 'Images produit'],
         'image' => '/images/demo-restaurant.webp',
         'alt' => 'Capture du site démo restaurant avec menu et plats',
@@ -24,7 +26,8 @@ $showcaseSites = [
         'title' => 'Démo Coach Sportif',
         'sector' => 'Service indépendant',
         'status' => 'Démo en ligne',
-        'description' => 'Landing page claire pour présenter une offre, rassurer avec une méthode, expliquer les tarifs et déclencher une demande de bilan.',
+        'result' => 'Expliquer l’offre et déclencher un bilan',
+        'description' => 'Une landing page qui met en avant l’offre, la preuve, les tarifs et un appel à l’action visible pour demander un bilan.',
         'tags' => ['Landing page', 'Offres', 'Conversion'],
         'image' => '/images/demo-coach.webp',
         'alt' => 'Capture du site démo coach sportif avec hero et offres',
@@ -35,23 +38,18 @@ $showcaseSites = [
 $processSteps = [
     [
         'number' => '01',
-        'title' => 'Cadrage clair',
-        'description' => 'On pose vos objectifs, vos contenus importants et le parcours attendu pour transformer les visiteurs en contacts.',
+        'title' => 'Cadrer l’objectif',
+        'description' => 'On clarifie votre activité, votre cible, vos contenus prioritaires et l’action attendue : appel, devis, réservation ou formulaire.',
     ],
     [
         'number' => '02',
-        'title' => 'Maquette utile',
-        'description' => 'Je prépare une structure lisible, avec les bons messages, les bons appels à l\'action et une navigation simple.',
+        'title' => 'Construire la page',
+        'description' => 'Je prépare une structure lisible, puis j’intègre un site responsive avec des textes courts, des CTA visibles et un formulaire utilisable.',
     ],
     [
         'number' => '03',
-        'title' => 'Intégration propre',
-        'description' => 'Le site est responsive, rapide, maintenable et pensé pour fonctionner correctement sur mobile comme sur ordinateur.',
-    ],
-    [
-        'number' => '04',
-        'title' => 'Mise en ligne suivie',
-        'description' => 'On vérifie les pages, le formulaire, les bases SEO et les points essentiels avant publication.',
+        'title' => 'Mettre en ligne',
+        'description' => 'On vérifie le responsive, le formulaire, les liens, les bases SEO et les points essentiels avant publication.',
     ],
 ];
 
@@ -59,62 +57,39 @@ $offers = [
     [
         'title' => 'Landing page',
         'price' => 'À partir de 450 € TTC',
-        'description' => 'Une page unique pour présenter une offre, capter des contacts ou préparer une campagne.',
+        'description' => 'Pour une offre précise, une campagne, un lancement ou une prise de contact rapide.',
         'included' => [
             '1 page complète orientée conversion',
-            'affichage adapté mobile, tablette et ordinateur',
-            'formulaire de contact avec protection anti-spam de base',
-            'optimisation des balises SEO de base',
+            'structure claire avec CTA visibles',
+            'formulaire de contact protégé',
+            'responsive mobile, tablette et ordinateur',
             'mise en ligne initiale',
-            '1 série de corrections après livraison',
-        ],
-        'excluded' => [
-            'hébergement et nom de domaine',
-            'rédaction complète des textes',
-            'logo / identité visuelle complète',
-            'maintenance mensuelle',
-            'fonctionnalités avancées sur mesure',
         ],
     ],
     [
         'title' => 'Site vitrine',
         'price' => 'À partir de 900 € TTC',
-        'description' => 'Un site complet pour présenter votre activité, vos services et générer des demandes de contact.',
+        'description' => 'Pour présenter votre activité, vos services et recevoir des demandes de contact.',
         'label' => 'Le plus demandé',
         'featured' => true,
         'included' => [
             '4 à 5 pages principales',
-            'affichage adapté mobile, tablette et ordinateur',
-            'formulaire de contact avec protection anti-spam de base',
-            'optimisation des balises SEO de base',
+            'arborescence et navigation simples',
+            'formulaire de contact protégé',
+            'base SEO technique propre',
             'mise en ligne initiale',
-            'accompagnement après livraison',
-        ],
-        'excluded' => [
-            'hébergement et nom de domaine',
-            'rédaction complète des textes',
-            'logo / identité visuelle complète',
-            'maintenance mensuelle',
-            'fonctionnalités avancées sur mesure',
         ],
     ],
     [
         'title' => 'Refonte ou maintenance',
         'price' => 'Sur devis',
-        'description' => 'Amélioration d\'un site existant, corrections, évolutions ou accompagnement ponctuel.',
+        'description' => 'Pour améliorer un site existant, corriger un blocage ou ajouter une évolution ciblée.',
         'included' => [
-            'analyse rapide de l\'existant',
-            'corrections ou améliorations ciblées',
+            'analyse rapide de l’existant',
+            'priorités expliquées clairement',
+            'corrections ou évolutions ciblées',
             'ajustements responsive si nécessaire',
-            'mise en ligne initiale si nécessaire',
-            'optimisations simples de performance',
-            'conseils pour prioriser les prochaines actions',
-        ],
-        'excluded' => [
-            'refonte complète sans devis détaillé',
-            'hébergement et nom de domaine',
-            'maintenance mensuelle',
-            'développement applicatif complexe',
+            'mise en ligne si nécessaire',
         ],
     ],
 ];
@@ -127,26 +102,26 @@ $offers = [
                     <p class="hero-kicker">
                         <span class="hero-kicker-text">
                             <span class="hero-kicker-name">Guillaume Maignaut</span>
-                            <span class="hero-kicker-role">Développeur web junior freelance</span>
+                            <span class="hero-kicker-role">Création de sites vitrines & landing pages</span>
                         </span>
                     </p>
 
-                    <h1 class="hero-title">Un site clair, rapide et professionnel pour donner confiance à vos futurs clients.</h1>
+                    <h1 class="hero-title">Transformez vos visiteurs en demandes de contact.</h1>
 
                     <p class="hero-subtitle">
-                        Je crée des sites vitrines et landing pages pour professionnels, indépendants, artisans, associations et petites entreprises :
-                        une présentation lisible, un parcours simple, un formulaire fonctionnel et une base technique propre.
+                        Je crée des sites vitrines et landing pages pour indépendants, artisans et petites entreprises :
+                        clairs, rapides, responsive et pensés pour générer des contacts.
                     </p>
 
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="/contact">Parler de mon projet</a>
-                        <a class="btn btn-ghost" href="#realisations">Voir les sites vitrines</a>
+                        <a class="btn btn-primary" href="/contact">Me confier un projet</a>
+                        <a class="btn btn-ghost" href="#realisations">Voir les démos</a>
                     </div>
 
                     <div class="hero-badges" aria-label="Services principaux">
                         <span class="badge">Site vitrine</span>
+                        <span class="badge">Landing page</span>
                         <span class="badge">Responsive</span>
-                        <span class="badge">SEO technique</span>
                         <span class="badge">Formulaire contact</span>
                     </div>
 
@@ -166,88 +141,32 @@ $offers = [
                     </div>
                 </div>
 
-                <aside class="hero-offer-panel" aria-label="Résumé de l'offre">
-                    <figure class="hero-client-visual">
-                        <img
-                            src="/images/hero-laptop-man.webp"
-                            alt="Homme travaillant sur un ordinateur portable dans un espace de travail professionnel"
-                            width="1200"
-                            height="750"
-                            loading="eager">
-                    </figure>
-
+                <aside class="hero-offer-panel hero-demo-panel" aria-label="Exemples et preuves de l'offre">
                     <div class="hero-offer-content">
-                        <p class="panel-kicker">Accompagnement web</p>
-                        <h2>De l'idée à une page qui donne envie d'agir</h2>
-                        <ul class="hero-checklist">
-                            <li>Structure de page orientée conversion</li>
-                            <li>Design responsive et lisible</li>
-                            <li>Base SEO propre dès le départ</li>
-                            <li>Formulaire de contact prêt à recevoir vos demandes</li>
-                        </ul>
-                        <a class="panel-link" href="#offers">Découvrir les offres</a>
+                        <p class="panel-kicker">Preuves visibles</p>
+                        <h2>3 démos en ligne pour juger le résultat avant de me contacter.</h2>
+
+                        <div class="hero-demo-stack">
+                            <?php foreach ($showcaseSites as $index => $site): ?>
+                                <a class="hero-demo-link" href="<?= htmlspecialchars($site['url'], ENT_QUOTES, 'UTF-8') ?>" target="_blank" rel="noopener noreferrer">
+                                    <span class="hero-demo-index">0<?= $index + 1 ?></span>
+                                    <span>
+                                        <strong><?= htmlspecialchars($site['sector'], ENT_QUOTES, 'UTF-8') ?></strong>
+                                        <span><?= htmlspecialchars($site['result'], ENT_QUOTES, 'UTF-8') ?></span>
+                                    </span>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <div class="hero-panel-metrics" aria-label="Points clés">
+                            <span>Responsive</span>
+                            <span>CTA visibles</span>
+                            <span>Formulaire prêt</span>
+                        </div>
+
+                        <a class="panel-link" href="#realisations">Voir les démos</a>
                     </div>
                 </aside>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="section">
-        <div class="container">
-            <header class="section-header reveal">
-                <p class="section-kicker">Services</p>
-                <h2>Ce que je peux construire pour vous</h2>
-                <p>Des prestations simples à comprendre, pensées pour obtenir un site utile, fiable et facile à faire évoluer.</p>
-            </header>
-
-            <div class="service-grid">
-                <article class="service-card reveal">
-                    <span class="service-number">01</span>
-                    <h3>Site vitrine</h3>
-                    <p>Une présence professionnelle pour présenter votre activité, vos services, vos réalisations et générer des demandes de contact.</p>
-                </article>
-
-                <article class="service-card reveal">
-                    <span class="service-number">02</span>
-                    <h3>Landing page</h3>
-                    <p>Une page ciblée pour une offre, un lancement ou une campagne, avec un message clair et un appel à l'action visible.</p>
-                </article>
-
-                <article class="service-card reveal">
-                    <span class="service-number">03</span>
-                    <h3>Refonte web</h3>
-                    <p>Modernisation d'un site existant : structure, lisibilité, responsive, performances et parcours utilisateur plus fluide.</p>
-                </article>
-
-                <article class="service-card reveal">
-                    <span class="service-number">04</span>
-                    <h3>Maintenance</h3>
-                    <p>Corrections, petites évolutions, mises à jour de contenu et amélioration continue pour garder un site propre dans le temps.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="section process-section">
-        <div class="container">
-            <header class="section-header reveal">
-                <p class="section-kicker">Méthode</p>
-                <h2>Un déroulé simple pour avancer sans flou</h2>
-                <p>Chaque étape sert à garder un site clair, utile et prêt à inspirer confiance à vos futurs clients.</p>
-            </header>
-
-            <div class="process-grid">
-                <?php foreach ($processSteps as $step): ?>
-                    <article class="process-card reveal">
-                        <span class="process-number"><?= htmlspecialchars($step['number'], ENT_QUOTES, 'UTF-8') ?></span>
-                        <h3><?= htmlspecialchars($step['title'], ENT_QUOTES, 'UTF-8') ?></h3>
-                        <p><?= htmlspecialchars($step['description'], ENT_QUOTES, 'UTF-8') ?></p>
-                    </article>
-                <?php endforeach; ?>
-            </div>
-
-            <div class="offers-note reveal">
-                <p>Les tarifs indiqués concernent la création du site. L'hébergement, le nom de domaine et la maintenance mensuelle restent à la charge du client, avec possibilité d'accompagnement pour la mise en place.</p>
             </div>
         </div>
     </section>
@@ -255,9 +174,9 @@ $offers = [
     <section id="realisations" class="section section-featured">
         <div class="container">
             <header class="section-header reveal">
-                <p class="section-kicker">Réalisations freelance</p>
-                <h2>Trois démos concrètes pour vous projeter</h2>
-                <p>Chaque démo montre un cas fréquent de site vitrine : une activité locale, une offre claire et un parcours pensé pour déclencher un contact.</p>
+                <p class="section-kicker">Démos concrètes</p>
+                <h2>Trois exemples pour voir le résultat attendu</h2>
+                <p>Ces démos montrent des parcours simples : comprendre l’offre, se rassurer, puis contacter ou réserver.</p>
             </header>
 
             <div class="showcase-grid">
@@ -273,9 +192,12 @@ $offers = [
                         </a>
 
                         <div class="showcase-body">
-                            <p class="showcase-status"><?= htmlspecialchars($site['status'], ENT_QUOTES, 'UTF-8') ?></p>
+                            <div class="showcase-meta">
+                                <p class="showcase-status"><?= htmlspecialchars($site['status'], ENT_QUOTES, 'UTF-8') ?></p>
+                                <p class="showcase-sector"><?= htmlspecialchars($site['sector'], ENT_QUOTES, 'UTF-8') ?></p>
+                            </div>
                             <h3><?= htmlspecialchars($site['title'], ENT_QUOTES, 'UTF-8') ?></h3>
-                            <p class="showcase-sector"><?= htmlspecialchars($site['sector'], ENT_QUOTES, 'UTF-8') ?></p>
+                            <p class="showcase-result"><?= htmlspecialchars($site['result'], ENT_QUOTES, 'UTF-8') ?></p>
                             <p><?= htmlspecialchars($site['description'], ENT_QUOTES, 'UTF-8') ?></p>
 
                             <div class="tag-row showcase-tags" aria-label="Points clés">
@@ -294,55 +216,63 @@ $offers = [
 
             <div class="section-actions reveal">
                 <a class="btn btn-primary btn-lg" href="/contact">Me confier un projet</a>
-                <a class="btn btn-ghost btn-lg" href="/portfolio">Voir le portfolio technique</a>
+                <a class="btn btn-ghost btn-lg" href="#offers">Voir les tarifs</a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="section">
-        <div class="container about-grid">
+    <section id="services" class="section">
+        <div class="container">
             <header class="section-header reveal">
-                <p class="section-kicker">À propos</p>
-                <h2>Un développeur junior sérieux, attentif au besoin réel</h2>
-                <p>Je construis des sites simples à comprendre, faciles à consulter et prêts à recevoir vos premières demandes.</p>
+                <p class="section-kicker">Services</p>
+                <h2>Des pages faites pour aider vos clients à passer à l’action</h2>
+                <p>Des prestations simples, adaptées aux besoins courants des indépendants, artisans et petites entreprises.</p>
             </header>
 
-            <div class="about-card reveal">
-                <div class="about-profile">
-                    <figure class="about-photo">
-                        <img
-                            src="/images/photo_profil.jpg"
-                            alt="Portrait de Guillaume Maignaut, développeur web junior freelance"
-                            width="240"
-                            height="240"
-                            loading="lazy">
-                    </figure>
+            <div class="service-grid">
+                <article class="service-card reveal">
+                    <span class="service-number">01</span>
+                    <h3>Site vitrine</h3>
+                    <p>Un site clair pour présenter votre activité, rassurer vos visiteurs et recevoir des demandes de contact.</p>
+                </article>
 
-                    <div class="about-content">
-                        <p class="about-name">Guillaume Maignaut</p>
-                        <p class="about-text">
-                            Mon objectif n'est pas seulement de produire du code : je veux créer un site qui aide vos visiteurs à comprendre vite ce que vous proposez, à vous faire confiance et à vous contacter facilement.
-                        </p>
-                        <p class="about-text">
-                            En tant que développeur junior, je privilégie une méthode claire : cadrage du besoin, organisation des contenus, intégration responsive, sécurité du formulaire, mise en ligne et échanges réguliers.
-                        </p>
-                    </div>
-                </div>
+                <article class="service-card reveal">
+                    <span class="service-number">02</span>
+                    <h3>Landing page</h3>
+                    <p>Une page ciblée pour expliquer une offre, guider la lecture et mettre en avant le bon appel à l’action.</p>
+                </article>
 
-                <div class="about-stats">
-                    <div class="stat">
-                        <span class="stat-num">PHP</span>
-                        <span class="stat-label">Back-end et formulaires</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-num">SEO</span>
-                        <span class="stat-label">Bases techniques propres</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-num">UX</span>
-                        <span class="stat-label">Parcours clair et responsive</span>
-                    </div>
-                </div>
+                <article class="service-card reveal">
+                    <span class="service-number">03</span>
+                    <h3>Refonte web</h3>
+                    <p>Une amélioration ciblée de votre site : structure, lisibilité, responsive, vitesse et parcours plus fluide.</p>
+                </article>
+
+                <article class="service-card reveal">
+                    <span class="service-number">04</span>
+                    <h3>Formulaires & SEO technique</h3>
+                    <p>Des formulaires fiables et une structure saine pour être compréhensible par Google dès le départ.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section process-section">
+        <div class="container">
+            <header class="section-header reveal">
+                <p class="section-kicker">Méthode</p>
+                <h2>Une méthode courte pour avancer sans flou</h2>
+                <p>Le but : garder le projet compréhensible, priorisé et prêt à être mis en ligne proprement.</p>
+            </header>
+
+            <div class="process-grid">
+                <?php foreach ($processSteps as $step): ?>
+                    <article class="process-card reveal">
+                        <span class="process-number"><?= htmlspecialchars($step['number'], ENT_QUOTES, 'UTF-8') ?></span>
+                        <h3><?= htmlspecialchars($step['title'], ENT_QUOTES, 'UTF-8') ?></h3>
+                        <p><?= htmlspecialchars($step['description'], ENT_QUOTES, 'UTF-8') ?></p>
+                    </article>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
@@ -351,8 +281,8 @@ $offers = [
         <div class="container">
             <header class="section-header reveal">
                 <p class="section-kicker">Tarifs et offres</p>
-                <h2>Des bases de budget pour cadrer votre projet</h2>
-                <p>Chaque projet est ajusté selon le contenu, les fonctionnalités et le niveau d'accompagnement souhaité.</p>
+                <h2>Des offres lisibles pour cadrer le budget</h2>
+                <p>Les prix restent ajustés selon le contenu, les fonctionnalités et le niveau d’accompagnement attendu.</p>
             </header>
 
             <div class="offers-grid">
@@ -367,26 +297,54 @@ $offers = [
                         <p class="offer-summary"><?= htmlspecialchars($offer['description'], ENT_QUOTES, 'UTF-8') ?></p>
 
                         <div class="offer-details">
-                            <div>
-                                <p class="offer-list-title">Inclus</p>
-                                <ul class="offer-list">
-                                    <?php foreach ($offer['included'] as $item): ?>
-                                        <li><?= htmlspecialchars($item, ENT_QUOTES, 'UTF-8') ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <p class="offer-list-title">Non inclus</p>
-                                <ul class="offer-list offer-list-excluded">
-                                    <?php foreach ($offer['excluded'] as $item): ?>
-                                        <li><?= htmlspecialchars($item, ENT_QUOTES, 'UTF-8') ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </div>
+                            <p class="offer-list-title">Inclus</p>
+                            <ul class="offer-list">
+                                <?php foreach ($offer['included'] as $item): ?>
+                                    <li><?= htmlspecialchars($item, ENT_QUOTES, 'UTF-8') ?></li>
+                                <?php endforeach; ?>
+                            </ul>
                         </div>
+
+                        <a class="btn btn-primary offer-cta" href="/contact">Demander un devis</a>
                     </article>
                 <?php endforeach; ?>
+            </div>
+
+            <div class="offers-note reveal">
+                <p>Hébergement, nom de domaine, rédaction complète, identité visuelle complète et maintenance mensuelle ne sont pas inclus par défaut. Je peux vous orienter sur ces points si besoin.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container about-grid">
+            <header class="section-header reveal">
+                <p class="section-kicker">À propos</p>
+                <h2>Un accompagnement simple, clair et réaliste</h2>
+                <p>Je construis des sites sobres, lisibles et maintenables pour aider vos visiteurs à comprendre vite pourquoi vous contacter.</p>
+            </header>
+
+            <div class="about-card reveal">
+                <div class="about-profile">
+                    <figure class="about-photo">
+                        <img
+                            src="/images/photo_profil.jpg"
+                            alt="Portrait de Guillaume Maignaut, développeur web freelance"
+                            width="240"
+                            height="240"
+                            loading="lazy">
+                    </figure>
+
+                    <div class="about-content">
+                        <p class="about-name">Guillaume Maignaut</p>
+                        <p class="about-text">
+                            Mon objectif est de livrer un site utile : une structure claire, des contenus bien hiérarchisés, un affichage mobile propre et un formulaire qui fonctionne.
+                        </p>
+                        <p class="about-text">
+                            Je privilégie les échanges simples, les priorités concrètes et un code compréhensible pour que votre site reste facile à faire évoluer.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -398,11 +356,11 @@ $offers = [
                     <div>
                         <p class="contact-kicker">Contact</p>
                         <h2 class="contact-title">Vous avez un projet de site web ?</h2>
-                        <p class="contact-lead">Décrivez votre besoin, votre délai et votre objectif. Je vous répondrai avec une première lecture claire de la meilleure approche.</p>
+                        <p class="contact-lead">Décrivez-moi votre projet, votre délai et votre objectif. Je vous répondrai avec une première lecture claire et réaliste.</p>
                     </div>
                     <div class="contact-actions">
                         <a class="btn btn-primary btn-lg" href="/contact">Remplir le formulaire</a>
-                        <a class="btn btn-ghost btn-lg" href="mailto:g.maignaut@gmail.com">Email direct</a>
+                        <a class="btn btn-ghost btn-lg" href="mailto:g.maignaut@gmail.com">Envoyer un email</a>
                     </div>
                 </div>
             </div>
