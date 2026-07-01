@@ -23,6 +23,7 @@ class MailerService
         string $email,
         string $sujet,
         string $message,
+        string $siteActuel,
         string $typeProjet,
         string $budget,
         string $delai
@@ -68,6 +69,7 @@ class MailerService
                 <p><strong>Nom :</strong> ' . htmlspecialchars($nom, ENT_QUOTES, 'UTF-8') . '</p>
                 <p><strong>Email :</strong> ' . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . '</p>
                 <p><strong>Sujet :</strong> ' . htmlspecialchars($sujet, ENT_QUOTES, 'UTF-8') . '</p>
+                <p><strong>Site actuel :</strong> ' . htmlspecialchars($siteActuel !== '' ? $siteActuel : 'Non renseigné', ENT_QUOTES, 'UTF-8') . '</p>
                 <p><strong>Type de projet :</strong> ' . htmlspecialchars($typeProjet, ENT_QUOTES, 'UTF-8') . '</p>
                 <p><strong>Budget approximatif :</strong> ' . htmlspecialchars($budget, ENT_QUOTES, 'UTF-8') . '</p>
                 <p><strong>Délai souhaité :</strong> ' . htmlspecialchars($delai, ENT_QUOTES, 'UTF-8') . '</p>
@@ -81,6 +83,7 @@ class MailerService
                 "Nom : {$nom}\n" .
                 "Email : {$email}\n" .
                 "Sujet : {$sujet}\n" .
+                "Site actuel : " . ($siteActuel !== '' ? $siteActuel : 'Non renseigné') . "\n" .
                 "Type de projet : {$typeProjet}\n" .
                 "Budget approximatif : {$budget}\n" .
                 "Délai souhaité : {$delai}\n\n" .

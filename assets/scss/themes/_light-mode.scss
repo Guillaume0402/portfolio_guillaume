@@ -42,6 +42,7 @@ html[data-theme="light"] {
     .contact-page-hero,
     .contact-page-panel,
     .contact-form-card,
+    .audit-card,
     .legal-hero,
     .legal-card {
         border-color: var(--glass-border);
@@ -64,6 +65,8 @@ html[data-theme="light"] {
     .priority-card p,
     .contact-label,
     .field span,
+    .field span small,
+    .choice-help,
     .contact-list a,
     .legal-hero p,
     .legal-card p,
@@ -120,6 +123,10 @@ html[data-theme="light"] {
     .hero-title {
         color: #07111f;
         background: none;
+    }
+
+    .hero-audit-link {
+        color: rgba(7, 17, 31, 0.62);
     }
 
     .hero-local-anchor {
@@ -263,10 +270,19 @@ html[data-theme="light"] {
         background: rgba(248, 250, 252, 0.7);
     }
 
+    .audit-card {
+        border-color: var(--glass-border);
+        background:
+            linear-gradient(135deg, rgba(22, 219, 132, 0.12), transparent 44%),
+            rgba(255, 255, 255, 0.84);
+    }
+
     .service-card p,
     .process-card p,
+    .audit-card p,
     .about-text,
     .offers-note p,
+    .offer-delay,
     .offer-card:not(.offer-card-featured) p,
     .offer-card:not(.offer-card-featured) .offer-list li {
         color: rgba(7, 17, 31, 0.68);
@@ -324,6 +340,7 @@ html[data-theme="light"] {
     }
 
     .offer-card-featured .offer-summary,
+    .offer-card-featured .offer-delay,
     .offer-card-featured .offer-list li {
         color: rgba(248, 250, 252, 0.72) !important;
     }

@@ -64,6 +64,7 @@ class ContactController extends AbstractController
                 'nom' => $this->postString('nom'),
                 'email' => $this->postString('email'),
                 'sujet' => $this->postString('sujet'),
+                'site_actuel' => $this->postString('site_actuel'),
                 'type_projet' => $this->postString('type_projet'),
                 'budget' => $this->postString('budget'),
                 'delai' => $this->postString('delai'),
@@ -73,7 +74,7 @@ class ContactController extends AbstractController
             $this->redirectToContact();
         }
 
-        if ($this->postString('site_web') !== '') {
+        if ($this->postString('bot_check') !== '') {
             error_log('Spam honeypot triggered on contact form');
 
             $_SESSION['contact_success'] = 'Votre message a bien été envoyé. Je vous répondrai dès que possible.';
@@ -84,6 +85,7 @@ class ContactController extends AbstractController
         $nom = $this->postString('nom');
         $email = $this->postString('email');
         $sujet = $this->postString('sujet');
+        $siteActuel = $this->postString('site_actuel');
         $typeProjet = $this->postString('type_projet');
         $budget = $this->postString('budget');
         $delai = $this->postString('delai');
@@ -109,6 +111,10 @@ class ContactController extends AbstractController
             $errors['sujet'] = 'Le sujet est requis.';
         } elseif (mb_strlen($sujet) > 150) {
             $errors['sujet'] = 'Le sujet est trop long.';
+        }
+
+        if (mb_strlen($siteActuel) > 300) {
+            $errors['site_actuel'] = 'Le lien du site actuel est trop long.';
         }
 
         if (!array_key_exists($typeProjet, self::PROJECT_TYPES)) {
@@ -137,6 +143,7 @@ class ContactController extends AbstractController
                 'nom' => $nom,
                 'email' => $email,
                 'sujet' => $sujet,
+                'site_actuel' => $siteActuel,
                 'type_projet' => $typeProjet,
                 'budget' => $budget,
                 'delai' => $delai,
@@ -156,6 +163,7 @@ class ContactController extends AbstractController
             $email,
             $sujet,
             $message,
+            $siteActuel,
             $typeProjetLabel,
             $budgetLabel,
             $delaiLabel
@@ -169,6 +177,7 @@ class ContactController extends AbstractController
                 'nom' => $nom,
                 'email' => $email,
                 'sujet' => $sujet,
+                'site_actuel' => $siteActuel,
                 'type_projet' => $typeProjet,
                 'budget' => $budget,
                 'delai' => $delai,

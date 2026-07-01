@@ -7,7 +7,7 @@
 
     $pageTitle = $pageTitle ?? 'Guillaume Maignaut | Développeur Web Freelance PHP';
 
-    $pageDescription = $pageDescription ?? 'Développeur web freelance spécialisé en PHP, JavaScript et création de sites vitrines modernes, rapides et responsives.';
+    $pageDescription = $pageDescription ?? 'Développeur web freelance spécialisé en PHP, JavaScript et création de sites vitrines modernes, rapides et adaptés au mobile.';
 
     $pageCanonical = $pageCanonical ?? 'https://guillaumemaignaut.com/';
 

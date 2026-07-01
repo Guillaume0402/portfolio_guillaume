@@ -158,7 +158,7 @@ $skillBadges = [
             <header class="section-header reveal">
                 <p class="section-kicker">Compétences</p>
                 <h2>Stack technique</h2>
-                <p>Front-end, back-end PHP, base de données, intégration responsive et outils de développement.</p>
+                <p>Front-end, back-end PHP, base de données, affichage mobile et outils de développement.</p>
             </header>
 
             <div class="chips-grid" aria-label="Compétences">

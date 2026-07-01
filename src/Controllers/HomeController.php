@@ -14,7 +14,7 @@ final class HomeController extends AbstractController
     {
         return $this->render('home/index', [
             'pageTitle' => 'Création de sites vitrines pour artisans dans le Gers | Guillaume Maignaut',
-            'pageDescription' => 'Création de sites vitrines et landing pages clairs, rapides et responsive pour indépendants, artisans et petites entreprises. Démos, tarifs et contact.',
+            'pageDescription' => 'Création de sites vitrines et landing pages clairs, rapides et adaptés au mobile pour indépendants, artisans et petites entreprises. Démos, tarifs et contact.',
             'pageCanonical' => 'https://guillaumemaignaut.com/',
         ]);
     }

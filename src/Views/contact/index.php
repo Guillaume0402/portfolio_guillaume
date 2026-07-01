@@ -81,11 +81,11 @@ $deadlineOptions = [
 
             <form class="contact-form" action="/contact/submit" method="post">
                 <input type="hidden" name="csrf_token" value="<?= Csrf::token() ?>">
-                <label class="field spam-check" for="site_web" aria-hidden="true">
-                    <span>Site web</span>
+                <label class="field spam-check" for="bot_check" aria-hidden="true">
+                    <span>Ne pas remplir</span>
                     <input
-                        id="site_web"
-                        name="site_web"
+                        id="bot_check"
+                        name="bot_check"
                         type="text"
                         value=""
                         tabindex="-1"
@@ -133,6 +133,19 @@ $deadlineOptions = [
                     <?php endif; ?>
                 </label>
 
+                <label class="field" for="site_actuel">
+                    <span>Lien de votre site actuel <small>(facultatif)</small></span>
+                    <input
+                        id="site_actuel"
+                        name="site_actuel"
+                        type="text"
+                        placeholder="Ex : https://votre-site.fr"
+                        value="<?= htmlspecialchars($old['site_actuel'] ?? '') ?>">
+                    <?php if (!empty($errors['site_actuel'])): ?>
+                        <small class="field-error"><?= htmlspecialchars($errors['site_actuel']) ?></small>
+                    <?php endif; ?>
+                </label>
+
                 <fieldset class="choice-field">
                     <legend>Type de projet</legend>
                     <div class="choice-grid">
@@ -156,6 +169,7 @@ $deadlineOptions = [
                 <div class="field-row">
                     <fieldset class="choice-field">
                         <legend>Budget approximatif</legend>
+                        <p class="choice-help">Si vous ne connaissez pas encore votre budget exact, choisissez simplement la fourchette la plus proche.</p>
                         <div class="choice-grid choice-grid-compact">
                             <?php foreach ($budgetOptions as $value => $label): ?>
                                 <label class="choice-option">

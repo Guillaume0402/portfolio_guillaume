@@ -44,12 +44,12 @@ $processSteps = [
     [
         'number' => '02',
         'title' => 'Construire la page',
-        'description' => 'Je prépare une structure lisible, puis j’intègre un site responsive avec des textes courts, des CTA visibles et un formulaire utilisable.',
+        'description' => 'Je prépare une structure lisible, puis j’intègre un site adapté au mobile avec des textes courts, des appels à l’action visibles et un formulaire utilisable.',
     ],
     [
         'number' => '03',
         'title' => 'Mettre en ligne',
-        'description' => 'On vérifie le responsive, le formulaire, les liens, les bases SEO et les points essentiels avant publication.',
+        'description' => 'On vérifie l’affichage mobile, le formulaire, les liens, les bases SEO et les points essentiels avant publication.',
     ],
 ];
 
@@ -57,18 +57,20 @@ $offers = [
     [
         'title' => 'Landing page',
         'price' => 'À partir de 450 €',
+        'delay' => 'Délai indicatif : 1 à 2 semaines selon les contenus fournis.',
         'description' => 'Pour une offre précise, une campagne, un lancement ou une prise de contact rapide.',
         'included' => [
             '1 page complète orientée conversion',
-            'structure claire avec CTA visibles',
+            'structure claire avec boutons de contact visibles',
             'formulaire de contact protégé',
-            'responsive mobile, tablette et ordinateur',
+            'affichage adapté au mobile, à la tablette et à l’ordinateur',
             'mise en ligne initiale',
         ],
     ],
     [
         'title' => 'Site vitrine',
         'price' => 'À partir de 900 €',
+        'delay' => 'Délai indicatif : 2 à 4 semaines selon le nombre de pages et les contenus.',
         'description' => 'Pour présenter votre activité, vos services et recevoir des demandes de contact.',
         'label' => 'Le plus demandé',
         'featured' => true,
@@ -83,12 +85,13 @@ $offers = [
     [
         'title' => 'Refonte ou maintenance',
         'price' => 'Sur devis',
+        'delay' => 'Délai indicatif : selon les corrections et les évolutions à prévoir.',
         'description' => 'Pour améliorer un site existant, corriger un blocage ou ajouter une évolution ciblée.',
         'included' => [
             'analyse rapide de l’existant',
             'priorités expliquées clairement',
             'corrections ou évolutions ciblées',
-            'ajustements responsive si nécessaire',
+            'ajustements mobile si nécessaire',
             'mise en ligne si nécessaire',
         ],
     ],
@@ -116,14 +119,18 @@ $offers = [
                     </p>
 
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="/contact">Me confier un projet</a>
+                        <a class="btn btn-primary" href="/contact">Demander un premier retour</a>
                         <a class="btn btn-ghost" href="#realisations">Voir les démos</a>
                     </div>
+
+                    <p class="hero-audit-link">
+                        Vous avez déjà un site ? <a href="#audit-gratuit">Demandez un audit gratuit.</a>
+                    </p>
 
                     <div class="hero-badges" aria-label="Services principaux">
                         <span class="badge">Site vitrine</span>
                         <span class="badge">Landing page</span>
-                        <span class="badge">Responsive</span>
+                        <span class="badge">Adapté au mobile</span>
                         <span class="badge">Formulaire contact</span>
                     </div>
 
@@ -146,7 +153,7 @@ $offers = [
                 <aside class="hero-offer-panel hero-demo-panel" aria-label="Exemples et preuves de l'offre">
                     <div class="hero-offer-content">
                         <p class="panel-kicker">Preuves visibles</p>
-                        <h2>3 démos en ligne pour juger le résultat avant de me contacter.</h2>
+                        <h2>3 démos en ligne pour voir le résultat avant de me contacter.</h2>
 
                         <div class="hero-demo-stack">
                             <?php foreach ($showcaseSites as $index => $site): ?>
@@ -161,8 +168,8 @@ $offers = [
                         </div>
 
                         <div class="hero-panel-metrics" aria-label="Points clés">
-                            <span>Responsive</span>
-                            <span>CTA visibles</span>
+                            <span>Adapté au mobile</span>
+                            <span>Boutons de contact visibles</span>
                             <span>Formulaire prêt</span>
                         </div>
 
@@ -217,8 +224,30 @@ $offers = [
             </div>
 
             <div class="section-actions reveal">
-                <a class="btn btn-primary btn-lg" href="/contact">Me confier un projet</a>
+                <a class="btn btn-primary btn-lg" href="/contact">Demander un premier retour</a>
                 <a class="btn btn-ghost btn-lg" href="#offers">Voir les tarifs</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="audit-gratuit" class="section audit-section">
+        <div class="container">
+            <div class="audit-card reveal">
+                <div class="audit-copy">
+                    <p class="section-kicker">Audit gratuit</p>
+                    <h2>Vous avez déjà un site, mais il ne vous apporte pas assez de contacts ?</h2>
+                    <p>
+                        Je regarde votre page et je vous envoie 3 priorités concrètes :
+                        ce qui bloque sur mobile, ce qui manque pour rassurer vos visiteurs
+                        et ce qui peut améliorer les demandes de contact.
+                    </p>
+                    <p class="audit-note">Audit gratuit rapide : 3 points prioritaires envoyés par email.</p>
+                </div>
+
+                <div class="audit-actions">
+                    <a class="btn btn-primary btn-lg" href="/contact">Demander un audit gratuit</a>
+                    <a class="btn btn-ghost btn-lg" href="#offers">Voir les offres</a>
+                </div>
             </div>
         </div>
     </section>
@@ -247,7 +276,7 @@ $offers = [
                 <article class="service-card reveal">
                     <span class="service-number">03</span>
                     <h3>Refonte web</h3>
-                    <p>Une amélioration ciblée de votre site : structure, lisibilité, responsive, vitesse et parcours plus fluide.</p>
+                    <p>Une amélioration ciblée de votre site : structure, lisibilité, affichage mobile, vitesse et parcours plus fluide.</p>
                 </article>
 
                 <article class="service-card reveal">
@@ -296,6 +325,7 @@ $offers = [
 
                         <h3><?= htmlspecialchars($offer['title'], ENT_QUOTES, 'UTF-8') ?></h3>
                         <p class="offer-price"><?= htmlspecialchars($offer['price'], ENT_QUOTES, 'UTF-8') ?></p>
+                        <p class="offer-delay"><?= htmlspecialchars($offer['delay'], ENT_QUOTES, 'UTF-8') ?></p>
                         <p class="offer-summary"><?= htmlspecialchars($offer['description'], ENT_QUOTES, 'UTF-8') ?></p>
 
                         <div class="offer-details">
@@ -346,6 +376,9 @@ $offers = [
                             Je privilégie les échanges simples, les priorités concrètes et un code compréhensible pour que votre site reste facile à faire évoluer.
                         </p>
                         <p class="about-text">
+                            Basé dans le Gers, j’accompagne les professionnels autour de Fleurance, Auch, Lectoure, Condom et les communes voisines, à distance ou avec des échanges simples par téléphone, email ou visio.
+                        </p>
+                        <p class="about-text">
                             Vous pouvez aussi consulter <a class="about-link" href="/portfolio">mes projets techniques</a>.
                         </p>
                     </div>
@@ -361,7 +394,7 @@ $offers = [
                     <div>
                         <p class="contact-kicker">Contact</p>
                         <h2 class="contact-title">Vous avez un projet de site web ?</h2>
-                        <p class="contact-lead">Décrivez-moi votre projet, votre délai et votre objectif. Je vous répondrai avec une première lecture claire et réaliste.</p>
+                        <p class="contact-lead">Décrivez-moi votre projet, votre délai et votre objectif. Si vous avez déjà un site, je peux aussi vous envoyer un audit gratuit rapide avec 3 priorités concrètes.</p>
                     </div>
                     <div class="contact-actions">
                         <a class="btn btn-primary btn-lg" href="/contact">Remplir le formulaire</a>
