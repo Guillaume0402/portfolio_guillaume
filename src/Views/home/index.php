@@ -56,7 +56,7 @@ $processSteps = [
 $offers = [
     [
         'title' => 'Landing page',
-        'price' => 'À partir de 450 € TTC',
+        'price' => 'À partir de 450 €',
         'description' => 'Pour une offre précise, une campagne, un lancement ou une prise de contact rapide.',
         'included' => [
             '1 page complète orientée conversion',
@@ -68,7 +68,7 @@ $offers = [
     ],
     [
         'title' => 'Site vitrine',
-        'price' => 'À partir de 900 € TTC',
+        'price' => 'À partir de 900 €',
         'description' => 'Pour présenter votre activité, vos services et recevoir des demandes de contact.',
         'label' => 'Le plus demandé',
         'featured' => true,
@@ -106,11 +106,13 @@ $offers = [
                         </span>
                     </p>
 
-                    <h1 class="hero-title">Transformez vos visiteurs en demandes de contact.</h1>
+                    <p class="hero-local-anchor">Développeur web freelance dans le Gers — sites vitrines pour artisans, indépendants et petites entreprises locales.</p>
+
+                    <h1 class="hero-title">Sites vitrines pour artisans, indépendants et petites entreprises dans le Gers.</h1>
 
                     <p class="hero-subtitle">
-                        Je crée des sites vitrines et landing pages pour indépendants, artisans et petites entreprises :
-                        clairs, rapides, responsive et pensés pour générer des contacts.
+                        Je crée des sites simples, rapides et adaptés au mobile pour présenter votre activité,
+                        rassurer vos visiteurs et faciliter la prise de contact.
                     </p>
 
                     <div class="hero-actions">
@@ -311,7 +313,7 @@ $offers = [
             </div>
 
             <div class="offers-note reveal">
-                <p>Hébergement, nom de domaine, rédaction complète, identité visuelle complète et maintenance mensuelle ne sont pas inclus par défaut. Je peux vous orienter sur ces points si besoin.</p>
+                <p>TVA non applicable selon le régime en vigueur. Hébergement, nom de domaine, rédaction complète, identité visuelle complète et maintenance mensuelle ne sont pas inclus par défaut. Je peux vous orienter sur ces points si besoin.</p>
             </div>
         </div>
     </section>
@@ -342,6 +344,9 @@ $offers = [
                         </p>
                         <p class="about-text">
                             Je privilégie les échanges simples, les priorités concrètes et un code compréhensible pour que votre site reste facile à faire évoluer.
+                        </p>
+                        <p class="about-text">
+                            Vous pouvez aussi consulter <a class="about-link" href="/portfolio">mes projets techniques</a>.
                         </p>
                     </div>
                 </div>

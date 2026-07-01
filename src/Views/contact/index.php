@@ -10,9 +10,9 @@ $projectTypes = [
 ];
 
 $budgetOptions = [
-    '450_900' => '450 à 900 € TTC',
-    '900_1500' => '900 à 1500 € TTC',
-    '1500_plus' => '1500 € TTC et plus',
+    '450_900' => '450 à 900 €',
+    '900_1500' => '900 à 1500 €',
+    '1500_plus' => '1500 € et plus',
     'indecis' => 'Je ne sais pas encore',
 ];
 

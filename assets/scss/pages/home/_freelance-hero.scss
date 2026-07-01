@@ -6,7 +6,11 @@
     }
 
     .hero-title {
-        max-width: 12ch;
+        max-width: 16ch;
+
+        @media (max-width: 820px) {
+            max-width: 12ch;
+        }
     }
 }
 

@@ -18,6 +18,23 @@ $safeHttpsUrl = static function (?string $url): ?string {
 
     return parse_url($url, PHP_URL_SCHEME) === 'https' ? $url : null;
 };
+
+$projectDescriptions = [
+    'EcoRide' => 'Projet full stack avec rôles utilisateurs, trajets, crédits et notifications. Il montre ma capacité à gérer une logique métier plus complète qu’un simple site vitrine.',
+    'Tichylist' => 'Application de gestion de tâches avec comptes utilisateurs, authentification et suivi de projets. Ce projet montre ma capacité à structurer une application avec espace privé et données sécurisées.',
+    'TutoPHP' => 'Site pédagogique autour de PHP vanilla, pensé pour rendre des notions techniques accessibles. Il montre ma capacité à organiser du contenu, clarifier un parcours et construire une interface lisible.',
+];
+
+$skillBadges = [
+    'PHP',
+    'JavaScript',
+    'HTML',
+    'CSS / Sass',
+    'Docker',
+    'Linux',
+    'SQL',
+    'NoSQL',
+];
 ?>
 
 <section class="container-app hero-section portfolio-hero">
@@ -31,9 +48,10 @@ $safeHttpsUrl = static function (?string $url): ?string {
                         </span>
                     </p>
 
-                    <h1 class="hero-title">Des projets web concrets, pensés pour être lisibles et maintenables.</h1>
+                    <h1 class="hero-title">Projets techniques</h1>
                     <p class="hero-subtitle">
-                        Retrouvez ici une sélection de réalisations, avec les technologies utilisées et les liens disponibles.
+                        Une sélection de projets réalisés pour montrer ma façon de structurer une interface,
+                        gérer des données et construire du code maintenable.
                     </p>
 
                     <div class="hero-actions">
@@ -49,8 +67,8 @@ $safeHttpsUrl = static function (?string $url): ?string {
         <div class="container">
             <header class="section-header reveal">
                 <p class="section-kicker">Réalisations</p>
-                <h2>Projets</h2>
-                <p>Une sélection de réalisations issues de la base de données.</p>
+                <h2>Ce que ces projets démontrent</h2>
+                <p>Chaque projet illustre une compétence utile pour construire un site fiable, clair et évolutif.</p>
             </header>
 
             <?php if (empty($projects)): ?>
@@ -62,6 +80,7 @@ $safeHttpsUrl = static function (?string $url): ?string {
                         $img = $safeImage($project['image'] ?? null);
                         $githubLink = $safeHttpsUrl($project['github_link'] ?? null);
                         $projectLink = $safeHttpsUrl($project['project_link'] ?? null);
+                        $displayDescription = $projectDescriptions[$project['title'] ?? ''] ?? ($project['description'] ?? '');
                         ?>
 
                         <article class="card reveal">
@@ -78,10 +97,10 @@ $safeHttpsUrl = static function (?string $url): ?string {
                                             alt="Aperçu du projet <?= htmlspecialchars($project['title'], ENT_QUOTES, 'UTF-8') ?>">
                                     </div>
 
-                                    <?php if (!empty($project['description'])): ?>
+                                    <?php if (!empty($displayDescription)): ?>
                                         <div class="card-description">
                                             <p class="card-text">
-                                                <?= htmlspecialchars($project['description'], ENT_QUOTES, 'UTF-8') ?>
+                                                <?= htmlspecialchars($displayDescription, ENT_QUOTES, 'UTF-8') ?>
                                             </p>
 
                                             <button type="button" class="card-text-toggle">
@@ -143,15 +162,9 @@ $safeHttpsUrl = static function (?string $url): ?string {
             </header>
 
             <div class="chips-grid" aria-label="Compétences">
-                <?php foreach ($skills as $skill): ?>
+                <?php foreach ($skillBadges as $skill): ?>
                     <span class="chip reveal">
-                        <?php if (!empty($skill['logo'])): ?>
-                            <?php $logo = $safeImage($skill['logo']); ?>
-                            <img
-                                loading="lazy"
-                                src="/images/<?= htmlspecialchars($logo, ENT_QUOTES, 'UTF-8') ?>"
-                                alt="Logo de <?= htmlspecialchars($skill['name'], ENT_QUOTES, 'UTF-8') ?>">
-                        <?php endif; ?>
+                        <?= htmlspecialchars($skill, ENT_QUOTES, 'UTF-8') ?>
                     </span>
                 <?php endforeach; ?>
             </div>

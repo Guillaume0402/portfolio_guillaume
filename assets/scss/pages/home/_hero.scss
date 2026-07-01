@@ -104,6 +104,20 @@
     white-space: nowrap;
 }
 
+.hero-local-anchor {
+    margin: -8px 0 18px;
+    color: rgba(248, 250, 252, 0.88);
+    font-size: clamp(15px, 1.25vw, 18px);
+    font-weight: 750;
+    line-height: 1.45;
+    max-width: 54ch;
+
+    @media (max-width: 820px) {
+        margin: -4px 0 16px;
+        text-align: left;
+    }
+}
+
 .hero-title {
     position: relative;
     margin: 0 0 22px;
