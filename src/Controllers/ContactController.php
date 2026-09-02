@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Http\AbstractController;
 use App\Security\Csrf;
 use RuntimeException;
+use App\Security\TurnstileVerifier;
 
 class ContactController extends AbstractController
 {
@@ -146,6 +147,48 @@ class ContactController extends AbstractController
 
         if (!empty($errors)) {
             $_SESSION['contact_errors'] = $errors;
+            $_SESSION['contact_old'] = [
+                'nom' => $nom,
+                'email' => $email,
+                'sujet' => $sujet,
+                'site_actuel' => $siteActuel,
+                'type_projet' => $typeProjet,
+                'budget' => $budget,
+                'delai' => $delai,
+                'message' => $message,
+            ];
+
+            $this->redirectToContact();
+        }
+
+        $allowedHostnames = array_values(array_filter(
+            array_map(
+                'trim',
+                explode(
+                    ',',
+                    $this->envOrFail('TURNSTILE_ALLOWED_HOSTNAMES')
+                )
+            ),
+            static fn(string $hostname): bool => $hostname !== ''
+        ));
+
+        $turnstileVerifier = new TurnstileVerifier(
+            $this->envOrFail('TURNSTILE_SECRET_KEY'),
+            $allowedHostnames,
+            $this->envOrFail('TURNSTILE_EXPECTED_ACTION'),
+            strtolower($this->envOrFail('APP_ENV')) === 'dev'
+        );
+
+        $turnstileToken = $_POST['cf-turnstile-response'] ?? null;
+
+        if (!$turnstileVerifier->verify($turnstileToken)) {
+            error_log('Turnstile verification failed on contact form');
+
+            $_SESSION['contact_errors'] = [
+                'global' =>
+                'Le formulaire n’a pas pu être vérifié. Merci de réessayer.',
+            ];
+
             $_SESSION['contact_old'] = [
                 'nom' => $nom,
                 'email' => $email,
