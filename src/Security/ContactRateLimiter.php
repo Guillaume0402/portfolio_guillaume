@@ -14,6 +14,7 @@ use Throwable;
 final class ContactRateLimiter
 {
     private const DATE_FORMAT = 'Y-m-d H:i:s.u';
+    private const DEFAULT_RETENTION_SECONDS = 172800;
 
     private PDO $pdo;
     private string $pepper;
@@ -108,14 +109,13 @@ final class ContactRateLimiter
         }
 
         /*
-        * La création idempotente est volontairement effectuée
-        * avant la transaction.
-        *
-        * En mode autocommit, le verrou pris par INSERT IGNORE
-        * est immédiatement libéré. Les workers concurrents
-        * ne tentent donc plus tous de convertir ce verrou
-        * pendant SELECT ... FOR UPDATE.
-        */
+ * L’upsert est volontairement effectué avant la transaction.
+ *
+ * Il crée la ligne si nécessaire ou rafraîchit updated_at
+ * lorsqu’elle existe. Son autocommit libère immédiatement
+ * le verrou et empêche le nettoyage de supprimer une ligne
+ * qu’une tentative vient de réactiver.
+ */
         $this->ensureRowExists($keyHash, $now);
 
         try {
@@ -227,13 +227,70 @@ final class ContactRateLimiter
         }
     }
 
+    /**
+     * Supprime un nombre borné de compteurs devenus inutiles.
+     *
+     * @return int Nombre de lignes supprimées.
+     */
+    public function cleanupExpired(
+        int $retentionSeconds = self::DEFAULT_RETENTION_SECONDS
+    ): int {
+        $minimumRetention = max(
+            $this->windowSeconds,
+            $this->blockSeconds
+        );
+
+        if ($retentionSeconds < $minimumRetention) {
+            throw new InvalidArgumentException(
+                'The retention duration is too short.'
+            );
+        }
+
+        if ($this->pdo->inTransaction()) {
+            throw new RuntimeException(
+                'Cleanup cannot use an existing transaction.'
+            );
+        }
+
+        $now = new DateTimeImmutable(
+            'now',
+            new DateTimeZone('UTC')
+        );
+
+        $cutoff = $now->modify(
+            sprintf('-%d seconds', $retentionSeconds)
+        );
+
+        $statement = $this->pdo->prepare(
+            <<<'SQL'
+            DELETE FROM contact_rate_limits
+            WHERE route = :route
+              AND updated_at < :cutoff
+              AND (
+                  blocked_until IS NULL
+                  OR blocked_until <= :now
+              )
+            ORDER BY updated_at ASC
+            LIMIT 100
+        SQL
+        );
+
+        $statement->execute([
+            'route' => $this->route,
+            'cutoff' => self::formatDate($cutoff),
+            'now' => self::formatDate($now),
+        ]);
+
+        return $statement->rowCount();
+    }
+
     private function ensureRowExists(
         string $keyHash,
         DateTimeImmutable $now
     ): void {
         $statement = $this->pdo->prepare(
             <<<'SQL'
-                INSERT IGNORE INTO contact_rate_limits (
+                INSERT INTO contact_rate_limits (
                     route,
                     key_hash,
                     window_started_at,
@@ -246,16 +303,21 @@ final class ContactRateLimiter
                     :window_started_at,
                     0,
                     NULL,
-                    :updated_at
+                    :inserted_updated_at
                 )
+                ON DUPLICATE KEY UPDATE
+                    updated_at = :existing_updated_at
             SQL
         );
+
+        $formattedNow = self::formatDate($now);
 
         $statement->execute([
             'route' => $this->route,
             'key_hash' => $keyHash,
-            'window_started_at' => self::formatDate($now),
-            'updated_at' => self::formatDate($now),
+            'window_started_at' => $formattedNow,
+            'inserted_updated_at' => $formattedNow,
+            'existing_updated_at' => $formattedNow,
         ]);
     }
 
@@ -314,7 +376,7 @@ final class ContactRateLimiter
 
         $statement->execute([
             'window_started_at' =>
-            self::formatDate($windowStartedAt),
+                self::formatDate($windowStartedAt),
             'attempt_count' => $attemptCount,
             'blocked_until' => $blockedUntil !== null
                 ? self::formatDate($blockedUntil)
