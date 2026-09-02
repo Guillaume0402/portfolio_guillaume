@@ -2,6 +2,12 @@
 
 use App\Security\Csrf;
 
+/** @var array<string, string> $errors */
+/** @var array<string, string> $old */
+/** @var string|null $success */
+/** @var string $turnstileSiteKey */
+/** @var string $turnstileAction */
+
 $projectTypes = [
     'site_vitrine' => 'Site vitrine',
     'landing_page' => 'Landing page',
@@ -24,6 +30,11 @@ $deadlineOptions = [
     'non_defini' => 'Pas encore défini',
 ];
 ?>
+
+<script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer></script>
 
 <section class="contact-page section">
     <?php if (!empty($errors['global']) || !empty($success)): ?>
@@ -228,8 +239,23 @@ $deadlineOptions = [
                         <small class="field-error"><?= htmlspecialchars($errors['message']) ?></small>
                     <?php endif; ?>
                 </label>
+                <div class="turnstile-field">
+                    <div
+                        class="cf-turnstile"
+                        data-sitekey="<?= htmlspecialchars($turnstileSiteKey, ENT_QUOTES, 'UTF-8') ?>"
+                        data-action="<?= htmlspecialchars($turnstileAction, ENT_QUOTES, 'UTF-8') ?>">
+                    </div>
 
-                <button class="btn btn-primary btn-lg" type="submit">Envoyer ma demande</button>
+                    <noscript>
+                        <p class="form-error">
+                            JavaScript doit être activé pour envoyer le formulaire.
+                        </p>
+                    </noscript>
+                </div>
+
+                <button class="btn btn-primary btn-lg" type="submit">
+                    Envoyer ma demande
+                </button>
                 <p class="form-privacy">
                     Les champs du formulaire sont nécessaires pour traiter votre demande et vous répondre.
                     Consultez la <a href="/confidentialite">politique de confidentialité</a>.

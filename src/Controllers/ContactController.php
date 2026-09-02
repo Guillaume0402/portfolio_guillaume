@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Http\AbstractController;
 use App\Security\Csrf;
+use RuntimeException;
 
 class ContactController extends AbstractController
 {
@@ -44,6 +45,12 @@ class ContactController extends AbstractController
             'errors' => $errors,
             'old' => $old,
             'success' => $success,
+            'turnstileSiteKey' => $this->envOrFail(
+                'TURNSTILE_SITE_KEY'
+            ),
+            'turnstileAction' => $this->envOrFail(
+                'TURNSTILE_EXPECTED_ACTION'
+            ),
         ]);
     }
 
@@ -52,10 +59,10 @@ class ContactController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $this->redirectToContact();
         }
-       
+
         if (!Csrf::check($_POST['csrf_token'] ?? null)) {
             error_log('CSRF check failed on contact form');
-            
+
             $_SESSION['contact_errors'] = [
                 'global' => 'Le formulaire n’a pas pu être envoyé. Merci de réessayer.',
             ];
@@ -190,6 +197,19 @@ class ContactController extends AbstractController
         $_SESSION['contact_success'] = 'Votre message a bien été envoyé. Je vous répondrai dès que possible.';
         Csrf::regenerate();
         $this->redirectToContact();
+    }
+
+    private function envOrFail(string $key): string
+    {
+        $value = $_ENV[$key] ?? getenv($key);
+
+        if (!is_string($value) || trim($value) === '') {
+            throw new RuntimeException(
+                "Missing environment variable: {$key}"
+            );
+        }
+
+        return trim($value);
     }
 
     private function postString(string $key): string
