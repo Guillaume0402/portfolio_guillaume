@@ -1,4 +1,5 @@
 <?php
+
 use App\Security\Csrf;
 
 $projectTypes = [
@@ -99,6 +100,7 @@ $deadlineOptions = [
                             name="nom"
                             type="text"
                             value="<?= htmlspecialchars($old['nom'] ?? '') ?>"
+                            maxlength="100"
                             required>
                         <?php if (!empty($errors['nom'])): ?>
                             <small class="field-error"><?= htmlspecialchars($errors['nom']) ?></small>
@@ -112,6 +114,7 @@ $deadlineOptions = [
                             name="email"
                             type="email"
                             value="<?= htmlspecialchars($old['email'] ?? '') ?>"
+                            maxlength="254"
                             required>
                         <?php if (!empty($errors['email'])): ?>
                             <small class="field-error"><?= htmlspecialchars($errors['email']) ?></small>
@@ -127,6 +130,7 @@ $deadlineOptions = [
                         type="text"
                         placeholder="Ex : création d'un site vitrine"
                         value="<?= htmlspecialchars($old['sujet'] ?? '') ?>"
+                        maxlength="150"
                         required>
                     <?php if (!empty($errors['sujet'])): ?>
                         <small class="field-error"><?= htmlspecialchars($errors['sujet']) ?></small>
@@ -140,7 +144,8 @@ $deadlineOptions = [
                         name="site_actuel"
                         type="text"
                         placeholder="Ex : https://votre-site.fr"
-                        value="<?= htmlspecialchars($old['site_actuel'] ?? '') ?>">
+                        value="<?= htmlspecialchars($old['site_actuel'] ?? '') ?>"
+                        maxlength="300">
                     <?php if (!empty($errors['site_actuel'])): ?>
                         <small class="field-error"><?= htmlspecialchars($errors['site_actuel']) ?></small>
                     <?php endif; ?>
@@ -216,6 +221,8 @@ $deadlineOptions = [
                         name="message"
                         rows="6"
                         placeholder="Présentez votre activité, votre besoin, vos délais et votre budget indicatif si vous en avez un."
+                        minlength="10"
+                        maxlength="3000"
                         required><?= htmlspecialchars($old['message'] ?? '') ?></textarea>
                     <?php if (!empty($errors['message'])): ?>
                         <small class="field-error"><?= htmlspecialchars($errors['message']) ?></small>
