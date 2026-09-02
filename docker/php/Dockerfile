@@ -7,8 +7,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
     zip \
     curl \
+    libcurl4-openssl-dev \
     libzip-dev \
-    && docker-php-ext-install pdo pdo_mysql mysqli zip \
+    && docker-php-ext-install curl pdo pdo_mysql mysqli zip \
     && a2enmod rewrite headers expires \
     && rm -rf /var/lib/apt/lists/*
 
