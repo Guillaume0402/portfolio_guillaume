@@ -2,11 +2,9 @@ services:
   caddy:
     image: caddy:2-alpine
     restart: unless-stopped
-    env_file:
-      - .env.prod
     environment:
-      DOMAIN: ${DOMAIN}
-      ACME_EMAIL: ${ACME_EMAIL}
+      DOMAIN: "${DOMAIN:?DOMAIN is required}"
+      ACME_EMAIL: "${ACME_EMAIL:?ACME_EMAIL is required}"
     ports:
       - "80:80"
       - "443:443/tcp"
@@ -30,16 +28,35 @@ services:
       dockerfile: docker/php/Dockerfile
       target: prod
     restart: unless-stopped
-    env_file:
-      - .env.prod
     environment:
       APP_ENV: prod
-      APP_TZ: ${APP_TZ}
+      APP_TZ: "${APP_TZ:?APP_TZ is required}"
+
       DB_HOST: db
-      DB_PORT: 3306
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: "3306"
+      DB_NAME: "${DB_NAME:?DB_NAME is required}"
+      DB_USER: "${DB_USER:?DB_USER is required}"
+      DB_PASSWORD: "${DB_PASSWORD:?DB_PASSWORD is required}"
+
+      SMTP_HOST: "${SMTP_HOST:?SMTP_HOST is required}"
+      SMTP_PORT: "${SMTP_PORT:?SMTP_PORT is required}"
+      SMTP_USERNAME: "${SMTP_USERNAME:?SMTP_USERNAME is required}"
+      SMTP_PASSWORD: "${SMTP_PASSWORD:?SMTP_PASSWORD is required}"
+      SMTP_ENCRYPTION: "${SMTP_ENCRYPTION:?SMTP_ENCRYPTION is required}"
+      MAIL_FROM: "${MAIL_FROM:?MAIL_FROM is required}"
+      MAIL_FROM_NAME: "${MAIL_FROM_NAME:?MAIL_FROM_NAME is required}"
+      CONTACT_TO: "${CONTACT_TO:?CONTACT_TO is required}"
+
+      TURNSTILE_SITE_KEY: "${TURNSTILE_SITE_KEY:?TURNSTILE_SITE_KEY is required}"
+      TURNSTILE_SECRET_KEY: "${TURNSTILE_SECRET_KEY:?TURNSTILE_SECRET_KEY is required}"
+      TURNSTILE_ALLOWED_HOSTNAMES: "${TURNSTILE_ALLOWED_HOSTNAMES:?TURNSTILE_ALLOWED_HOSTNAMES is required}"
+      TURNSTILE_EXPECTED_ACTION: "${TURNSTILE_EXPECTED_ACTION:?TURNSTILE_EXPECTED_ACTION is required}"
+
+      CONTACT_RATE_LIMIT_MAX_ATTEMPTS: "${CONTACT_RATE_LIMIT_MAX_ATTEMPTS:?CONTACT_RATE_LIMIT_MAX_ATTEMPTS is required}"
+      CONTACT_RATE_LIMIT_WINDOW_SECONDS: "${CONTACT_RATE_LIMIT_WINDOW_SECONDS:?CONTACT_RATE_LIMIT_WINDOW_SECONDS is required}"
+      CONTACT_RATE_LIMIT_BLOCK_SECONDS: "${CONTACT_RATE_LIMIT_BLOCK_SECONDS:?CONTACT_RATE_LIMIT_BLOCK_SECONDS is required}"
+      CONTACT_IP_HASH_KEY: "${CONTACT_IP_HASH_KEY:?CONTACT_IP_HASH_KEY is required}"
+      CONTACT_TRUSTED_PROXIES: "${CONTACT_TRUSTED_PROXIES:?CONTACT_TRUSTED_PROXIES is required}"
     depends_on:
       db:
         condition: service_healthy
@@ -56,13 +73,11 @@ services:
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_0900_ai_ci
-    env_file:
-      - .env.prod
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD is required}"
+      MYSQL_DATABASE: "${DB_NAME:?DB_NAME is required}"
+      MYSQL_USER: "${DB_USER:?DB_USER is required}"
+      MYSQL_PASSWORD: "${DB_PASSWORD:?DB_PASSWORD is required}"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./docker/mysql/initdb:/docker-entrypoint-initdb.d:ro
