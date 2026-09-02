@@ -9,30 +9,39 @@ use JsonException;
 final class TurnstileVerifier
 {
     private const ENDPOINT =
-        'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+    'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
     private const MAX_TOKEN_LENGTH = 2048;
+
+    private const TEST_SECRET_KEY =
+    '1x0000000000000000000000000000000AA';
+
+    private const TEST_RESPONSE_TOKEN =
+    'XXXX.DUMMY.TOKEN.XXXX';
 
     private string $secretKey;
     private array $allowedHostnames;
     private string $expectedAction;
+    private bool $allowTestingResponses;
 
     public function __construct(
         string $secretKey,
         array $allowedHostnames,
-        string $expectedAction = 'contact'
+        string $expectedAction = 'contact',
+        bool $allowTestingResponses = false
     ) {
         $this->secretKey = trim($secretKey);
 
         $this->allowedHostnames = array_values(array_unique(array_filter(
             array_map(
-                static fn (mixed $hostname): string =>
+                static fn(mixed $hostname): string =>
                     is_string($hostname) ? strtolower(trim($hostname)) : '',
                 $allowedHostnames
             )
         )));
 
         $this->expectedAction = trim($expectedAction);
+        $this->allowTestingResponses = $allowTestingResponses;
     }
 
     public function verify(mixed $token, ?string $remoteIp = null): bool
@@ -129,6 +138,10 @@ final class TurnstileVerifier
             return false;
         }
 
+        if ($this->isAllowedTestingResponse($response, $token)) {
+            return true;
+        }
+
         $hostname = $response['hostname'] ?? null;
         $action = $response['action'] ?? null;
 
@@ -136,5 +149,18 @@ final class TurnstileVerifier
             && in_array(strtolower($hostname), $this->allowedHostnames, true)
             && is_string($action)
             && $action === $this->expectedAction;
+    }
+
+    private function isAllowedTestingResponse(
+        array $response,
+        string $token
+    ): bool {
+        return $this->allowTestingResponses
+            && hash_equals(self::TEST_SECRET_KEY, $this->secretKey)
+            && hash_equals(self::TEST_RESPONSE_TOKEN, $token)
+            && (
+                $response['metadata']['result_with_testing_key']
+                ?? false
+            ) === true;
     }
 }
