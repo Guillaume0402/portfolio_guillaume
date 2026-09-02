@@ -4,29 +4,38 @@ declare(strict_types=1);
 
 namespace App\Security;
 
+use InvalidArgumentException;
+
 final class ClientIpResolver
 {
     /**
-     * Adresses IP des reverse proxies autorisés à transmettre
-     * l'adresse réelle du visiteur.
+     * Réseaux ou adresses des reverse proxies autorisés.
      *
-     * @var list<string>
+     * @var list<array{packed: string, prefix: int}>
      */
-    private array $trustedProxyAddresses;
+    private array $trustedProxyNetworks;
 
-    public function __construct(array $trustedProxyAddresses = [])
+    public function __construct(array $trustedProxySources = [])
     {
-        $normalizedAddresses = [];
+        $networks = [];
 
-        foreach ($trustedProxyAddresses as $address) {
-            $normalizedAddress = self::normalizeIp($address);
+        foreach ($trustedProxySources as $source) {
+            $network = self::parseTrustedNetwork($source);
 
-            if ($normalizedAddress !== null) {
-                $normalizedAddresses[$normalizedAddress] = true;
+            if ($network === null) {
+                throw new InvalidArgumentException(
+                    'A trusted proxy address or network is invalid.'
+                );
             }
+
+            $key = bin2hex($network['packed'])
+                . '/'
+                . $network['prefix'];
+
+            $networks[$key] = $network;
         }
 
-        $this->trustedProxyAddresses = array_keys($normalizedAddresses);
+        $this->trustedProxyNetworks = array_values($networks);
     }
 
     public function resolve(array $server): ?string
@@ -40,8 +49,8 @@ final class ClientIpResolver
         }
 
         /*
-         * Si la requête ne vient pas d'un proxy approuvé,
-         * les en-têtes transmis par le client sont ignorés.
+         * Hors proxy approuvé, les en-têtes envoyés par le client
+         * sont ignorés.
          */
         if (!$this->isTrustedProxy($remoteAddress)) {
             return $remoteAddress;
@@ -60,7 +69,7 @@ final class ClientIpResolver
 
             /*
              * Une chaîne partiellement invalide est ambiguë.
-             * On revient alors à l'adresse directe du proxy.
+             * On revient à l’adresse directe du proxy.
              */
             if ($normalizedAddress === null) {
                 return $remoteAddress;
@@ -70,9 +79,9 @@ final class ClientIpResolver
         }
 
         /*
-         * La chaîne est parcourue de droite à gauche.
-         * On retourne le premier intermédiaire non approuvé :
-         * il correspond au client vu par le dernier proxy fiable.
+         * Parcours de droite à gauche :
+         * les proxies approuvés sont ignorés jusqu’au premier
+         * intermédiaire non approuvé, considéré comme le client.
          */
         for (
             $index = count($forwardedAddresses) - 1;
@@ -91,11 +100,125 @@ final class ClientIpResolver
 
     private function isTrustedProxy(string $address): bool
     {
-        return in_array(
-            $address,
-            $this->trustedProxyAddresses,
-            true
+        $packedAddress = inet_pton($address);
+
+        if ($packedAddress === false) {
+            return false;
+        }
+
+        foreach ($this->trustedProxyNetworks as $network) {
+            if (
+                self::networkContains(
+                    $packedAddress,
+                    $network['packed'],
+                    $network['prefix']
+                )
+            ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static function networkContains(
+        string $packedAddress,
+        string $packedNetwork,
+        int $prefix
+    ): bool {
+        if (strlen($packedAddress) !== strlen($packedNetwork)) {
+            return false;
+        }
+
+        $fullBytes = intdiv($prefix, 8);
+        $remainingBits = $prefix % 8;
+
+        if (
+            substr($packedAddress, 0, $fullBytes)
+            !== substr($packedNetwork, 0, $fullBytes)
+        ) {
+            return false;
+        }
+
+        if ($remainingBits === 0) {
+            return true;
+        }
+
+        $mask = (0xFF << (8 - $remainingBits)) & 0xFF;
+
+        return (
+            ord($packedAddress[$fullBytes]) & $mask
+        ) === (
+            ord($packedNetwork[$fullBytes]) & $mask
         );
+    }
+
+    /**
+     * @return array{packed: string, prefix: int}|null
+     */
+    private static function parseTrustedNetwork(
+        mixed $source
+    ): ?array {
+        if (!is_string($source)) {
+            return null;
+        }
+
+        $source = trim($source);
+
+        if ($source === '') {
+            return null;
+        }
+
+        $parts = explode('/', $source);
+
+        if (count($parts) > 2) {
+            return null;
+        }
+
+        $normalizedAddress = self::normalizeIp($parts[0] ?? null);
+
+        if ($normalizedAddress === null) {
+            return null;
+        }
+
+        $packedAddress = inet_pton($normalizedAddress);
+
+        if ($packedAddress === false) {
+            return null;
+        }
+
+        $maximumPrefix = strlen($packedAddress) * 8;
+
+        if (count($parts) === 1) {
+            return [
+                'packed' => $packedAddress,
+                'prefix' => $maximumPrefix,
+            ];
+        }
+
+        $prefixText = trim($parts[1]);
+
+        if (
+            $prefixText === ''
+            || preg_match('/^\d{1,3}$/', $prefixText) !== 1
+        ) {
+            return null;
+        }
+
+        $prefix = (int) $prefixText;
+
+        /*
+         * /0 ferait confiance à tout Internet et n’est donc
+         * volontairement pas accepté.
+         */
+        if ($prefix < 1 || $prefix > $maximumPrefix) {
+            return null;
+        }
+
+        return [
+            'packed' => $packedAddress,
+            'prefix' => $prefix,
+        ];
     }
 
     private static function normalizeIp(mixed $address): ?string
