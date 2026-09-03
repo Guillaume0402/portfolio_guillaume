@@ -4,9 +4,12 @@ namespace App\Controllers;
 
 use App\Http\AbstractController;
 use App\Security\ClientIpResolver;
+use App\Security\ContactRateLimiter;
 use App\Security\Csrf;
 use App\Security\TurnstileVerifier;
+use App\Services\Database;
 use RuntimeException;
+use Throwable;
 
 class ContactController extends AbstractController
 {
@@ -201,6 +204,50 @@ class ContactController extends AbstractController
             $this->redirectToContact();
         }
 
+        try {
+            $rateLimiter = new ContactRateLimiter(
+                Database::getConnection(),
+                $this->envOrFail('CONTACT_IP_HASH_KEY'),
+                $this->positiveIntEnvOrFail(
+                    'CONTACT_RATE_LIMIT_MAX_ATTEMPTS'
+                ),
+                $this->positiveIntEnvOrFail(
+                    'CONTACT_RATE_LIMIT_WINDOW_SECONDS'
+                ),
+                $this->positiveIntEnvOrFail(
+                    'CONTACT_RATE_LIMIT_BLOCK_SECONDS'
+                ),
+                'contact'
+            );
+
+            $retryAfter = $rateLimiter->consume($clientIp);
+        } catch (Throwable $exception) {
+            error_log(sprintf(
+                'Contact rate limiter failed (%s)',
+                $exception::class
+            ));
+
+            http_response_code(503);
+            header('Content-Type: text/plain; charset=UTF-8');
+
+            echo 'Le formulaire est temporairement indisponible. '
+                . 'Merci de réessayer plus tard.';
+
+            exit;
+        }
+
+        if ($retryAfter > 0) {
+            error_log('Contact form rate limit exceeded');
+
+            http_response_code(429);
+            header('Retry-After: ' . $retryAfter);
+            header('Content-Type: text/plain; charset=UTF-8');
+
+            echo 'Trop de tentatives. Merci de réessayer plus tard.';
+
+            exit;
+        }
+
         $allowedHostnames = array_values(array_filter(
             array_map(
                 'trim',
@@ -280,6 +327,29 @@ class ContactController extends AbstractController
         $_SESSION['contact_success'] = 'Votre message a bien été envoyé. Je vous répondrai dès que possible.';
         Csrf::regenerate();
         $this->redirectToContact();
+    }
+
+    private function positiveIntEnvOrFail(string $key): int
+    {
+        $value = $this->envOrFail($key);
+
+        $validatedValue = filter_var(
+            $value,
+            FILTER_VALIDATE_INT,
+            [
+                'options' => [
+                    'min_range' => 1,
+                ],
+            ]
+        );
+
+        if ($validatedValue === false) {
+            throw new RuntimeException(
+                "Invalid positive integer environment variable: {$key}"
+            );
+        }
+
+        return $validatedValue;
     }
 
     private function envOrDefault(
