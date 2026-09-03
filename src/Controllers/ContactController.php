@@ -248,6 +248,22 @@ class ContactController extends AbstractController
             exit;
         }
 
+        try {
+            $deletedRows = $rateLimiter->cleanupExpired();
+
+            if ($deletedRows > 0) {
+                error_log(sprintf(
+                    'Contact rate limiter cleanup removed %d expired rows',
+                    $deletedRows
+                ));
+            }
+        } catch (Throwable $exception) {
+            error_log(sprintf(
+                'Contact rate limiter cleanup failed (%s)',
+                $exception::class
+            ));
+        }
+
         $allowedHostnames = array_values(array_filter(
             array_map(
                 'trim',
