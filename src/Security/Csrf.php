@@ -15,13 +15,15 @@ final class Csrf
     }
 
     // Vérifie si le token CSRF fourni correspond à celui stocké en session
-    public static function check(?string $t): bool
+    public static function check(mixed $token): bool
     {
-        if (!is_string($t) || empty($_SESSION['csrf']) || !is_string($_SESSION['csrf'])) {
+        $sessionToken = $_SESSION['csrf'] ?? null;
+
+        if (!is_string($token) || !is_string($sessionToken) || $sessionToken === '') {
             return false;
         }
 
-        return hash_equals($_SESSION['csrf'], $t);
+        return hash_equals($sessionToken, $token);
     }
 
     public static function regenerate(): string

@@ -1,5 +1,12 @@
 <?php
+
 use App\Security\Csrf;
+
+/** @var array<string, string> $errors */
+/** @var array<string, string> $old */
+/** @var string|null $success */
+/** @var string $turnstileSiteKey */
+/** @var string $turnstileAction */
 
 $projectTypes = [
     'site_vitrine' => 'Site vitrine',
@@ -23,6 +30,11 @@ $deadlineOptions = [
     'non_defini' => 'Pas encore défini',
 ];
 ?>
+
+<script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer></script>
 
 <section class="contact-page section">
     <?php if (!empty($errors['global']) || !empty($success)): ?>
@@ -99,6 +111,7 @@ $deadlineOptions = [
                             name="nom"
                             type="text"
                             value="<?= htmlspecialchars($old['nom'] ?? '') ?>"
+                            maxlength="100"
                             required>
                         <?php if (!empty($errors['nom'])): ?>
                             <small class="field-error"><?= htmlspecialchars($errors['nom']) ?></small>
@@ -112,6 +125,7 @@ $deadlineOptions = [
                             name="email"
                             type="email"
                             value="<?= htmlspecialchars($old['email'] ?? '') ?>"
+                            maxlength="254"
                             required>
                         <?php if (!empty($errors['email'])): ?>
                             <small class="field-error"><?= htmlspecialchars($errors['email']) ?></small>
@@ -127,6 +141,7 @@ $deadlineOptions = [
                         type="text"
                         placeholder="Ex : création d'un site vitrine"
                         value="<?= htmlspecialchars($old['sujet'] ?? '') ?>"
+                        maxlength="150"
                         required>
                     <?php if (!empty($errors['sujet'])): ?>
                         <small class="field-error"><?= htmlspecialchars($errors['sujet']) ?></small>
@@ -140,7 +155,8 @@ $deadlineOptions = [
                         name="site_actuel"
                         type="text"
                         placeholder="Ex : https://votre-site.fr"
-                        value="<?= htmlspecialchars($old['site_actuel'] ?? '') ?>">
+                        value="<?= htmlspecialchars($old['site_actuel'] ?? '') ?>"
+                        maxlength="300">
                     <?php if (!empty($errors['site_actuel'])): ?>
                         <small class="field-error"><?= htmlspecialchars($errors['site_actuel']) ?></small>
                     <?php endif; ?>
@@ -216,13 +232,30 @@ $deadlineOptions = [
                         name="message"
                         rows="6"
                         placeholder="Présentez votre activité, votre besoin, vos délais et votre budget indicatif si vous en avez un."
+                        minlength="10"
+                        maxlength="3000"
                         required><?= htmlspecialchars($old['message'] ?? '') ?></textarea>
                     <?php if (!empty($errors['message'])): ?>
                         <small class="field-error"><?= htmlspecialchars($errors['message']) ?></small>
                     <?php endif; ?>
                 </label>
+                <div class="turnstile-field">
+                    <div
+                        class="cf-turnstile"
+                        data-sitekey="<?= htmlspecialchars($turnstileSiteKey, ENT_QUOTES, 'UTF-8') ?>"
+                        data-action="<?= htmlspecialchars($turnstileAction, ENT_QUOTES, 'UTF-8') ?>">
+                    </div>
 
-                <button class="btn btn-primary btn-lg" type="submit">Envoyer ma demande</button>
+                    <noscript>
+                        <p class="form-error">
+                            JavaScript doit être activé pour envoyer le formulaire.
+                        </p>
+                    </noscript>
+                </div>
+
+                <button class="btn btn-primary btn-lg" type="submit">
+                    Envoyer ma demande
+                </button>
                 <p class="form-privacy">
                     Les champs du formulaire sont nécessaires pour traiter votre demande et vous répondre.
                     Consultez la <a href="/confidentialite">politique de confidentialité</a>.

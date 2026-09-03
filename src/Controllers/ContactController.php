@@ -3,7 +3,13 @@
 namespace App\Controllers;
 
 use App\Http\AbstractController;
+use App\Security\ClientIpResolver;
+use App\Security\ContactRateLimiter;
 use App\Security\Csrf;
+use App\Security\TurnstileVerifier;
+use App\Services\Database;
+use RuntimeException;
+use Throwable;
 
 class ContactController extends AbstractController
 {
@@ -44,6 +50,12 @@ class ContactController extends AbstractController
             'errors' => $errors,
             'old' => $old,
             'success' => $success,
+            'turnstileSiteKey' => $this->envOrFail(
+                'TURNSTILE_SITE_KEY'
+            ),
+            'turnstileAction' => $this->envOrFail(
+                'TURNSTILE_EXPECTED_ACTION'
+            ),
         ]);
     }
 
@@ -52,10 +64,10 @@ class ContactController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $this->redirectToContact();
         }
-       
+
         if (!Csrf::check($_POST['csrf_token'] ?? null)) {
             error_log('CSRF check failed on contact form');
-            
+
             $_SESSION['contact_errors'] = [
                 'global' => 'Le formulaire n’a pas pu être envoyé. Merci de réessayer.',
             ];
@@ -153,6 +165,147 @@ class ContactController extends AbstractController
             $this->redirectToContact();
         }
 
+        $trustedProxySources = array_values(array_filter(
+            array_map(
+                'trim',
+                explode(
+                    ',',
+                    $this->envOrDefault('CONTACT_TRUSTED_PROXIES')
+                )
+            ),
+            static fn(string $source): bool => $source !== ''
+        ));
+
+        $clientIpResolver = new ClientIpResolver(
+            $trustedProxySources
+        );
+
+        $clientIp = $clientIpResolver->resolve($_SERVER);
+
+        if ($clientIp === null) {
+            error_log('Client IP resolution failed on contact form');
+
+            $_SESSION['contact_errors'] = [
+                'global' =>
+                'Le formulaire n’a pas pu être vérifié. Merci de réessayer.',
+            ];
+
+            $_SESSION['contact_old'] = [
+                'nom' => $nom,
+                'email' => $email,
+                'sujet' => $sujet,
+                'site_actuel' => $siteActuel,
+                'type_projet' => $typeProjet,
+                'budget' => $budget,
+                'delai' => $delai,
+                'message' => $message,
+            ];
+
+            $this->redirectToContact();
+        }
+
+        try {
+            $rateLimiter = new ContactRateLimiter(
+                Database::getConnection(),
+                $this->envOrFail('CONTACT_IP_HASH_KEY'),
+                $this->positiveIntEnvOrFail(
+                    'CONTACT_RATE_LIMIT_MAX_ATTEMPTS'
+                ),
+                $this->positiveIntEnvOrFail(
+                    'CONTACT_RATE_LIMIT_WINDOW_SECONDS'
+                ),
+                $this->positiveIntEnvOrFail(
+                    'CONTACT_RATE_LIMIT_BLOCK_SECONDS'
+                ),
+                'contact'
+            );
+
+            $retryAfter = $rateLimiter->consume($clientIp);
+        } catch (Throwable $exception) {
+            error_log(sprintf(
+                'Contact rate limiter failed (%s)',
+                $exception::class
+            ));
+
+            http_response_code(503);
+            header('Content-Type: text/plain; charset=UTF-8');
+
+            echo 'Le formulaire est temporairement indisponible. '
+                . 'Merci de réessayer plus tard.';
+
+            exit;
+        }
+
+        if ($retryAfter > 0) {
+            error_log('Contact form rate limit exceeded');
+
+            http_response_code(429);
+            header('Retry-After: ' . $retryAfter);
+            header('Content-Type: text/plain; charset=UTF-8');
+
+            echo 'Trop de tentatives. Merci de réessayer plus tard.';
+
+            exit;
+        }
+
+        try {
+            $deletedRows = $rateLimiter->cleanupExpired();
+
+            if ($deletedRows > 0) {
+                error_log(sprintf(
+                    'Contact rate limiter cleanup removed %d expired rows',
+                    $deletedRows
+                ));
+            }
+        } catch (Throwable $exception) {
+            error_log(sprintf(
+                'Contact rate limiter cleanup failed (%s)',
+                $exception::class
+            ));
+        }
+
+        $allowedHostnames = array_values(array_filter(
+            array_map(
+                'trim',
+                explode(
+                    ',',
+                    $this->envOrFail('TURNSTILE_ALLOWED_HOSTNAMES')
+                )
+            ),
+            static fn(string $hostname): bool => $hostname !== ''
+        ));
+
+        $turnstileVerifier = new TurnstileVerifier(
+            $this->envOrFail('TURNSTILE_SECRET_KEY'),
+            $allowedHostnames,
+            $this->envOrFail('TURNSTILE_EXPECTED_ACTION'),
+            strtolower($this->envOrFail('APP_ENV')) === 'dev'
+        );
+
+        $turnstileToken = $_POST['cf-turnstile-response'] ?? null;
+
+        if (!$turnstileVerifier->verify($turnstileToken, $clientIp)) {
+            error_log('Turnstile verification failed on contact form');
+
+            $_SESSION['contact_errors'] = [
+                'global' =>
+                'Le formulaire n’a pas pu être vérifié. Merci de réessayer.',
+            ];
+
+            $_SESSION['contact_old'] = [
+                'nom' => $nom,
+                'email' => $email,
+                'sujet' => $sujet,
+                'site_actuel' => $siteActuel,
+                'type_projet' => $typeProjet,
+                'budget' => $budget,
+                'delai' => $delai,
+                'message' => $message,
+            ];
+
+            $this->redirectToContact();
+        }
+
         $typeProjetLabel = self::PROJECT_TYPES[$typeProjet];
         $budgetLabel = self::BUDGET_OPTIONS[$budget];
         $delaiLabel = self::DEADLINE_OPTIONS[$delai];
@@ -190,6 +343,55 @@ class ContactController extends AbstractController
         $_SESSION['contact_success'] = 'Votre message a bien été envoyé. Je vous répondrai dès que possible.';
         Csrf::regenerate();
         $this->redirectToContact();
+    }
+
+    private function positiveIntEnvOrFail(string $key): int
+    {
+        $value = $this->envOrFail($key);
+
+        $validatedValue = filter_var(
+            $value,
+            FILTER_VALIDATE_INT,
+            [
+                'options' => [
+                    'min_range' => 1,
+                ],
+            ]
+        );
+
+        if ($validatedValue === false) {
+            throw new RuntimeException(
+                "Invalid positive integer environment variable: {$key}"
+            );
+        }
+
+        return $validatedValue;
+    }
+
+    private function envOrDefault(
+        string $key,
+        string $default = ''
+    ): string {
+        $value = $_ENV[$key] ?? getenv($key);
+
+        if (!is_string($value)) {
+            return $default;
+        }
+
+        return trim($value);
+    }
+
+    private function envOrFail(string $key): string
+    {
+        $value = $_ENV[$key] ?? getenv($key);
+
+        if (!is_string($value) || trim($value) === '') {
+            throw new RuntimeException(
+                "Missing environment variable: {$key}"
+            );
+        }
+
+        return trim($value);
     }
 
     private function postString(string $key): string
