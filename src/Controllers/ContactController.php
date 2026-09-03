@@ -3,9 +3,10 @@
 namespace App\Controllers;
 
 use App\Http\AbstractController;
+use App\Security\ClientIpResolver;
 use App\Security\Csrf;
-use RuntimeException;
 use App\Security\TurnstileVerifier;
+use RuntimeException;
 
 class ContactController extends AbstractController
 {
@@ -161,6 +162,45 @@ class ContactController extends AbstractController
             $this->redirectToContact();
         }
 
+        $trustedProxySources = array_values(array_filter(
+            array_map(
+                'trim',
+                explode(
+                    ',',
+                    $this->envOrDefault('CONTACT_TRUSTED_PROXIES')
+                )
+            ),
+            static fn(string $source): bool => $source !== ''
+        ));
+
+        $clientIpResolver = new ClientIpResolver(
+            $trustedProxySources
+        );
+
+        $clientIp = $clientIpResolver->resolve($_SERVER);
+
+        if ($clientIp === null) {
+            error_log('Client IP resolution failed on contact form');
+
+            $_SESSION['contact_errors'] = [
+                'global' =>
+                'Le formulaire n’a pas pu être vérifié. Merci de réessayer.',
+            ];
+
+            $_SESSION['contact_old'] = [
+                'nom' => $nom,
+                'email' => $email,
+                'sujet' => $sujet,
+                'site_actuel' => $siteActuel,
+                'type_projet' => $typeProjet,
+                'budget' => $budget,
+                'delai' => $delai,
+                'message' => $message,
+            ];
+
+            $this->redirectToContact();
+        }
+
         $allowedHostnames = array_values(array_filter(
             array_map(
                 'trim',
@@ -181,7 +221,7 @@ class ContactController extends AbstractController
 
         $turnstileToken = $_POST['cf-turnstile-response'] ?? null;
 
-        if (!$turnstileVerifier->verify($turnstileToken)) {
+        if (!$turnstileVerifier->verify($turnstileToken, $clientIp)) {
             error_log('Turnstile verification failed on contact form');
 
             $_SESSION['contact_errors'] = [
@@ -240,6 +280,19 @@ class ContactController extends AbstractController
         $_SESSION['contact_success'] = 'Votre message a bien été envoyé. Je vous répondrai dès que possible.';
         Csrf::regenerate();
         $this->redirectToContact();
+    }
+
+    private function envOrDefault(
+        string $key,
+        string $default = ''
+    ): string {
+        $value = $_ENV[$key] ?? getenv($key);
+
+        if (!is_string($value)) {
+            return $default;
+        }
+
+        return trim($value);
     }
 
     private function envOrFail(string $key): string
