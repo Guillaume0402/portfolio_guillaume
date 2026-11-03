@@ -56,7 +56,9 @@ services:
       - "${DB_PUBLISHED_HOST:-127.0.0.1}:${DB_PUBLISHED_PORT:-3307}:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./docker/mysql/initdb:/docker-entrypoint-initdb.d:ro
+      - ./docker/mysql/initdb/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./docker/mysql/initdb/02-seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+      - ./database/migrations/20260902_create_contact_rate_limits.sql:/docker-entrypoint-initdb.d/03-contact-rate-limits.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p\"$${MYSQL_ROOT_PASSWORD}\""]
       interval: 10s

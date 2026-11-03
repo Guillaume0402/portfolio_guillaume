@@ -147,9 +147,77 @@ Dans Docker (depuis le container web), MySQL est accessible via :
 - port : `3306`
 - db/user/password : via `.env`
 
-Init SQL :
-- placer les scripts dans `docker/mysql/initdb/`
-- exécutés au premier démarrage du volume MySQL
+### Base ciblée
+
+Les deux fichiers Compose transmettent la même variable `DB_NAME` à PHP et à
+`MYSQL_DATABASE` dans le service `db`. En local, sa valeur par défaut reste `app` ;
+en production, elle doit être fournie explicitement. Une valeur `DB_NAME` déjà
+configurée reste prioritaire et ne doit pas être changée pour mettre à jour une
+base existante.
+
+L'entrypoint de l'[image officielle MySQL](https://hub.docker.com/_/mysql) crée
+`MYSQL_DATABASE` et sélectionne cette base pour chaque fichier SQL d'initialisation.
+Le schéma, le seed et la migration
+ne fixent donc aucun nom de base avec `USE` ou `CREATE DATABASE`. La connexion PHP
+utilise ce même `DB_NAME` dans son DSN (`src/Services/Database.php`).
+
+### Nouvelle installation Docker
+
+Cette procédure concerne uniquement un volume MySQL qui n'a jamais été initialisé.
+Choisir `DB_NAME` avant le premier démarrage, puis utiliser la procédure de
+démarrage de la section 3. Pour les essais, utiliser un projet Docker isolé avec
+son propre volume, sans réutiliser ni supprimer un volume existant.
+
+Les deux fichiers Compose montent explicitement ces fichiers en lecture seule.
+L'entrypoint les exécute dans cet ordre :
+
+1. `docker/mysql/initdb/01-schema.sql` : tables `projects` et `skills`.
+2. `docker/mysql/initdb/02-seed.sql` : données initiales.
+3. `database/migrations/20260902_create_contact_rate_limits.sql`, monté sous
+   `/docker-entrypoint-initdb.d/03-contact-rate-limits.sql` : table du compteur.
+
+Le contenu de la migration reste dans un seul fichier. Ajouter un fichier dans
+`database/migrations/` ou `docker/mysql/initdb/` ne suffit pas à le faire exécuter :
+son montage doit être déclaré dans les deux fichiers Compose.
+
+Une fois l'initialisation terminée, vérifier depuis un client MySQL connecté
+explicitement à la base `DB_NAME` :
+
+```sql
+SELECT DATABASE();
+SHOW TABLES;
+SHOW CREATE TABLE contact_rate_limits;
+```
+
+La base sélectionnée doit correspondre à `DB_NAME` et contenir les trois tables.
+
+### Base déjà initialisée
+
+Un redémarrage ou une recréation du conteneur conservant le même volume ne rejoue
+pas les scripts d'initialisation. Le nouveau montage n'applique donc aucune
+migration automatiquement à une base existante et ne remplace pas ses données.
+
+1. Conserver le volume et la configuration `DB_NAME` existants.
+2. Se connecter explicitement à cette base et effectuer les vérifications SQL en
+   lecture seule ci-dessus. Comparer la structure de `contact_rate_limits` avec
+   `database/migrations/20260902_create_contact_rate_limits.sql`.
+3. Si la table est présente et conforme, aucune migration n'est à rejouer.
+4. Si elle est absente, planifier séparément l'application manuelle du seul fichier
+   de migration à la base sélectionnée. Depuis un client MySQL dans le conteneur
+   `db` disposant des nouveaux montages, la commande est :
+
+   ```sql
+   SOURCE /docker-entrypoint-initdb.d/03-contact-rate-limits.sql;
+   ```
+
+5. Après cette application, vérifier sa structure avec `SHOW CREATE TABLE`.
+
+La migration utilise `CREATE TABLE IF NOT EXISTS` et ne supprime aucune donnée.
+Elle ne corrige toutefois pas la structure d'une table existante non conforme :
+ce cas nécessite une analyse séparée. Ne pas rejouer `01-schema.sql` ou
+`02-seed.sql` sur une base existante : le schéma initial contient des `DROP TABLE`
+et le seed est réservé aux données de démarrage. Un reset de volume n'est pas une
+procédure de migration.
 
 ---
 
