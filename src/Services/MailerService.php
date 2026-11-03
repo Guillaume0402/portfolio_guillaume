@@ -38,7 +38,7 @@ class MailerService
             $encryption = $this->env('SMTP_ENCRYPTION', '');
             $fromAddress = $this->env('MAIL_FROM', 'no-reply@portfolio.local');
             $fromName = $this->env('MAIL_FROM_NAME', 'Portfolio Guillaume');
-            $toAddress = $this->env('CONTACT_TO', 'g.maignaut@gmail.com');
+            $toAddress = $this->env('CONTACT_TO', 'maignaut.g@gmail.com');
 
             $mail->isSMTP();
             $mail->Host = $host;

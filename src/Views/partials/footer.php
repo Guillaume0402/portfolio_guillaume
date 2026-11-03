@@ -13,7 +13,7 @@
             </p>
 
             <div class="footer-actions">
-                <a class="footer-cta" href="mailto:g.maignaut@gmail.com">g.maignaut@gmail.com</a>
+                <a class="footer-cta" href="mailto:maignaut.g@gmail.com">maignaut.g@gmail.com</a>
                 <span class="footer-sep" aria-hidden="true">•</span>
                 <a class="footer-link" href="tel:+33650428039">+33 6 50 42 80 39</a>
             </div>

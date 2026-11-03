@@ -60,7 +60,7 @@ $deadlineOptions = [
                 Décrivez votre activité, votre objectif, vos délais et votre budget approximatif si vous en avez un. Je vous répondrai avec une première lecture claire de la meilleure approche.
             </p>
             <div class="contact-page-actions">
-                <a class="btn btn-primary btn-lg" href="mailto:g.maignaut@gmail.com">Envoyer un email</a>
+                <a class="btn btn-primary btn-lg" href="mailto:maignaut.g@gmail.com">Envoyer un email</a>
                 <a class="btn btn-ghost btn-lg" href="https://www.linkedin.com/in/guillaume-maignaut-9b3464340/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
         </header>
@@ -70,7 +70,7 @@ $deadlineOptions = [
             <ul class="contact-list">
                 <li>
                     <span class="contact-label">Email</span>
-                    <a href="mailto:g.maignaut@gmail.com">g.maignaut@gmail.com</a>
+                    <a href="mailto:maignaut.g@gmail.com">maignaut.g@gmail.com</a>
                 </li>
                 <li>
                     <span class="contact-label">Telephone</span>
