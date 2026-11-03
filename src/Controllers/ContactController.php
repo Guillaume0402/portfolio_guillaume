@@ -72,16 +72,7 @@ class ContactController extends AbstractController
                 'global' => 'Le formulaire n’a pas pu être envoyé. Merci de réessayer.',
             ];
 
-            $_SESSION['contact_old'] = [
-                'nom' => $this->postString('nom'),
-                'email' => $this->postString('email'),
-                'sujet' => $this->postString('sujet'),
-                'site_actuel' => $this->postString('site_actuel'),
-                'type_projet' => $this->postString('type_projet'),
-                'budget' => $this->postString('budget'),
-                'delai' => $this->postString('delai'),
-                'message' => $this->postString('message'),
-            ];
+            unset($_SESSION['contact_old']);
 
             $this->redirectToContact();
         }
@@ -151,16 +142,7 @@ class ContactController extends AbstractController
 
         if (!empty($errors)) {
             $_SESSION['contact_errors'] = $errors;
-            $_SESSION['contact_old'] = [
-                'nom' => $nom,
-                'email' => $email,
-                'sujet' => $sujet,
-                'site_actuel' => $siteActuel,
-                'type_projet' => $typeProjet,
-                'budget' => $budget,
-                'delai' => $delai,
-                'message' => $message,
-            ];
+            $_SESSION['contact_old'] = $this->prepareOldInput();
 
             $this->redirectToContact();
         }
@@ -190,16 +172,7 @@ class ContactController extends AbstractController
                 'Le formulaire n’a pas pu être vérifié. Merci de réessayer.',
             ];
 
-            $_SESSION['contact_old'] = [
-                'nom' => $nom,
-                'email' => $email,
-                'sujet' => $sujet,
-                'site_actuel' => $siteActuel,
-                'type_projet' => $typeProjet,
-                'budget' => $budget,
-                'delai' => $delai,
-                'message' => $message,
-            ];
+            $_SESSION['contact_old'] = $this->prepareOldInput();
 
             $this->redirectToContact();
         }
@@ -292,16 +265,7 @@ class ContactController extends AbstractController
                 'Le formulaire n’a pas pu être vérifié. Merci de réessayer.',
             ];
 
-            $_SESSION['contact_old'] = [
-                'nom' => $nom,
-                'email' => $email,
-                'sujet' => $sujet,
-                'site_actuel' => $siteActuel,
-                'type_projet' => $typeProjet,
-                'budget' => $budget,
-                'delai' => $delai,
-                'message' => $message,
-            ];
+            $_SESSION['contact_old'] = $this->prepareOldInput();
 
             $this->redirectToContact();
         }
@@ -326,16 +290,7 @@ class ContactController extends AbstractController
             $_SESSION['contact_errors'] = [
                 'global' => 'Une erreur est survenue lors de l’envoi du message. Veuillez réessayer dans quelques instants.',
             ];
-            $_SESSION['contact_old'] = [
-                'nom' => $nom,
-                'email' => $email,
-                'sujet' => $sujet,
-                'site_actuel' => $siteActuel,
-                'type_projet' => $typeProjet,
-                'budget' => $budget,
-                'delai' => $delai,
-                'message' => $message,
-            ];
+            $_SESSION['contact_old'] = $this->prepareOldInput();
 
             $this->redirectToContact();
         }
@@ -392,6 +347,37 @@ class ContactController extends AbstractController
         }
 
         return trim($value);
+    }
+
+    /** @return array<string, string> */
+    private function prepareOldInput(): array
+    {
+        $old = [];
+
+        // Borner seulement la copie en session, après la validation métier.
+        foreach ([
+            'nom' => 100,
+            'email' => 254,
+            'sujet' => 150,
+            'site_actuel' => 300,
+            'message' => 3000,
+        ] as $field => $maxLength) {
+            $value = $this->postString($field);
+            $old[$field] = mb_check_encoding($value, 'UTF-8')
+                ? mb_substr($value, 0, $maxLength, 'UTF-8')
+                : '';
+        }
+
+        foreach ([
+            'type_projet' => self::PROJECT_TYPES,
+            'budget' => self::BUDGET_OPTIONS,
+            'delai' => self::DEADLINE_OPTIONS,
+        ] as $field => $options) {
+            $value = $this->postString($field);
+            $old[$field] = array_key_exists($value, $options) ? $value : '';
+        }
+
+        return $old;
     }
 
     private function postString(string $key): string
