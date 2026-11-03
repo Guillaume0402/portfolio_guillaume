@@ -1,0 +1,56 @@
+name: Tests des sessions du formulaire
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contact-session-tests:
+    name: PHP 8.4 - 16 scénarios
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Configurer PHP 8.4
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: '8.4'
+          extensions: mbstring
+          coverage: none
+          tools: none
+
+      - name: Vérifier les prérequis PHP
+        run: |
+          php -r '
+          $checks = [
+              "PHP 8.4" => PHP_MAJOR_VERSION === 8 && PHP_MINOR_VERSION === 4,
+              "mbstring" => extension_loaded("mbstring")
+                  && function_exists("mb_strlen")
+                  && function_exists("mb_check_encoding")
+                  && function_exists("mb_substr"),
+              "proc_open" => function_exists("proc_open"),
+          ];
+          foreach ($checks as $name => $available) {
+              printf("%s : %s\n", $name, $available ? "OK" : "MANQUANT");
+          }
+          if (in_array(false, $checks, true)) {
+              exit(2);
+          }
+          printf("PHP %s\n", PHP_VERSION);
+          '
+
+      - name: Exécuter les 16 scénarios
+        run: php tests/contact_session_test.php
