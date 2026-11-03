@@ -398,7 +398,7 @@ $offers = [
                     </div>
                     <div class="contact-actions">
                         <a class="btn btn-primary btn-lg" href="/contact">Remplir le formulaire</a>
-                        <a class="btn btn-ghost btn-lg" href="mailto:g.maignaut@gmail.com">Envoyer un email</a>
+                        <a class="btn btn-ghost btn-lg" href="mailto:maignaut.g@gmail.com">Envoyer un email</a>
                     </div>
                 </div>
             </div>

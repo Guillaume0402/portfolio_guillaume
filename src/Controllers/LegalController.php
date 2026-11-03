@@ -14,7 +14,7 @@ final class LegalController extends AbstractController
         'editor_status' => 'Entrepreneur individuel',
         'editor_activity' => 'Développement web, création de sites internet, intégration d\'interfaces, maintenance et évolution de sites web, développement d\'applications web, hébergement et accompagnement technique de projets numériques.',
         'editor_address' => '5 rue du Docteur Schweitzer, 32500 Fleurance, France',
-        'editor_email' => 'g.maignaut@gmail.com',
+        'editor_email' => 'maignaut.g@gmail.com',
         'editor_phone' => '+33 6 50 42 80 39',
         'siren' => '105 857 130',
         'siret' => '105 857 130 00014',
