@@ -1,7 +1,7 @@
 SET NAMES utf8mb4;
 SET CHARACTER SET utf8mb4;
 
-USE `portfolio`;
+-- La base est sélectionnée par l'entrypoint MySQL via MYSQL_DATABASE.
 
 INSERT INTO `projects` (`idproject`, `title`, `description`, `github_link`, `project_link`, `image`, `tech_stack`) VALUES
 (1, 'EcoRide', 'Projet full stack avec rôles utilisateurs, trajets, crédits et notifications. Il montre ma capacité à gérer une logique métier plus complète qu’un simple site vitrine.', 'https://github.com/Guillaume0402/ecoride', 'https://ecoride-app-gn-39216337ff0d.herokuapp.com/', 'ecoride.webp', 'PHP, HTML, CSS, Docker, SQL, NoSQL'),

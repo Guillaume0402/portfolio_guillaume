@@ -1,11 +1,8 @@
 SET NAMES utf8mb4;
 SET CHARACTER SET utf8mb4;
 
-CREATE DATABASE IF NOT EXISTS `portfolio`
-CHARACTER SET utf8mb4
-COLLATE utf8mb4_0900_ai_ci;
-
-USE `portfolio`;
+-- La base est créée et sélectionnée par l'entrypoint MySQL via MYSQL_DATABASE.
+-- Réservé à l'initialisation d'une base neuve ; ne pas rejouer sur une base existante.
 
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
