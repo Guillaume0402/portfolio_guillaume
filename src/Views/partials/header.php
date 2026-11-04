@@ -1,10 +1,9 @@
 <a class="skip-link" href="#contenu">Aller au contenu</a>
-<header class="site-header<?= !empty($studioHome) ? ' studio-header' : '' ?>">
+<header class="site-header studio-header">
     <div class="container header-inner">
         <a class="brand" href="/" aria-label="Accueil">
-            <img class="brand-photo" src="/images/Avatar-tiny.webp" alt="" width="42" height="42">
+            <img class="brand-photo" src="/images/logo-gm.webp" alt="" width="42" height="42">
             <span class="brand-name">Guillaume Maignaut</span>
-            <span class="brand-tag">Freelance web</span>
         </a>
 
         <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">

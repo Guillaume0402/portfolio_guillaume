@@ -64,7 +64,7 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/webp" href="/favicon.webp">
     <?php if (!empty($studioHome)): ?>
-        <link rel="preload" as="image" href="/images/logo-gm.webp" media="(prefers-reduced-motion: no-preference)" fetchpriority="low">
+        <link rel="preload" as="image" href="/images/logo1.png" media="(prefers-reduced-motion: no-preference)" fetchpriority="low">
     <?php endif; ?>
     <link rel="stylesheet" href="/assets/app.css?v=<?= $assetVersion('/assets/app.css') ?>">
 </head>

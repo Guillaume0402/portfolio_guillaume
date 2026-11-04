@@ -30,18 +30,6 @@ html[data-theme="light"] {
 }
 
 [data-theme="light"] {
-    .site-header {
-        border-bottom-color: var(--stroke);
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.82));
-        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-
-        &:not(.studio-header) {
-            --nav-menu-border: var(--glass-border);
-            --nav-menu-background: rgba(255, 255, 255, 0.94);
-            --nav-menu-shadow: 0 14px 36px rgba(15, 23, 42, 0.14);
-        }
-    }
-
     .site-footer {
         border-top-color: var(--stroke);
         background: linear-gradient(to top, rgba(241, 245, 249, 0.98), rgba(255, 255, 255, 0.86));
@@ -58,7 +46,6 @@ html[data-theme="light"] {
     }
 
     .brand-tag,
-    .nav-link,
     .footer-text,
     .footer-link,
     .footer-social,
@@ -89,8 +76,6 @@ html[data-theme="light"] {
     }
 
     .brand-tag,
-    .nav-toggle,
-    .theme-toggle,
     .badge,
     .about-stats .stat,
     .contact-list li,
@@ -100,10 +85,8 @@ html[data-theme="light"] {
         background: rgba(255, 255, 255, 0.74);
     }
 
-    .nav-link:hover,
     .footer-link:hover,
     .footer-social:hover,
-    .theme-toggle:hover,
     .chip:hover {
         color: var(--text);
         background: var(--glass-hover);

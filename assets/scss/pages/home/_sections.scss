@@ -47,14 +47,7 @@
 
 .studio-main { width: 100%; }
 
-body:has(> .studio-main) {
-    height: auto;
-    min-height: 100%;
-    overflow-x: clip;
-}
-
 .creative-home,
-.studio-header,
 .studio-main + .site-footer {
     --edge: clamp(18px, 5.1vw, 88px);
     --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
