@@ -7,28 +7,13 @@ use App\Security\Csrf;
 /** @var string|null $success */
 /** @var string $turnstileSiteKey */
 /** @var string $turnstileAction */
+/** @var array<string, string> $projectTypes */
+/** @var array<string, string> $budgetOptions */
+/** @var array<string, string> $deadlineOptions */
 
-$projectTypes = [
-    'site_vitrine' => 'Site vitrine',
-    'landing_page' => 'Landing page',
-    'refonte' => 'Refonte',
-    'maintenance' => 'Maintenance',
-    'indecis' => 'Je ne sais pas encore',
-];
-
-$budgetOptions = [
-    '450_900' => '450 à 900 €',
-    '900_1500' => '900 à 1500 €',
-    '1500_plus' => '1500 € et plus',
-    'indecis' => 'Je ne sais pas encore',
-];
-
-$deadlineOptions = [
-    'urgent' => 'Urgent',
-    'moins_un_mois' => 'Moins d’un mois',
-    'un_a_trois_mois' => '1 à 3 mois',
-    'non_defini' => 'Pas encore défini',
-];
+$errorAttributes = static function (string $field) use ($errors): string {
+    return empty($errors[$field]) ? '' : 'aria-invalid="true" aria-describedby="' . $field . '-error"';
+};
 ?>
 
 <script
@@ -38,7 +23,7 @@ $deadlineOptions = [
 
 <section class="contact-page section">
     <?php if (!empty($errors['global']) || !empty($success)): ?>
-        <div class="container contact-feedback">
+        <div class="container contact-feedback" role="status">
             <?php if (!empty($errors['global'])): ?>
                 <p class="form-error">
                     <?= htmlspecialchars($errors['global']) ?>
@@ -52,44 +37,19 @@ $deadlineOptions = [
         </div>
     <?php endif; ?>
 
-    <div class="container contact-page-grid">
-        <header class="contact-page-hero reveal">
-            <p class="contact-page-kicker">Demande de projet</p>
-            <h1 class="contact-page-title">Parlons de votre site vitrine, landing page ou refonte web.</h1>
+    <div class="container contact-page-intro">
+        <header class="contact-page-hero">
+            <p class="contact-page-kicker">Développeur web freelance · Fleurance, Gers</p>
+            <h1 class="contact-page-title">Parlons de votre site.</h1>
             <p class="contact-page-lead">
-                Décrivez votre activité, votre objectif, vos délais et votre budget approximatif si vous en avez un. Je vous répondrai avec une première lecture claire de la meilleure approche.
+                Une correction, une amélioration ou un nouveau site ? Décrivez votre besoin et je vous dirai comment je peux vous aider.
             </p>
-            <div class="contact-page-actions">
-                <a class="btn btn-primary btn-lg" href="mailto:maignaut.g@gmail.com">Envoyer un email</a>
-                <a class="btn btn-ghost btn-lg" href="https://www.linkedin.com/in/guillaume-maignaut-9b3464340/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            </div>
         </header>
-
-        <aside class="contact-page-panel reveal" aria-label="Informations de contact">
-            <h2>Infos directes</h2>
-            <ul class="contact-list">
-                <li>
-                    <span class="contact-label">Email</span>
-                    <a href="mailto:maignaut.g@gmail.com">maignaut.g@gmail.com</a>
-                </li>
-                <li>
-                    <span class="contact-label">Telephone</span>
-                    <a href="tel:+33650428039">+33 6 50 42 80 39</a>
-                </li>
-                <li>
-                    <span class="contact-label">Disponibilite</span>
-                    <span>Sites vitrines, landing pages, refontes et accompagnement web</span>
-                </li>
-            </ul>
-        </aside>
     </div>
 
-    <div class="container contact-form-wrap reveal">
-        <article class="contact-form-card">
-            <h2>Me contacter</h2>
-            <p>
-                Vous souhaitez créer ou améliorer un site web ? Indiquez votre type de projet, votre budget approximatif et le délai souhaité. Je vous répondrai avec une première analyse claire.
-            </p>
+    <div class="container contact-page-grid">
+        <article class="contact-form-card" id="formulaire" tabindex="-1" aria-labelledby="formulaire-titre">
+            <h2 id="formulaire-titre">Me contacter</h2>
 
             <form class="contact-form" action="/contact/submit" method="post">
                 <input type="hidden" name="csrf_token" value="<?= Csrf::token() ?>">
@@ -110,11 +70,13 @@ $deadlineOptions = [
                             id="nom"
                             name="nom"
                             type="text"
+                            autocomplete="name"
+                            <?= $errorAttributes('nom') ?>
                             value="<?= htmlspecialchars($old['nom'] ?? '') ?>"
                             maxlength="100"
                             required>
                         <?php if (!empty($errors['nom'])): ?>
-                            <small class="field-error"><?= htmlspecialchars($errors['nom']) ?></small>
+                            <small class="field-error" id="nom-error"><?= htmlspecialchars($errors['nom']) ?></small>
                         <?php endif; ?>
                     </label>
 
@@ -124,11 +86,13 @@ $deadlineOptions = [
                             id="email"
                             name="email"
                             type="email"
+                            autocomplete="email"
+                            <?= $errorAttributes('email') ?>
                             value="<?= htmlspecialchars($old['email'] ?? '') ?>"
                             maxlength="254"
                             required>
                         <?php if (!empty($errors['email'])): ?>
-                            <small class="field-error"><?= htmlspecialchars($errors['email']) ?></small>
+                            <small class="field-error" id="email-error"><?= htmlspecialchars($errors['email']) ?></small>
                         <?php endif; ?>
                     </label>
                 </div>
@@ -139,12 +103,13 @@ $deadlineOptions = [
                         id="sujet"
                         name="sujet"
                         type="text"
-                        placeholder="Ex : création d'un site vitrine"
+                        <?= $errorAttributes('sujet') ?>
+                        placeholder="Ex : mon formulaire ne fonctionne plus"
                         value="<?= htmlspecialchars($old['sujet'] ?? '') ?>"
                         maxlength="150"
                         required>
                     <?php if (!empty($errors['sujet'])): ?>
-                        <small class="field-error"><?= htmlspecialchars($errors['sujet']) ?></small>
+                        <small class="field-error" id="sujet-error"><?= htmlspecialchars($errors['sujet']) ?></small>
                     <?php endif; ?>
                 </label>
 
@@ -154,15 +119,16 @@ $deadlineOptions = [
                         id="site_actuel"
                         name="site_actuel"
                         type="text"
+                        <?= $errorAttributes('site_actuel') ?>
                         placeholder="Ex : https://votre-site.fr"
                         value="<?= htmlspecialchars($old['site_actuel'] ?? '') ?>"
                         maxlength="300">
                     <?php if (!empty($errors['site_actuel'])): ?>
-                        <small class="field-error"><?= htmlspecialchars($errors['site_actuel']) ?></small>
+                        <small class="field-error" id="site_actuel-error"><?= htmlspecialchars($errors['site_actuel']) ?></small>
                     <?php endif; ?>
                 </label>
 
-                <fieldset class="choice-field">
+                <fieldset class="choice-field" <?= $errorAttributes('type_projet') ?>>
                     <legend>Type de projet</legend>
                     <div class="choice-grid">
                         <?php foreach ($projectTypes as $value => $label): ?>
@@ -178,12 +144,12 @@ $deadlineOptions = [
                         <?php endforeach; ?>
                     </div>
                     <?php if (!empty($errors['type_projet'])): ?>
-                        <small class="field-error"><?= htmlspecialchars($errors['type_projet']) ?></small>
+                        <small class="field-error" id="type_projet-error"><?= htmlspecialchars($errors['type_projet']) ?></small>
                     <?php endif; ?>
                 </fieldset>
 
                 <div class="field-row">
-                    <fieldset class="choice-field">
+                    <fieldset class="choice-field" <?= $errorAttributes('budget') ?>>
                         <legend>Budget approximatif</legend>
                         <p class="choice-help">Si vous ne connaissez pas encore votre budget exact, choisissez simplement la fourchette la plus proche.</p>
                         <div class="choice-grid choice-grid-compact">
@@ -200,11 +166,11 @@ $deadlineOptions = [
                             <?php endforeach; ?>
                         </div>
                         <?php if (!empty($errors['budget'])): ?>
-                            <small class="field-error"><?= htmlspecialchars($errors['budget']) ?></small>
+                            <small class="field-error" id="budget-error"><?= htmlspecialchars($errors['budget']) ?></small>
                         <?php endif; ?>
                     </fieldset>
 
-                    <fieldset class="choice-field">
+                    <fieldset class="choice-field" <?= $errorAttributes('delai') ?>>
                         <legend>Délai souhaité</legend>
                         <div class="choice-grid choice-grid-compact">
                             <?php foreach ($deadlineOptions as $value => $label): ?>
@@ -220,7 +186,7 @@ $deadlineOptions = [
                             <?php endforeach; ?>
                         </div>
                         <?php if (!empty($errors['delai'])): ?>
-                            <small class="field-error"><?= htmlspecialchars($errors['delai']) ?></small>
+                            <small class="field-error" id="delai-error"><?= htmlspecialchars($errors['delai']) ?></small>
                         <?php endif; ?>
                     </fieldset>
                 </div>
@@ -230,20 +196,22 @@ $deadlineOptions = [
                     <textarea
                         id="message"
                         name="message"
+                        <?= $errorAttributes('message') ?>
                         rows="6"
                         placeholder="Présentez votre activité, votre besoin, vos délais et votre budget indicatif si vous en avez un."
                         minlength="10"
                         maxlength="3000"
                         required><?= htmlspecialchars($old['message'] ?? '') ?></textarea>
                     <?php if (!empty($errors['message'])): ?>
-                        <small class="field-error"><?= htmlspecialchars($errors['message']) ?></small>
+                        <small class="field-error" id="message-error"><?= htmlspecialchars($errors['message']) ?></small>
                     <?php endif; ?>
                 </label>
                 <div class="turnstile-field">
                     <div
                         class="cf-turnstile"
                         data-sitekey="<?= htmlspecialchars($turnstileSiteKey, ENT_QUOTES, 'UTF-8') ?>"
-                        data-action="<?= htmlspecialchars($turnstileAction, ENT_QUOTES, 'UTF-8') ?>">
+                        data-action="<?= htmlspecialchars($turnstileAction, ENT_QUOTES, 'UTF-8') ?>"
+                        data-size="compact">
                     </div>
 
                     <noscript>
@@ -262,5 +230,27 @@ $deadlineOptions = [
                 </p>
             </form>
         </article>
+
+        <aside class="contact-page-panel" aria-label="Informations de contact">
+            <h2>Coordonnées</h2>
+            <ul class="contact-list">
+                <li>
+                    <span class="contact-label">Email</span>
+                    <a href="mailto:maignaut.g@gmail.com">maignaut.g@gmail.com</a>
+                </li>
+                <li>
+                    <span class="contact-label">Téléphone</span>
+                    <a href="tel:+33650428039">+33 6 50 42 80 39</a>
+                </li>
+                <li>
+                    <span class="contact-label">Localisation</span>
+                    <span>Fleurance, Gers · Interventions à distance</span>
+                </li>
+            </ul>
+            <div class="contact-page-actions">
+                <a class="btn btn-ghost" href="mailto:maignaut.g@gmail.com">Envoyer un email</a>
+                <a class="btn btn-ghost" href="https://www.linkedin.com/in/guillaume-maignaut-9b3464340/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </aside>
     </div>
 </section>

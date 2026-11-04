@@ -5,25 +5,15 @@ function getStoredTheme() {
         const theme = localStorage.getItem(STORAGE_KEY);
 
         return theme === "dark" || theme === "light" ? theme : null;
-    } catch (error) {
-        return null;
+    } catch {
+        return undefined;
     }
-}
-
-function getSystemTheme() {
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-}
-
-function getInitialTheme() {
-    const currentTheme = document.documentElement.dataset.theme;
-
-    return currentTheme === "dark" || currentTheme === "light" ? currentTheme : getStoredTheme() ?? getSystemTheme();
 }
 
 function saveTheme(theme) {
     try {
         localStorage.setItem(STORAGE_KEY, theme);
-    } catch (error) {
+    } catch {
         // Ignore storage failures; the current page still updates.
     }
 }
@@ -34,26 +24,40 @@ function applyTheme(theme, toggle) {
 
     if (!toggle) return;
 
-    const isDark = theme === "dark";
-    const label = isDark ? "Activer le mode clair" : "Activer le mode sombre";
-
-    toggle.setAttribute("aria-label", label);
-    toggle.setAttribute("aria-pressed", String(isDark));
-    toggle.setAttribute("title", label);
+    toggle.setAttribute("aria-pressed", String(theme === "dark"));
 }
 
 export function initThemeToggle() {
     const toggle = document.querySelector("[data-theme-toggle]");
-    const initialTheme = getInitialTheme();
+    const systemPreference = window.matchMedia?.("(prefers-color-scheme: dark)");
+    let manualTheme = getStoredTheme();
 
-    applyTheme(initialTheme, toggle);
+    const updateTheme = () => {
+        applyTheme(manualTheme ?? (systemPreference?.matches ? "dark" : "light"), toggle);
+    };
+    const syncTheme = () => {
+        const storedTheme = getStoredTheme();
 
-    if (!toggle) return;
+        // Un stockage indisponible ne doit pas effacer le choix en mémoire.
+        if (storedTheme !== undefined) manualTheme = storedTheme;
+        updateTheme();
+    };
 
-    toggle.addEventListener("click", () => {
-        const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    updateTheme();
 
-        saveTheme(nextTheme);
-        applyTheme(nextTheme, toggle);
+    systemPreference?.addEventListener?.("change", () => {
+        if (!manualTheme) updateTheme();
+    });
+    window.addEventListener("pageshow", (event) => {
+        // Le retour arrière peut restaurer une page avec son ancien thème.
+        if (event.persisted) syncTheme();
+    });
+    window.addEventListener("storage", (event) => {
+        if (event.key === STORAGE_KEY || event.key === null) syncTheme();
+    });
+    toggle?.addEventListener("click", () => {
+        manualTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        saveTheme(manualTheme);
+        updateTheme();
     });
 }

@@ -1,61 +1,54 @@
-@use "../abstracts/mixins" as *;
-
-/* Unified button system for consistent actions across the portfolio */
+/* Shared actions for the home, portfolio and contact pages. */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     min-height: 46px;
-    padding: 11px 18px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--text);
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid transparent;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.01em;
+    font-size: 0.9rem;
+    font-weight: 720;
+    line-height: 1.35;
+    text-align: center;
     text-decoration: none;
-    transition:
-        background var(--transition),
-        border-color var(--transition),
-        color var(--transition),
-        transform var(--transition),
-        box-shadow var(--transition);
-
-    
+    transition: background-color var(--transition), border-color var(--transition), color var(--transition);
 
     &:focus-visible {
-        @include focus-ring;
+        outline: 2px solid var(--focus-color);
+        outline-offset: 3px;
+        box-shadow: none;
     }
 }
 
 .btn-primary {
-    border-color: transparent;
-    background: linear-gradient(125deg, var(--accent2), var(--accent));
-    color: #061015;
-    box-shadow: 0 10px 24px rgba(0, 200, 245, 0.2);
+    color: var(--action-text);
+    background: var(--action-bg);
 
-    &:hover {
-        transform: translateY(-1px);
-        filter: brightness(1.30);
-        box-shadow: 0 12px 24px rgba(0, 200, 245, 0.28);
+    &:hover,
+    &:active {
+        color: var(--action-text);
+        background: var(--action-hover);
+        border-color: transparent;
     }
 }
 
 .btn-ghost {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: transparent;
+    border-color: var(--glass-border);
     color: var(--text);
 
-    &:hover {
-        border-color: rgba(0, 200, 245, 0.45);
-        background: rgba(255, 255, 255, 0.07);
+    &:hover,
+    &:active {
+        color: var(--text);
+        background: var(--glass-hover);
+        border-color: var(--focus-color);
     }
 }
 
 .btn-lg {
     min-height: 50px;
-    padding: 13px 22px;
+    padding: 12px 20px;
 }

@@ -1,7 +1,8 @@
-<header class="site-header">
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+<header class="site-header<?= !empty($studioHome) ? ' studio-header' : '' ?>">
     <div class="container header-inner">
         <a class="brand" href="/" aria-label="Accueil">
-            <img class="brand-photo" src="/images/Avatar-tiny.webp" alt="Photo de Guillaume" width="40" height="40">
+            <img class="brand-photo" src="/images/Avatar-tiny.webp" alt="" width="42" height="42">
             <span class="brand-name">Guillaume Maignaut</span>
             <span class="brand-tag">Freelance web</span>
         </a>
@@ -14,14 +15,16 @@
         <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
             <a href="/" class="nav-link">Accueil</a>
             <a href="/#realisations" class="nav-link">Démos</a>
-            <a href="/#services" class="nav-link">Services</a>
             <a href="/#offers" class="nav-link">Offres</a>
+            <a href="/#audit-gratuit" class="nav-link">Audit</a>
+            <a href="/#services" class="nav-link">Services</a>
+            <a href="/#methode" class="nav-link">Méthode</a>
             <a href="/#about" class="nav-link">À propos</a>
-            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Activer le mode sombre" aria-pressed="false" title="Changer de thème">
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Mode sombre" aria-pressed="false" title="Mode sombre">
                 <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></span>
                 <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></span>
             </button>
-            <a href="/contact" class="nav-cta">Contact</a>
+            <a href="/contact#formulaire" class="nav-cta">Contact</a>
         </nav>
     </div>
 </header>

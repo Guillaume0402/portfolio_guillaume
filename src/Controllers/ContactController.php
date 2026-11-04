@@ -14,6 +14,8 @@ use Throwable;
 class ContactController extends AbstractController
 {
     private const PROJECT_TYPES = [
+        'correction_express' => 'Correction web express',
+        'amelioration' => 'Amélioration de site existant',
         'site_vitrine' => 'Site vitrine',
         'landing_page' => 'Landing page',
         'refonte' => 'Refonte',
@@ -22,6 +24,7 @@ class ContactController extends AbstractController
     ];
 
     private const BUDGET_OPTIONS = [
+        'moins_450' => 'Moins de 450 €',
         '450_900' => '450 à 900 €',
         '900_1500' => '900 à 1500 €',
         '1500_plus' => '1500 € et plus',
@@ -35,6 +38,19 @@ class ContactController extends AbstractController
         'non_defini' => 'Pas encore défini',
     ];
 
+    // Identifiants publics des CTA : seules les valeurs connues peuvent préremplir la vue.
+    private const OFFER_PROJECT_TYPES = [
+        'correction-express' => 'correction_express',
+        'amelioration' => 'amelioration',
+        'landing-page' => 'landing_page',
+        'site-vitrine' => 'site_vitrine',
+    ];
+
+    private const OFFER_SUBJECTS = [
+        'refonte-maintenance' => 'Refonte ou maintenance',
+        'audit-gratuit' => 'Audit gratuit de mon site',
+    ];
+
     public function index(): string
     {
         $errors = $_SESSION['contact_errors'] ?? [];
@@ -43,6 +59,19 @@ class ContactController extends AbstractController
 
         unset($_SESSION['contact_errors'], $_SESSION['contact_old'], $_SESSION['contact_success']);
 
+        if ($old === [] && $errors === [] && $success === null) {
+            $offer = $_GET['offre'] ?? null;
+            if (is_string($offer)) {
+                if (isset(self::OFFER_PROJECT_TYPES[$offer])) {
+                    $projectType = self::OFFER_PROJECT_TYPES[$offer];
+                    $old = ['type_projet' => $projectType, 'sujet' => self::PROJECT_TYPES[$projectType]];
+                } elseif (isset(self::OFFER_SUBJECTS[$offer])) {
+                    // Le visiteur peut préciser « Refonte » ou « Maintenance » lui-même.
+                    $old = ['sujet' => self::OFFER_SUBJECTS[$offer]];
+                }
+            }
+        }
+
         return $this->render('contact/index', [
             'pageTitle' => 'Contact | Guillaume Maignaut',
             'pageDescription' => 'Contactez Guillaume Maignaut pour un site vitrine, une landing page, une refonte ou une mission de développement web freelance.',
@@ -50,6 +79,9 @@ class ContactController extends AbstractController
             'errors' => $errors,
             'old' => $old,
             'success' => $success,
+            'projectTypes' => self::PROJECT_TYPES,
+            'budgetOptions' => self::BUDGET_OPTIONS,
+            'deadlineOptions' => self::DEADLINE_OPTIONS,
             'turnstileSiteKey' => $this->envOrFail(
                 'TURNSTILE_SITE_KEY'
             ),

@@ -1,0 +1,72 @@
+// L'accueil alterne une surface principale et des chapitres éditoriaux.
+// Les accents de texte s'adaptent au fond ; les aplats de marque restent menthe.
+:root {
+    --studio-mint: #a9f5cd;
+    --studio-mint-ink: #12151f;
+    --studio-action-hover: #cfffe3;
+    --studio-action-ring: none;
+
+    --studio-bg: #0b1018;
+    --studio-ink: #eae6da;
+    --studio-muted: #bbc4d0;
+    --studio-accent: #a9f5cd;
+    --studio-line: #414951;
+    --studio-focus: #a9f5cd;
+    --studio-hero-glow: #19303a;
+    --studio-hero-frame: #223640;
+    --studio-signal-shadow: #a9f5cd65;
+    --studio-orbit: #78b6ad;
+
+    --studio-chrome-ink: #f1eee4;
+    --studio-control-line: #5d6977;
+    --studio-logo-bg: #f1eee4;
+    --studio-logo-line: #b8c6bd;
+
+    --studio-panel: #eae6da;
+    --studio-panel-ink: #12151f;
+    --studio-panel-muted: #39443f;
+    --studio-panel-accent: #235a46;
+    --studio-panel-link: #174d3a;
+    --studio-panel-focus: #185b47;
+    --studio-panel-label: #334039;
+    --studio-panel-outline: #53695b;
+    --studio-panel-rule: #9ca294;
+    --studio-panel-photo-border: #97998c;
+    --studio-panel-photo: #d9d8cc;
+    --studio-panel-track: #59806d;
+    --studio-panel-selected: #dce8da;
+    --studio-panel-highlight: #183e35;
+}
+
+:root[data-theme="light"] {
+    --studio-action-ring: inset 0 0 0 1px #438468;
+
+    --studio-bg: #f8f7f2;
+    --studio-ink: #152523;
+    --studio-muted: #465853;
+    --studio-accent: #185e49;
+    --studio-line: #b0beb5;
+    --studio-focus: #145c45;
+    --studio-hero-glow: #dbeee4;
+    --studio-hero-frame: #dae8de;
+    --studio-signal-shadow: #247c5340;
+    --studio-orbit: #3d7868;
+
+    --studio-chrome-ink: var(--studio-ink);
+    --studio-control-line: #678679;
+    --studio-logo-bg: #fffdf7;
+    --studio-logo-line: #93a79b;
+
+    --studio-panel: #e9f0e8;
+    --studio-panel-ink: #1b2922;
+    --studio-panel-muted: #394b43;
+    --studio-panel-accent: #18583f;
+    --studio-panel-link: #0e553f;
+    --studio-panel-focus: var(--studio-panel-link);
+    --studio-panel-outline: #617d6d;
+    --studio-panel-rule: #9db4a5;
+    --studio-panel-photo-border: #839d8d;
+    --studio-panel-photo: #d6e4d9;
+    --studio-panel-track: #54806a;
+    --studio-panel-selected: #cde5d6;
+}

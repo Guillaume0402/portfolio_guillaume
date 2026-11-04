@@ -12,11 +12,17 @@ $bp-xl: 1100px;
 
     /* Base + tokens */
     --bg: #080c12;
-    --surface: #12121a;
+    --surface: #152236;
     --panel: rgba(255, 255, 255, 0.06);
     --text: #e9eefc;
-    --muted: rgba(233, 238, 252, 0.65);
+    --muted: #c0ccdc;
     --stroke: rgba(255, 255, 255, 0.1);
+    --section-tint: #101c2e;
+    --link-ink: #a3f2d4;
+    --action-bg: #a3f2d4;
+    --action-hover: #c5f9e5;
+    --action-text: #0a2522;
+    --focus-color: #a3f2d4;
 
     /* Accents */
     --primary: #00e676;
