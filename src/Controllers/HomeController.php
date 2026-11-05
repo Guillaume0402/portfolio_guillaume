@@ -13,6 +13,7 @@ final class HomeController extends AbstractController
     public function index(): string
     {
         return $this->render('home/index', [
+            'studioHome' => true,
             'pageTitle' => 'Création de sites vitrines pour artisans dans le Gers | Guillaume Maignaut',
             'pageDescription' => 'Création de sites vitrines et landing pages clairs, rapides et adaptés au mobile pour indépendants, artisans et petites entreprises. Démos, tarifs et contact.',
             'pageCanonical' => 'https://guillaumemaignaut.com/',
@@ -35,6 +36,7 @@ final class HomeController extends AbstractController
     public function about(): string
     {
         return $this->render('home/index', [
+            'studioHome' => true,
             'pageTitle' => 'À propos',
             'title' => 'À propos',
             'subtitle' => 'Page about OK',

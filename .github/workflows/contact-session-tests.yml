@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   contact-session-tests:
-    name: PHP 8.4 - 16 scénarios
+    name: PHP 8.4 - formulaire de contact
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     defaults:
@@ -28,7 +28,7 @@ jobs:
         uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: '8.4'
-          extensions: mbstring
+          extensions: mbstring, dom
           coverage: none
           tools: none
 
@@ -42,6 +42,7 @@ jobs:
                   && function_exists("mb_check_encoding")
                   && function_exists("mb_substr"),
               "proc_open" => function_exists("proc_open"),
+              "dom" => class_exists("DOMDocument") && class_exists("DOMXPath"),
           ];
           foreach ($checks as $name => $available) {
               printf("%s : %s\n", $name, $available ? "OK" : "MANQUANT");
@@ -52,5 +53,5 @@ jobs:
           printf("PHP %s\n", PHP_VERSION);
           '
 
-      - name: Exécuter les 16 scénarios
+      - name: Exécuter les tests du formulaire
         run: php tests/contact_session_test.php

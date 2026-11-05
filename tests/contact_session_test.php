@@ -10,6 +10,10 @@ namespace {
             'unicode_oversized', 'combining_oversized', 'arrays', 'scalars', 'invalid_choices',
             'malformed_utf8', 'unknown_fields', 'ip_failure', 'turnstile_failure',
             'smtp_failure', 'valid', 'valid_boundaries',
+            'valid_correction_express', 'valid_amelioration', 'new_offer_validation_error',
+            'prefill_correction', 'prefill_amelioration', 'prefill_landing', 'prefill_site_vitrine',
+            'prefill_refonte', 'prefill_audit', 'prefill_unknown', 'prefill_array',
+            'prefill_post_priority', 'prefill_direct',
         ];
         public const LIMITS = ['nom' => 100, 'email' => 254, 'sujet' => 150, 'site_actuel' => 300, 'message' => 3000];
         public static string $case = '';
@@ -73,6 +77,13 @@ namespace {
                 $post['message'] = 'court';
                 if ($case === 'unknown_fields') {
                     $post['unexpected'] = str_repeat('x', 131072);
+                }
+            }
+            if (in_array($case, ['valid_correction_express', 'valid_amelioration', 'new_offer_validation_error'], true)) {
+                $post['type_projet'] = $case === 'valid_amelioration' ? 'amelioration' : 'correction_express';
+                $post['budget'] = 'moins_450';
+                if ($case === 'new_offer_validation_error') {
+                    $post['message'] = 'court';
                 }
             }
             return $post;
@@ -200,13 +211,59 @@ namespace {
                 'exception' => ContactSessionFixture::$exception,
             ], JSON_THROW_ON_ERROR | JSON_INVALID_UTF8_SUBSTITUTE);
         });
+        loadController();
+        (new \App\Controllers\ContactController())->submit();
+        throw new \RuntimeException('Le contrôleur aurait dû terminer par une redirection.');
+    }
+
+    function loadController(): void
+    {
         $root = dirname(__DIR__);
+        define('ROOT', $root);
         require $root . '/src/Http/AbstractController.php';
         require $root . '/src/Security/Csrf.php';
         require $root . '/src/Security/ClientIpResolver.php';
         require $root . '/src/Controllers/ContactController.php';
-        (new \App\Controllers\ContactController())->submit();
-        throw new \RuntimeException('Le contrôleur aurait dû terminer par une redirection.');
+    }
+
+    function runOfferView(string $case): never
+    {
+        $_GET = match ($case) {
+            'prefill_correction', 'prefill_post_priority' => ['offre' => 'correction-express'],
+            'prefill_amelioration' => ['offre' => 'amelioration'],
+            'prefill_landing' => ['offre' => 'landing-page'],
+            'prefill_site_vitrine' => ['offre' => 'site-vitrine'],
+            'prefill_refonte' => ['offre' => 'refonte-maintenance'],
+            'prefill_audit' => ['offre' => 'audit-gratuit'],
+            'prefill_unknown' => ['offre' => '<script>unexpected-offer</script>'],
+            'prefill_array' => ['offre' => ['correction-express']],
+            'prefill_direct' => [],
+        };
+        $_ENV = ['TURNSTILE_SITE_KEY' => 'synthetic-site-key', 'TURNSTILE_EXPECTED_ACTION' => 'contact'];
+        $_SESSION = ['csrf' => 'synthetic-csrf'];
+        if ($case === 'prefill_post_priority') {
+            $_SESSION['contact_old'] = [
+                'sujet' => 'Ma saisie « à conserver »', 'type_projet' => 'amelioration', 'budget' => 'moins_450',
+            ];
+            $_SESSION['contact_errors'] = ['global' => 'Erreur de test'];
+        }
+
+        loadController();
+        $html = (new \App\Controllers\ContactController())->index();
+        $document = new \DOMDocument();
+        expect($document->loadHTML($html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING), 'HTML du formulaire illisible.');
+        $xpath = new \DOMXPath($document);
+        echo json_encode([
+            'exception' => null,
+            'subject' => $xpath->evaluate('string(//input[@name="sujet"]/@value)'),
+            'selected_type' => $xpath->evaluate('string(//input[@name="type_projet"][@checked]/@value)'),
+            'selected_budget' => $xpath->evaluate('string(//input[@name="budget"][@checked]/@value)'),
+            'low_budget' => $xpath->evaluate('normalize-space(//label[input[@name="budget"][@value="moins_450"]]/span)'),
+            'query_reflected' => str_contains($html, 'unexpected-offer'),
+            'error_shown' => str_contains($html, 'Erreur de test'),
+            'flash_consumed' => !isset($_SESSION['contact_old']) && !isset($_SESSION['contact_errors']),
+        ], JSON_THROW_ON_ERROR);
+        exit(0);
     }
 
     function executeCase(string $case): array
@@ -228,6 +285,27 @@ namespace {
 
     function checkCase(string $case, array $result): void
     {
+        if (str_starts_with($case, 'prefill_')) {
+            [$subject, $type] = match ($case) {
+                'prefill_correction' => ['Correction web express', 'correction_express'],
+                'prefill_amelioration' => ['Amélioration de site existant', 'amelioration'],
+                'prefill_landing' => ['Landing page', 'landing_page'],
+                'prefill_site_vitrine' => ['Site vitrine', 'site_vitrine'],
+                'prefill_refonte' => ['Refonte ou maintenance', ''],
+                'prefill_audit' => ['Audit gratuit de mon site', ''],
+                'prefill_post_priority' => ['Ma saisie « à conserver »', 'amelioration'],
+                default => ['', ''],
+            };
+            same($subject, $result['subject'], 'Sujet affiché incorrect.');
+            same($type, $result['selected_type'], 'Type de projet affiché incorrect.');
+            same($case === 'prefill_post_priority' ? 'moins_450' : '', $result['selected_budget'], 'Budget affiché incorrect.');
+            same('Moins de 450 €', $result['low_budget'], 'Petite tranche de budget manquante.');
+            same(false, $result['query_reflected'], 'Valeur GET inconnue réaffichée dans la page.');
+            same($case === 'prefill_post_priority', $result['error_shown'], 'Erreur flash non affichée.');
+            same(true, $result['flash_consumed'], 'Saisie ou erreur flash conservée après affichage.');
+            return;
+        }
+
         $shortMessage = ['message' => 'Le message est trop court.'];
         $choiceErrors = [
             'type_projet' => 'Veuillez choisir un type de projet.',
@@ -240,17 +318,18 @@ namespace {
             'combining_oversized' => ['nom' => 'Le nom est trop long.'],
             'arrays', 'scalars' => ['nom' => 'Le nom est requis.', 'email' => 'L’email est requis.', 'sujet' => 'Le sujet est requis.'] + $choiceErrors + ['message' => 'Le message est requis.'],
             'invalid_choices' => $choiceErrors,
-            'normal_validation_error', 'malformed_utf8', 'unknown_fields' => $shortMessage,
+            'normal_validation_error', 'malformed_utf8', 'unknown_fields', 'new_offer_validation_error' => $shortMessage,
             'ip_failure', 'turnstile_failure' => ['global' => 'Le formulaire n’a pas pu être vérifié. Merci de réessayer.'],
             'smtp_failure' => ['global' => 'Une erreur est survenue lors de l’envoi du message. Veuillez réessayer dans quelques instants.'],
-            'valid', 'valid_boundaries' => [],
+            'valid', 'valid_boundaries', 'valid_correction_express', 'valid_amelioration' => [],
         };
-        $valid = in_array($case, ['valid', 'valid_boundaries'], true);
-        $events = match ($case) {
-            'turnstile_failure' => ['database', 'rate.consume', 'rate.cleanup', 'turnstile.verify'],
-            'smtp_failure', 'valid', 'valid_boundaries' => ['database', 'rate.consume', 'rate.cleanup', 'turnstile.verify', 'mailer.send'],
-            default => [],
-        };
+        $valid = str_starts_with($case, 'valid');
+        $callsMailer = $valid || $case === 'smtp_failure';
+        $events = $callsMailer || $case === 'turnstile_failure'
+            ? ['database', 'rate.consume', 'rate.cleanup', 'turnstile.verify'] : [];
+        if ($callsMailer) {
+            $events[] = 'mailer.send';
+        }
         same(303, $result['status'], 'Statut 303 modifié.');
         same([['Location: /contact', true, 303]], $result['headers'], 'Redirection modifiée.');
         same($errors, $result['errors'], 'Erreurs métier modifiées ou saisies tronquées avant validation.');
@@ -262,8 +341,13 @@ namespace {
         if ($case === 'valid_boundaries') {
             $expected = array_intersect_key(ContactSessionFixture::post($case), $expected);
         }
-        $sent = in_array($case, ['smtp_failure', 'valid', 'valid_boundaries'], true)
-            ? [[$expected['nom'], $expected['email'], $expected['sujet'], $expected['message'], $expected['site_actuel'], 'Site vitrine', '450 à 900 €', 'Urgent']]
+        [$projectLabel, $budgetLabel] = match ($case) {
+            'valid_correction_express' => ['Correction web express', 'Moins de 450 €'],
+            'valid_amelioration' => ['Amélioration de site existant', 'Moins de 450 €'],
+            default => ['Site vitrine', '450 à 900 €'],
+        };
+        $sent = $callsMailer
+            ? [[$expected['nom'], $expected['email'], $expected['sujet'], $expected['message'], $expected['site_actuel'], $projectLabel, $budgetLabel, 'Urgent']]
             : [];
         same($sent, $result['sent'], 'Nombre ou contenu des envois simulés modifié.');
         if ($valid || str_starts_with($case, 'csrf_')) {
@@ -291,6 +375,10 @@ namespace {
             $expected = array_fill_keys(array_keys($expected), '');
         } elseif ($case === 'invalid_choices') {
             $expected['type_projet'] = $expected['budget'] = $expected['delai'] = '';
+        } elseif ($case === 'new_offer_validation_error') {
+            $expected['type_projet'] = 'correction_express';
+            $expected['budget'] = 'moins_450';
+            $expected['message'] = 'court';
         } elseif (in_array($case, ['normal_validation_error', 'malformed_utf8', 'unknown_fields'], true)) {
             $expected['message'] = 'court';
             if ($case === 'malformed_utf8') {
@@ -305,8 +393,8 @@ namespace {
         echo "Ces tests nécessitent PHP CLI.\n";
         exit(2);
     }
-    if (!extension_loaded('mbstring') || !function_exists('proc_open')) {
-        fwrite(STDERR, "Prérequis manquants : activer mbstring et proc_open dans PHP CLI.\n");
+    if (!extension_loaded('mbstring') || !extension_loaded('dom') || !function_exists('proc_open')) {
+        fwrite(STDERR, "Prérequis manquants : activer mbstring, dom et proc_open dans PHP CLI.\n");
         exit(2);
     }
     $options = getopt('', ['case:']);
@@ -314,6 +402,9 @@ namespace {
         if (!in_array($options['case'], ContactSessionFixture::CASES, true)) {
             fwrite(STDERR, "Scénario inconnu.\n");
             exit(2);
+        }
+        if (str_starts_with($options['case'], 'prefill_')) {
+            runOfferView($options['case']);
         }
         runController($options['case']);
     }

@@ -20,6 +20,15 @@
 
         return is_file($absolutePath) ? (string) filemtime($absolutePath) : '1';
     };
+
+    // Une modification de n'importe quel module renouvelle les URL du groupe.
+    $scriptDirectory = dirname(__DIR__, 3) . '/public/js';
+    $scriptHash = hash_init('sha256');
+    hash_update_file($scriptHash, $scriptDirectory . '/main.js');
+    foreach (glob($scriptDirectory . '/modules/*.js') ?: [] as $moduleFile) {
+        hash_update_file($scriptHash, $moduleFile);
+    }
+    $moduleVersion = substr(hash_final($scriptHash), 0, 16);
     ?>
 
     <meta charset="UTF-8">
@@ -54,6 +63,9 @@
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/webp" href="/favicon.webp">
+    <?php if (!empty($studioHome)): ?>
+        <link rel="preload" as="image" href="/images/logo1.png" media="(prefers-reduced-motion: no-preference)" fetchpriority="low">
+    <?php endif; ?>
     <link rel="stylesheet" href="/assets/app.css?v=<?= $assetVersion('/assets/app.css') ?>">
 </head>
 
@@ -63,7 +75,7 @@
     require __DIR__ . '/../partials/header.php';
     ?>
 
-    <main class="app-container">
+    <main id="contenu" tabindex="-1" class="<?= !empty($studioHome) ? 'studio-main' : 'app-container' ?>">
         <?= $content ?? '' ?>
     </main>
 
@@ -71,7 +83,7 @@
     require __DIR__ . '/../partials/footer.php';
     ?>
 
-    <script type="module" src="/js/main.js?v=<?= $assetVersion('/js/main.js') ?>"></script>
+    <script type="module" src="/js/main.js?v=<?= $moduleVersion ?>"></script>
 
 </body>
 

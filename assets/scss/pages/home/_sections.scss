@@ -36,18 +36,107 @@
     }
 }
 
-.section-featured {
-    color: #f8fafc;
-    background: transparent;
+.section-kicker {
+    margin: 0;
+    color: var(--link-ink);
+    font-size: 0.75rem;
+    font-weight: 760;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
 
-    .section-header {
-        h2,
-        p {
-            color: #f8fafc;
+.studio-main { width: 100%; }
+
+.creative-home,
+.studio-main + .site-footer {
+    --edge: clamp(18px, 5.1vw, 88px);
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    --focus-color: var(--studio-focus);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.creative-home {
+    --text: var(--studio-ink);
+    --muted: var(--studio-muted);
+    background: var(--studio-bg);
+    color: var(--studio-ink);
+    line-height: 1.5;
+
+    .shell {
+        width: min(1440px, 100% - var(--edge) * 2);
+        margin-inline: auto;
+    }
+
+    .mono {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-weight: 500;
+        line-height: 1.45;
+        letter-spacing: 0.085em;
+        text-transform: uppercase;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 4px;
+        border-radius: 0;
+    }
+
+    section[id] { scroll-margin-top: 74px; }
+
+    .studio-paper, .project {
+        --text: var(--studio-panel-ink);
+        --muted: var(--studio-panel-muted);
+        --focus-color: var(--studio-panel-focus);
+        background: var(--studio-panel);
+        color: var(--studio-panel-ink);
+        color-scheme: light;
+    }
+
+    .studio-chapter {
+        padding-block: clamp(34px, 5.5vw, 76px);
+    }
+
+    .chapter-heading {
+        min-width: 0;
+
+        .chapter-label {
+            color: var(--studio-accent);
+            margin: 0 0 13px;
         }
 
-        p:not(.section-kicker) {
-            color: rgba(248, 250, 252, 0.68);
+        h2 {
+            margin: 0;
+            font-size: clamp(2.15rem, 5.1vw, 5.1rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.07em;
+            text-wrap: balance;
+
+            em {
+                color: var(--studio-accent);
+                font-family: Georgia, "Times New Roman", serif;
+                font-weight: 400;
+            }
         }
+
+        p:not(.chapter-label) {
+            max-width: 62ch;
+            margin: 16px 0 0;
+            color: var(--studio-muted);
+        }
+    }
+
+    .studio-paper .chapter-heading {
+        .chapter-label, h2 em { color: var(--studio-panel-accent); }
+        p:not(.chapter-label) { color: var(--studio-panel-muted); }
+    }
+
+    .chapter-actions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px 20px;
+        margin-top: 19px;
     }
 }

@@ -91,7 +91,7 @@
 }
 
 .about-link {
-    color: var(--accent2);
+    color: var(--link-ink);
     font-weight: 800;
     text-decoration: none;
 
@@ -149,6 +149,14 @@
     padding: 76px 0 92px;
 }
 .contact-card {
+    --text: #f5f8ff;
+    --focus-color: #a3f2d4;
+    --action-bg: #a3f2d4;
+    --action-hover: #c5f9e5;
+    --action-text: #0a2522;
+    --glass-border: #57677d;
+    --glass-hover: #233951;
+
     border-radius: 24px;
     background:
         linear-gradient(135deg, rgba(0, 200, 245, 0.18), transparent 42%),
@@ -228,5 +236,65 @@
         .btn {
             width: 100%;
         }
+    }
+}
+
+.creative-home {
+    .about-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr);
+        align-items: center;
+        gap: 22px clamp(25px, 6vw, 90px);
+    }
+
+    .about-portrait {
+        max-width: 240px;
+        margin: 0;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        figcaption {
+            margin-top: 8px;
+            color: var(--studio-muted);
+            font-size: 0.8125rem;
+        }
+    }
+
+    .studio-about .text-link { margin-top: 8px; }
+
+    .studio-contact {
+        padding-top: 0;
+
+        .shell {
+            padding-top: clamp(24px, 4.3vw, 54px);
+            border-top: 1px solid var(--studio-accent);
+        }
+
+        .chapter-actions .action {
+            min-height: 54px;
+            padding-inline: 19px;
+            font-size: 1rem;
+        }
+    }
+
+    .contact-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 14px 24px;
+    }
+
+    .contact-layout .chapter-actions { margin-top: 0; }
+
+    @media (max-width: 800px) {
+        .contact-layout { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+        .about-layout { grid-template-columns: minmax(0, 1fr); }
+        .about-portrait { max-width: min(64%, 180px); }
     }
 }

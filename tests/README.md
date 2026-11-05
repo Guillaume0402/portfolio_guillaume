@@ -1,7 +1,7 @@
 # Tests de régression du formulaire de contact
 
-Cette petite suite vérifie le contrat P2 : limiter les saisies conservées dans
-`$_SESSION['contact_old']` sans modifier la validation métier ni le parcours normal.
+Cette suite vérifie la validation du formulaire, les saisies conservées dans
+`$_SESSION['contact_old']` et le préremplissage depuis les offres.
 Elle n'utilise ni framework de test ni dépendance Composer supplémentaire.
 
 ## Exécution
@@ -15,25 +15,31 @@ php tests/contact_session_test.php
 Les chemins sont calculés depuis le fichier de test. La commande peut donc aussi
 être lancée depuis un autre dossier en indiquant le chemin du script.
 
-Prérequis : PHP CLI 8.3 ou 8.4, extension `mbstring` et fonction `proc_open`
-activées dans la configuration CLI du même binaire. Le script lance un
+Prérequis : PHP CLI 8.3 ou 8.4, extensions `mbstring` et `dom`, et fonction
+`proc_open` activées dans la configuration CLI du même binaire. Le script lance un
 sous-processus par scénario, car le contrôleur appelle `exit` après une redirection.
 Il ne force pas le chargement d'un fichier `mbstring.so`, ce qui convient aussi à
 une image où cette extension est déjà intégrée à PHP.
 
 Chaque scénario affiche `PASS` ou `FAIL`, puis un bilan. Code de sortie :
 
-- `0` : les 16 scénarios passent ;
+- `0` : tous les scénarios passent ;
 - `1` : au moins une assertion ou un sous-processus échoue ;
 - `2` : prérequis manquant ou scénario interne inconnu.
 
 ## Couverture
 
-Les 16 scénarios vérifient : CSRF invalide avec données volumineuses ou jeton
+Les 16 scénarios historiques vérifient : CSRF invalide avec données volumineuses ou jeton
 tableau ; dépassement des cinq limites ; conservation des saisies ordinaires après
 erreur ; accents, emojis et caractères combinés ; tableaux et scalaires inattendus ;
 choix métier interdits ; octets UTF-8 malformés ; champ POST supplémentaire ; échecs
 IP, Turnstile et SMTP ; parcours valide ordinaire et valeurs aux limites.
+
+Les 13 scénarios supplémentaires vérifient les deux nouveaux types de projet et
+le budget inférieur à 450 € à l’envoi, leur conservation après erreur et le
+préremplissage dans le HTML de contact. Ils couvrent les cinq offres, l’audit
+gratuit, l’accès direct, les paramètres inconnus ou non scalaires et la priorité
+des saisies restaurées sur le paramètre d’URL.
 
 Les assertions contrôlent les valeurs conservées, les erreurs, la redirection 303,
 la rotation CSRF, l'ordre des appels et les arguments du mailer. Les textes Unicode
