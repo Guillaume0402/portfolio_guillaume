@@ -321,7 +321,7 @@ $escape = static fn (string $value): string => htmlspecialchars($value, ENT_QUOT
     <section id="about" class="studio-chapter studio-about" aria-labelledby="titre-about">
         <div class="shell about-layout">
             <figure class="about-portrait">
-                <img src="/images/photo_profil.jpg" alt="Portrait de Guillaume Maignaut" width="240" height="240" loading="lazy" decoding="async">
+                <img src="/images/portrait_professionnel.webp" alt="Portrait de Guillaume Maignaut" width="480" height="600" loading="lazy" decoding="async">
                 <figcaption class="mono">Guillaume Maignaut / Fleurance, Gers</figcaption>
             </figure>
             <div class="chapter-heading" data-enter>
